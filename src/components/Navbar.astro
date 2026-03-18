@@ -45,38 +45,38 @@
 </div>
 
 <!-- Mega Menu Overlay -->
-<div id="mega-menu" class="fixed inset-0 z-[899] bg-cream/95 backdrop-blur-3xl flex flex-col justify-center opacity-0 pointer-events-none transition-all duration-700 ease-out-expo scale-110">
+<div id="mega-menu" class="fixed inset-0 z-[899] bg-cream/95 backdrop-blur-3xl flex flex-col pt-32 pb-12 md:justify-center overflow-y-auto opacity-0 pointer-events-none transition-all duration-700 ease-out-expo scale-110">
   <!-- Decorative Background Blobs -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
     <div class="mesh-blob w-[800px] h-[800px] bg-indigo/10 top-[-20%] right-[-10%] blur-[120px]"></div>
     <div class="mesh-blob w-[600px] h-[600px] bg-violet/10 bottom-[-20%] left-[-10%] blur-[120px]"></div>
   </div>
 
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="grid md:grid-cols-2 gap-16 lg:gap-32">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 h-full flex flex-col md:block">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-32 flex-1 items-center">
       <!-- Diensten (Key Activities) -->
       <div>
-        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.3em] mb-12">
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.3em] mb-6 md:mb-12">
           <span class="w-10 h-[2px] bg-indigo"></span>
           Wat we doen
         </span>
-        <ul class="space-y-4 md:space-y-8">
+        <ul class="space-y-2 md:space-y-8">
           <li>
-            <a href="#diensten" class="mega-link group flex items-center text-4xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
+            <a href="#diensten" class="mega-link group flex items-center text-5xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
               Websites
-              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500">.</span>
+              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500 hidden md:inline-block">.</span>
             </a>
           </li>
           <li>
-            <a href="#diensten" class="mega-link group flex items-center text-4xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
+            <a href="#diensten" class="mega-link group flex items-center text-5xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
               Software
-              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500">.</span>
+              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500 hidden md:inline-block">.</span>
             </a>
           </li>
           <li>
-            <a href="#diensten" class="mega-link group flex items-center text-4xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
+            <a href="#diensten" class="mega-link group flex items-center text-5xl md:text-7xl font-display font-bold text-dark/20 hover:text-dark transition-all duration-500 hover:tracking-tight interactive">
               Marketing
-              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500">.</span>
+              <span class="text-indigo opacity-0 -translate-x-8 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500 hidden md:inline-block">.</span>
             </a>
           </li>
         </ul>
@@ -84,21 +84,21 @@
 
       <!-- Bureau Info -->
       <div class="flex flex-col justify-between py-4">
-        <div class="space-y-12">
+        <div class="space-y-8 md:space-y-12">
           <div>
-            <span class="block text-[10px] font-bold text-text-secondary uppercase tracking-[0.3em] mb-6">Navigatie</span>
-            <ul class="grid grid-cols-2 gap-6">
-              <li><a href="#over-ons" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors">Over ons</a></li>
-              <li><a href="#cases" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors">Ons werk</a></li>
-              <li><a href="#contact" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors">Contact</a></li>
-              <li><a href="/" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors">Home</a></li>
+            <span class="block text-[10px] font-bold text-text-secondary uppercase tracking-[0.3em] mb-4 md:mb-6">Navigatie</span>
+            <ul class="flex flex-col sm:grid sm:grid-cols-2 gap-3 md:gap-6">
+              <li><a href="#over-ons" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-indigo/30 sm:hidden"></div> Over ons</a></li>
+              <li><a href="#cases" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-indigo/30 sm:hidden"></div> Ons werk</a></li>
+              <li><a href="#contact" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-indigo/30 sm:hidden"></div> Contact</a></li>
+              <li><a href="/" class="mega-link text-xl font-bold text-dark hover:text-indigo transition-colors flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-indigo/30 sm:hidden"></div> Home</a></li>
             </ul>
           </div>
           
-          <div class="p-8 bg-white/50 rounded-3xl border border-white">
-            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.3em] mb-4">Direct contact</p>
-            <a href="tel:+31118123456" class="text-2xl font-display font-bold text-dark hover:text-indigo transition-colors">+31 (0)118 123 456</a>
-            <p class="mt-2 text-sm text-text-secondary">Vragen? We helpen je graag verder.</p>
+          <div class="p-6 md:p-8 bg-white/50 rounded-2xl md:rounded-3xl border border-white inline-block w-full">
+            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.3em] mb-2 md:mb-4">Direct contact</p>
+            <a href="tel:+31118123456" class="text-xl md:text-2xl font-display font-bold text-dark hover:text-indigo transition-colors">+31 (0)118 123 456</a>
+            <p class="mt-1 md:mt-2 text-xs md:text-sm text-text-secondary">Vragen? We helpen je graag verder.</p>
           </div>
         </div>
       </div>

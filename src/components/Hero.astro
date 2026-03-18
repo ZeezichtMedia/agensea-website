@@ -40,7 +40,7 @@ const segments = [
 ];
 ---
 
-<section class="relative min-h-screen flex items-center justify-center px-6 pt-32 lg:pt-40 pb-24 lg:pb-32 overflow-hidden">
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-24 lg:pt-40 pb-20 lg:pb-32 overflow-hidden">
   <!-- Gradient Mesh Background -->
   <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] left-[-10%]" style="animation-delay: 0s;"></div>
   <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[-10%] right-[-5%]" style="animation-delay: -5s;"></div>
@@ -53,8 +53,9 @@ const segments = [
         <h1 class="font-display font-bold text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.95] tracking-tight text-dark reveal">
           Klaar voor de volgende stap in <span class="text-indigo">digitale groei.</span>
         </h1>
-        <p class="mt-8 text-lg md:text-xl text-text-secondary max-w-xl reveal leading-relaxed" style="transition-delay: 200ms;">
-          Welkom bij <strong>Agensea</strong>. Wij zijn de strategische partner voor ambitieuze organisaties. We combineren maatwerk development, marketing en AI tot doeltreffende digitale oplossingen.
+        <p class="mt-6 lg:mt-8 text-lg md:text-xl text-text-secondary max-w-xl reveal leading-relaxed" style="transition-delay: 200ms;">
+          <span class="md:hidden">Welkom bij <strong>Agensea</strong>. Strategisch partner in resultaatgerichte oplossingen rondom development, marketing en AI.</span>
+          <span class="hidden md:inline">Welkom bij <strong>Agensea</strong>. Wij zijn de strategische partner voor ambitieuze organisaties. We combineren maatwerk development, marketing en AI tot doeltreffende digitale oplossingen.</span>
         </p>
         
         <!-- Trust Badge & Team Flavor -->
@@ -87,8 +88,8 @@ const segments = [
           <!-- Divider -->
           <div class="hidden sm:block w-[1px] h-8 bg-dark/10"></div>
 
-          <!-- Team Badge -->
-          <div class="flex items-center gap-4 group">
+          <!-- Team Badge (Hidden on mobile) -->
+          <div class="hidden sm:flex items-center gap-4 group">
             <div class="flex -space-x-4">
               <div class="w-12 h-12 rounded-full border-2 border-indigo p-0.5 overflow-hidden bg-white transition-transform duration-500 hover:z-10 hover:scale-110">
                 <div class="w-full h-full rounded-full bg-cover bg-center" style="background-image: url('/team/ruben.webp');"></div>
@@ -109,7 +110,7 @@ const segments = [
       </div>
 
       <!-- Right Column: Interactive Dropdown -->
-      <div class="lg:col-span-5 relative">
+      <div class="lg:col-span-5 relative mt-6 lg:mt-0">
         <div class="bg-white/40 backdrop-blur-[40px] border border-white p-6 md:p-10 rounded-[2.5rem] shadow-2xl relative z-20 reveal" style="transition-delay: 300ms;">
           <div class="mb-10">
             <span class="block font-display font-medium text-2xl text-text-secondary mb-4">Ik wil</span>

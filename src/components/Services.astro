@@ -4,21 +4,25 @@ const services = [
     num: "01",
     title: "Maatwerk Websites",
     desc: "Schaalbare, veilige en prestatiegerichte websites die de kern vormen van uw professionele digitale aanwezigheid.",
+    href: "/diensten/websites"
   },
   {
     num: "02",
     title: "AI & Automatisering",
     desc: "Slimme integraties die routinematig werk overnemen en uw operationele efficiëntie direct verhogen.",
+    href: "/diensten/software"
   },
   {
     num: "03",
     title: "Online Marketing",
     desc: "Strategische SEO en SEA campagnes gericht op duurzame zichtbaarheid en aantoonbaar zakelijk resultaat.",
+    href: "/diensten/marketing"
   },
   {
     num: "04",
     title: "Maatwerk Software",
     desc: "Betrouwbare, op maat gemaakte applicaties die naadloos aansluiten bij uw specifieke bedrijfsprocessen.",
+    href: "/diensten/software"
   },
 ];
 ---
@@ -42,7 +46,7 @@ const services = [
     <div class="border-t border-warm-grey">
       {services.map((service, i) => (
         <a
-          href="#contact"
+          href={service.href}
           class="reveal service-row group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-8 md:py-10 px-4 md:px-6 border-b border-warm-grey interactive"
           style={`animation-delay: ${i * 0.1}s;`}
         >

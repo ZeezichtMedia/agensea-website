@@ -44,22 +44,221 @@ import CTA from '../../components/CTA.astro';
         </div>
         <!-- Right Graphic area -->
         <div class="lg:col-span-5 reveal" style="transition-delay: 200ms;">
-          <div class="w-full aspect-[4/5] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white relative flex items-center justify-center p-8">
-             <div class="w-full space-y-4">
-               <div class="h-4 bg-warm-grey rounded-full w-1/3"></div>
-               <div class="h-16 bg-cream border border-warm-grey/30 rounded-xl flex items-center px-4 gap-4">
-                  <div class="w-8 h-8 rounded bg-indigo/20"></div>
-                  <div class="flex-1 h-2 bg-warm-grey rounded-full"></div>
-               </div>
-               <div class="h-16 bg-cream border border-warm-grey/30 rounded-xl flex items-center px-4 gap-4">
-                  <div class="w-8 h-8 rounded bg-violet/20"></div>
-                  <div class="flex-1 h-2 bg-warm-grey rounded-full"></div>
-               </div>
-               <div class="h-16 bg-cream border border-indigo/50 shadow-md rounded-xl flex items-center px-4 gap-4">
-                  <div class="w-8 h-8 rounded bg-indigo text-white flex items-center justify-center"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></div>
-                  <div class="flex-1 h-2 bg-indigo/20 rounded-full"></div>
-               </div>
-             </div>
+          <div class="w-full bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-white relative">
+            <!-- Browser Chrome -->
+            <div class="h-9 bg-[#f5f3ef] flex items-center px-4 gap-1.5 border-b border-warm-grey/15">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></div>
+              <div class="ml-3 flex-1 h-5 bg-white/80 rounded-md border border-warm-grey/15 flex items-center px-2">
+                <span id="appUrlText" class="text-[8px] text-text-secondary/40 font-mono transition-opacity duration-300">app.jouwbedrijf.nl/dashboard</span>
+              </div>
+            </div>
+
+            <!-- Layout Container -->
+            <div id="appContainer" class="h-[340px] relative overflow-hidden bg-cream flex">
+              
+              <!-- App 1: Analytics Dashboard -->
+              <div class="app-layout active w-full h-full flex absolute inset-0 transition-opacity duration-500" data-url="app.jouwbedrijf.nl/dashboard" id="app1">
+                <!-- Sidebar -->
+                <div class="w-16 h-full bg-white border-r border-warm-grey/15 flex flex-col items-center py-4 space-y-4">
+                  <div class="w-8 h-8 rounded bg-indigo/10 mb-2"></div>
+                  <div class="w-5 h-5 rounded-sm bg-indigo/80"></div>
+                  <div class="w-5 h-5 rounded-sm bg-warm-grey/20"></div>
+                  <div class="w-5 h-5 rounded-sm bg-warm-grey/20"></div>
+                  <div class="w-5 h-5 rounded-sm bg-warm-grey/20"></div>
+                </div>
+                <!-- Main Content -->
+                <div class="flex-1 p-4 flex flex-col">
+                  <!-- Header -->
+                  <div class="flex items-center justify-between mb-4">
+                     <div class="w-24 h-4 rounded bg-dark/80"></div>
+                     <div class="flex gap-2">
+                       <div class="w-6 h-6 rounded-full bg-warm-grey/20"></div>
+                       <div class="w-6 h-6 rounded-full bg-indigo/20"></div>
+                     </div>
+                  </div>
+                  <!-- Stats -->
+                  <div class="grid grid-cols-3 gap-3 mb-4">
+                    <div class="bg-white rounded border border-warm-grey/15 p-2.5 shadow-sm">
+                       <div class="w-10 h-2 rounded bg-warm-grey/30 mb-2"></div>
+                       <div class="flex items-end justify-between">
+                         <div class="w-16 h-5 rounded bg-dark/80"></div>
+                         <div class="w-8 h-3 rounded bg-emerald-400/20 text-[6px] font-bold text-emerald-600 flex items-center justify-center">+12%</div>
+                       </div>
+                    </div>
+                    <div class="bg-white rounded border border-warm-grey/15 p-2.5 shadow-sm">
+                       <div class="w-12 h-2 rounded bg-warm-grey/30 mb-2"></div>
+                       <div class="flex items-end justify-between">
+                         <div class="w-14 h-5 rounded bg-dark/80"></div>
+                         <div class="w-8 h-3 rounded bg-emerald-400/20 text-[6px] font-bold text-emerald-600 flex items-center justify-center">+5%</div>
+                       </div>
+                    </div>
+                    <div class="bg-white rounded border border-warm-grey/15 p-2.5 shadow-sm">
+                       <div class="w-10 h-2 rounded bg-warm-grey/30 mb-2"></div>
+                       <div class="flex items-end justify-between">
+                         <div class="w-12 h-5 rounded bg-dark/80"></div>
+                         <div class="w-8 h-3 rounded bg-red-400/20 text-[6px] font-bold text-red-600 flex items-center justify-center">-2%</div>
+                       </div>
+                    </div>
+                  </div>
+                  <!-- Chart -->
+                  <div class="flex-1 bg-white rounded border border-warm-grey/15 p-3 shadow-sm flex flex-col">
+                    <div class="w-20 h-2.5 rounded bg-dark/60 mb-3"></div>
+                    <div class="flex-1 flex items-end justify-between gap-1.5 pt-2">
+                       <div class="w-full bg-indigo/20 rounded-t h-[40%]"></div>
+                       <div class="w-full bg-indigo/40 rounded-t h-[60%]"></div>
+                       <div class="w-full bg-indigo/20 rounded-t h-[30%]"></div>
+                       <div class="w-full bg-indigo/60 rounded-t h-[80%]"></div>
+                       <div class="w-full bg-indigo/30 rounded-t h-[50%]"></div>
+                       <div class="w-full bg-indigo/80 rounded-t h-[100%]"></div>
+                       <div class="w-full bg-indigo/40 rounded-t h-[70%]"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- App 2: Kanban Board -->
+              <div class="app-layout w-full h-full flex absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-500" data-url="app.jouwbedrijf.nl/projects" id="app2">
+                <!-- Sidebar -->
+                <div class="w-12 h-full bg-dark flex flex-col items-center py-4 space-y-4">
+                   <div class="w-6 h-6 rounded bg-white/20 mb-2"></div>
+                   <div class="w-4 h-4 rounded-sm bg-white/10"></div>
+                   <div class="w-4 h-4 rounded-sm bg-indigo border-l-2 border-white pl-1"></div>
+                   <div class="w-4 h-4 rounded-sm bg-white/10"></div>
+                </div>
+                <!-- Main Content -->
+                <div class="flex-1 p-4 bg-[#f8f9fa] flex flex-col">
+                  <!-- Header -->
+                  <div class="flex items-center justify-between mb-4">
+                     <div class="flex gap-2 items-center">
+                       <div class="w-16 h-4 rounded bg-dark"></div>
+                       <div class="w-4 h-4 rounded-full bg-indigo/10 flex items-center justify-center"><div class="w-2 h-2 bg-indigo rounded-full"></div></div>
+                     </div>
+                     <div class="w-16 h-6 rounded bg-indigo flex items-center justify-center text-[7px] text-white font-bold">+ New Task</div>
+                  </div>
+                  <!-- Columns -->
+                  <div class="flex-1 flex gap-3 overflow-hidden">
+                    <!-- Column 1 -->
+                    <div class="w-1/3 h-full flex flex-col">
+                       <div class="w-12 h-2.5 rounded bg-warm-grey/60 mb-2"></div>
+                       <div class="space-y-2">
+                         <div class="bg-white p-2 rounded shadow-sm border border-warm-grey/10">
+                           <div class="w-6 h-1.5 rounded bg-red-400 mb-1.5"></div>
+                           <div class="w-full h-2 rounded bg-dark/80 mb-1"></div>
+                           <div class="w-2/3 h-2 rounded bg-dark/80 mb-2"></div>
+                           <div class="flex justify-between items-center">
+                              <div class="w-8 h-1.5 rounded bg-warm-grey/40"></div>
+                              <div class="w-4 h-4 shadow-sm rounded-full bg-amber-200"></div>
+                           </div>
+                         </div>
+                         <div class="bg-white p-2 rounded shadow-sm border border-warm-grey/10">
+                           <div class="w-8 h-1.5 rounded bg-emerald-400 mb-1.5"></div>
+                           <div class="w-4/5 h-2 rounded bg-dark/80 mb-2"></div>
+                           <div class="flex justify-between items-center">
+                              <div class="w-6 h-1.5 rounded bg-warm-grey/40"></div>
+                              <div class="w-4 h-4 shadow-sm rounded-full bg-indigo/20"></div>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="w-1/3 h-full flex flex-col">
+                       <div class="w-16 h-2.5 rounded bg-warm-grey/60 mb-2"></div>
+                       <div class="space-y-2">
+                         <div class="bg-white p-2 rounded shadow-[0_2px_8px_rgba(99,102,241,0.2)] border-l-2 border-indigo">
+                           <div class="w-10 h-1.5 rounded bg-violet-400 mb-1.5"></div>
+                           <div class="w-full h-2 rounded bg-dark/80 mb-2"></div>
+                           <div class="flex justify-between items-center">
+                              <div class="w-8 h-1.5 rounded bg-warm-grey/40"></div>
+                              <div class="flex -space-x-1">
+                                <div class="w-4 h-4 shadow-sm rounded-full bg-indigo/20"></div>
+                                <div class="w-4 h-4 shadow-sm rounded-full bg-emerald-200 border border-white"></div>
+                              </div>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
+                    <!-- Column 3 -->
+                    <div class="w-1/3 h-full flex flex-col">
+                       <div class="w-10 h-2.5 rounded bg-warm-grey/60 mb-2"></div>
+                       <div class="space-y-2 opacity-60">
+                         <div class="bg-white p-2 rounded shadow-sm border border-warm-grey/10">
+                           <div class="w-full h-2 rounded bg-dark/80 line-through decoration-warm-grey mb-2"></div>
+                           <div class="w-4 h-4 shadow-sm rounded-full bg-warm-grey/30"></div>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- App 3: Table / CRM -->
+              <div class="app-layout w-full h-full flex absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-500" data-url="app.jouwbedrijf.nl/customers" id="app3">
+                <!-- Top Nav -->
+                <div class="w-full h-10 bg-white border-b border-warm-grey/15 flex items-center px-4 justify-between absolute top-0 left-0 right-0 z-10">
+                   <div class="flex gap-3 items-center">
+                     <div class="w-4 h-4 rounded bg-indigo/80"></div>
+                     <div class="w-12 h-2.5 bg-dark/80 rounded"></div>
+                   </div>
+                   <div class="flex gap-2">
+                     <div class="w-16 h-4 rounded bg-cream border border-warm-grey/20"></div>
+                     <div class="w-4 h-4 rounded bg-warm-grey/20"></div>
+                   </div>
+                </div>
+                <!-- Main Content -->
+                <div class="flex-1 bg-white pt-10 flex flex-col w-full h-full">
+                   <!-- Toolbar -->
+                   <div class="px-4 py-2 border-b border-warm-grey/10 flex justify-between items-center bg-cream/50">
+                      <div class="flex gap-2">
+                         <div class="w-12 h-4 bg-white border border-warm-grey/20 rounded"></div>
+                         <div class="w-16 h-4 bg-white border border-warm-grey/20 rounded"></div>
+                      </div>
+                      <div class="w-14 h-5 bg-dark text-white text-[6px] font-bold rounded flex items-center justify-center">Export</div>
+                   </div>
+                   <!-- Table Header -->
+                   <div class="px-4 py-2 border-b border-warm-grey/20 flex gap-2">
+                     <div class="w-4 h-2 bg-warm-grey/40 rounded"></div>
+                     <div class="w-1/4 h-2 bg-warm-grey/60 rounded"></div>
+                     <div class="w-1/4 h-2 bg-warm-grey/60 rounded"></div>
+                     <div class="w-1/4 h-2 bg-warm-grey/60 rounded"></div>
+                     <div class="w-1/4 h-2 bg-warm-grey/60 rounded"></div>
+                   </div>
+                   <!-- Table Rows -->
+                   <div class="flex-1 overflow-hidden flex flex-col">
+                     <div class="px-4 py-2.5 border-b border-warm-grey/10 flex gap-2 items-center hover:bg-cream">
+                       <div class="w-3 h-3 border border-warm-grey/30 rounded-sm"></div>
+                       <div class="w-1/4 h-2 bg-dark/80 rounded"></div>
+                       <div class="w-1/4 h-2 bg-dark/60 rounded"></div>
+                       <div class="w-1/4"><div class="w-10 h-3 bg-emerald-100 rounded-sm"></div></div>
+                       <div class="w-1/4 h-2 bg-dark/40 rounded"></div>
+                     </div>
+                     <div class="px-4 py-2.5 border-b border-warm-grey/10 flex gap-2 items-center hover:bg-cream">
+                       <div class="w-3 h-3 border border-warm-grey/30 rounded-sm"></div>
+                       <div class="w-1/4 h-2 bg-dark/80 rounded"></div>
+                       <div class="w-1/4 h-2 bg-dark/60 rounded"></div>
+                       <div class="w-1/4"><div class="w-10 h-3 bg-amber-100 rounded-sm"></div></div>
+                       <div class="w-1/4 h-2 bg-dark/40 rounded"></div>
+                     </div>
+                     <div class="px-4 py-2.5 border-b border-warm-grey/10 flex gap-2 items-center hover:bg-cream bg-indigo/5">
+                       <div class="w-3 h-3 bg-indigo border border-indigo rounded-sm flex items-center justify-center"><div class="w-1.5 h-1.5 bg-white rounded-full"></div></div>
+                       <div class="w-1/4 h-2 bg-indigo/80 rounded"></div>
+                       <div class="w-1/4 h-2 bg-dark/60 rounded"></div>
+                       <div class="w-1/4"><div class="w-12 h-3 bg-red-100 rounded-sm"></div></div>
+                       <div class="w-1/4 h-2 bg-dark/40 rounded"></div>
+                     </div>
+                     <div class="px-4 py-2.5 border-b border-warm-grey/10 flex gap-2 items-center hover:bg-cream">
+                       <div class="w-3 h-3 border border-warm-grey/30 rounded-sm"></div>
+                       <div class="w-1/4 h-2 bg-dark/80 rounded"></div>
+                       <div class="w-1/4 h-2 bg-dark/60 rounded"></div>
+                       <div class="w-1/4"><div class="w-10 h-3 bg-emerald-100 rounded-sm"></div></div>
+                       <div class="w-1/4 h-2 bg-dark/40 rounded"></div>
+                     </div>
+                   </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -110,9 +309,63 @@ import CTA from '../../components/CTA.astro';
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   };
   
+  const setupAppCycler = () => {
+    const apps = document.querySelectorAll('.app-layout');
+    const urlText = document.getElementById('appUrlText');
+    if (!apps.length || !urlText) return;
+
+    let currentIndex = 0;
+
+    const typeWriter = (text: string, element: HTMLElement, speed = 30) => {
+      element.textContent = '';
+      let i = 0;
+      return new Promise<void>(resolve => {
+        const type = () => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          } else {
+            resolve();
+          }
+        };
+        type();
+      });
+    };
+
+    const cycleApps = async () => {
+      const currentApp = apps[currentIndex] as HTMLElement;
+      currentIndex = (currentIndex + 1) % apps.length;
+      const nextApp = apps[currentIndex] as HTMLElement;
+
+      currentApp.style.opacity = '0';
+      currentApp.style.pointerEvents = 'none';
+      currentApp.classList.remove('active');
+
+      nextApp.style.opacity = '1';
+      nextApp.classList.add('active');
+
+      // Update URL with typing effect
+      const nextUrl = nextApp.getAttribute('data-url');
+      if (nextUrl) {
+        urlText.style.opacity = '0';
+        setTimeout(async () => {
+          await typeWriter(nextUrl, urlText);
+          urlText.style.opacity = '1';
+        }, 300);
+      }
+    };
+
+    setInterval(cycleApps, 4000);
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeElements);
+    document.addEventListener('DOMContentLoaded', () => {
+      observeElements();
+      setupAppCycler();
+    });
   } else {
     observeElements();
+    setupAppCycler();
   }
 </script>

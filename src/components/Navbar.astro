@@ -5,7 +5,7 @@
 <div class="fixed top-10 left-0 right-0 z-[900] pointer-events-none" id="nav-header">
   <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
     <!-- Logo -->
-    <a href="/" class="font-display text-2xl font-bold tracking-tight text-dark interactive pointer-events-auto" id="logo-main">
+    <a href="/" class="font-display text-2xl font-bold tracking-tight text-dark transition-colors duration-300 interactive pointer-events-auto" id="logo-main">
       agensea<span class="text-indigo">.</span>
     </a>
 
@@ -151,18 +151,34 @@
     window.dispatchEvent(new CustomEvent('open-ai-search'));
   });
 
-  // ── Smart Scroll Logic ────────────────────
+  // ── Smart Scroll & Color Logic ────────────────────
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     const navHeader = document.getElementById('nav-header');
-    
-    // 1. Hide/Show on Scroll Up/Down
-    if (currentScroll > lastScroll && currentScroll > 200 && !isOpen) {
-      // Scrolling down
-      if (navHeader) navHeader.style.transform = 'translateY(-200%)';
-    } else {
-      // Scrolling up
-      if (navHeader) navHeader.style.transform = 'translateY(0)';
+    const logo = document.getElementById('logo-main');
+    const darkSections = document.querySelectorAll('.bg-dark, .bg-indigo');
+
+    // 1. Dynamic Logo Color
+    if (logo) {
+      const logoRect = logo.getBoundingClientRect();
+      const logoCenter = logoRect.top + (logoRect.height / 2);
+      let isOverDark = false;
+      
+      darkSections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        // Check if the vertical center of the logo falls within a dark section
+        if (logoCenter >= rect.top && logoCenter <= rect.bottom) {
+          isOverDark = true;
+        }
+      });
+
+      if (isOverDark) {
+        logo.classList.remove('text-dark');
+        logo.classList.add('text-white');
+      } else {
+        logo.classList.add('text-dark');
+        logo.classList.remove('text-white');
+      }
     }
 
     // 2. Shrink/Aesthetic Change on Scroll

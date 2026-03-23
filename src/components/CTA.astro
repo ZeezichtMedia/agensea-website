@@ -11,7 +11,7 @@
       </span>
 
       <h2 class="font-display text-4xl md:text-6xl font-bold leading-[1.1] mb-8">
-        Klaar voor de <span class="text-indigo">volgende stap?</span>
+        <span class="scramble-cta inline-block" data-text="Klaar voor de ">Klaar voor de </span><span class="text-indigo scramble-cta inline-block" data-text="volgende stap?">volgende stap?</span>
       </h2>
 
       <p class="text-lg text-text-secondary leading-relaxed mb-12 max-w-xl mx-auto">
@@ -30,3 +30,52 @@
     </div>
   </div>
 </section>
+
+<script>
+  const chars = '!<>-_\\\\/[]{}—=+*^?#________';
+  
+  const setupScramble = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('scrambled')) {
+          entry.target.classList.add('scrambled');
+          scrambleElement(entry.target as HTMLElement);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.scramble-cta').forEach(el => observer.observe(el));
+  };
+
+  const scrambleElement = (el: HTMLElement) => {
+    const originalText = el.getAttribute('data-text') || el.innerText;
+    let iteration = 0;
+    
+    // Faster speed
+    const interval = setInterval(() => {
+      el.innerText = originalText
+        .split('')
+        .map((letter, index) => {
+          if(index < iteration) {
+            return originalText[index];
+          }
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join('');
+        
+      if(iteration >= originalText.length) {
+        clearInterval(interval);
+        // Force exactly the original back to avoid any spacing glitches
+        el.innerText = originalText;
+      }
+      
+      iteration += 1 / 2; // Decipher speed
+    }, 40);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupScramble);
+  } else {
+    setupScramble();
+  }
+</script>

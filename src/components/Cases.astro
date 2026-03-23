@@ -3,36 +3,54 @@ const cases = [
   {
     title: "De Kaap",
     tag: "Digitaal Platform",
+    category: "website",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600",
   },
   {
     title: "Adrz Kniepoli",
     tag: "Campagne",
+    category: "marketing",
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600",
   },
   {
     title: "Dockwise",
     tag: "Branding & SEA",
+    category: "marketing",
     image: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=600",
   },
   {
     title: "Tilly Rose",
     tag: "Branding",
+    category: "marketing",
     image: "https://placehold.co/600x800/0D0D0D/6C63FF?text=Brand+Identity&font=inter",
   },
   {
     title: "DeMol Events",
     tag: "Webshop",
+    category: "website",
     image: "https://placehold.co/600x800/0D0D0D/FAF9F6?text=Webshop&font=inter",
   },
+  {
+    title: "Smart Logistics",
+    tag: "AI Dashboards",
+    category: "software",
+    image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=600",
+  },
+];
+
+const categories = [
+  { id: 'all', label: 'Alles' },
+  { id: 'website', label: 'Websites' },
+  { id: 'marketing', label: 'Marketing' },
+  { id: 'software', label: 'Software' },
 ];
 ---
 
 <section id="cases" class="pt-12 pb-16 md:pt-24 md:pb-24 px-6 lg:px-10 overflow-hidden">
   <div class="max-w-7xl mx-auto">
     <!-- Header -->
-    <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-      <div>
+    <div class="reveal flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+      <div class="max-w-xl">
         <span class="inline-flex items-center gap-2 text-xs font-medium text-text-secondary uppercase tracking-[0.2em] mb-4">
           <span class="w-8 h-[1px] bg-indigo"></span>
           Portfolio
@@ -41,31 +59,121 @@ const cases = [
           Recent werk
         </h2>
       </div>
-      <a href="#" class="magnetic-btn text-sm font-medium text-text-secondary hover:text-indigo transition-colors interactive">
-        Alle cases bekijken
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </a>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-2 md:gap-4 p-1 bg-dark-lighter/30 rounded-full border border-white/5 w-fit">
+        {categories.map((cat) => (
+          <button
+            class={`filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 interactive ${cat.id === 'all' ? 'active bg-white text-dark shadow-lg' : 'text-text-secondary hover:bg-white hover:text-dark'}`}
+            data-filter={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
     </div>
   </div>
 
   <!-- Horizontal Scroll Gallery -->
-  <div class="horizontal-scroll px-6 lg:px-10">
-    {cases.map((item, i) => (
-      <a href="#" class="reveal group block w-[300px] md:w-[380px] shrink-0 interactive" style={`animation-delay: ${i * 0.1}s;`}>
-        <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-dark">
-          <img
-            src={item.image}
-            alt={item.title}
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-xs font-medium text-white uppercase tracking-wider">
-            {item.tag}
-          </span>
-        </div>
-        <h3 class="font-display text-lg font-bold group-hover:text-indigo transition-colors">{item.title}</h3>
-      </a>
-    ))}
+  <div class="relative">
+    <div id="cases-grid" class="flex gap-6 md:gap-8 px-6 lg:px-10 overflow-x-auto pb-8 scrollbar-hide scroll-smooth">
+      {cases.map((item, i) => (
+        <a 
+          href="#" 
+          class="reveal case-card group block w-[280px] md:w-[380px] shrink-0 interactive transition-all duration-500" 
+          data-category={item.category}
+          style={`animation-delay: ${i * 0.1}s;`}
+        >
+          <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-dark border border-white/5">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-widest border border-white/10">
+              {item.tag}
+            </span>
+          </div>
+          <h3 class="font-display text-lg md:text-xl font-bold group-hover:text-indigo transition-colors flex items-center justify-between">
+            {item.title}
+            <svg class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </h3>
+        </a>
+      ))}
+    </div>
+    
+    <!-- Gradient Overlays for better scroll hint -->
+    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-cream to-transparent pointer-events-none z-10 opacity-0 md:opacity-100"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-cream to-transparent pointer-events-none z-10 opacity-0 md:opacity-100"></div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .filter-btn.active {
+    /* Styles are mostly in Tailwind classes but here for clarity if needed */
+  }
+
+  .case-card.filtered-out {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    width: 0;
+    margin-right: 0;
+  }
+  
+  #cases-grid {
+    transition: all 0.5s ease;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const caseCards = document.querySelectorAll('.case-card');
+  const grid = document.getElementById('cases-grid');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update active state
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'bg-white', 'text-dark', 'shadow-lg');
+        b.classList.add('text-text-secondary');
+      });
+      btn.classList.add('active', 'bg-white', 'text-dark', 'shadow-lg');
+      btn.classList.remove('text-text-secondary');
+
+      // Filter cards
+      caseCards.forEach((card: any) => {
+        const category = card.getAttribute('data-category');
+        
+        if (filter === 'all' || category === filter) {
+          card.classList.remove('filtered-out');
+          setTimeout(() => {
+            card.style.display = 'block';
+            card.style.width = window.innerWidth < 768 ? '280px' : '380px';
+            card.style.marginRight = window.innerWidth < 768 ? '1.5rem' : '2rem';
+          }, 0);
+        } else {
+          card.classList.add('filtered-out');
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 400); // Wait for transition
+        }
+      });
+      
+      // Scroll back to start
+      if (grid) grid.scrollLeft = 0;
+    });
+  });
+</script>

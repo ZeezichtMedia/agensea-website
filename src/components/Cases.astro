@@ -1,40 +1,52 @@
 ---
 const cases = [
   {
-    title: "De Kaap",
-    tag: "Digitaal Platform",
+    title: "Arieke van Liere",
+    tag: "LinkedIn Campagne",
+    category: "marketing",
+    image: "/portfolio/arieke-van-liere.png",
+    description: "LinkedIn campagne gericht op engagement om haar showreel te promoten onder de relevante doelgroep. Van strategie en doelgroepanalyse tot uitvoering en contentplanning — volledig door ons verzorgd.",
+    review: {
+      text: "Review binnenkort beschikbaar.",
+      author: "Arieke van Liere",
+      placeholder: true
+    }
+  },
+  {
+    title: "Adrz",
+    tag: "Imago Campagne",
+    category: "marketing",
+    image: "/portfolio/adrz.png",
+    description: "Imagocampagne voor het Adrz om hun content breed te verspreiden in Zeeland. We hebben campagnes opgebouwd verdeeld over YouTube en Meta, met sterke resultaten op bereik en merkherkenning.",
+    review: {
+      text: "Review binnenkort beschikbaar.",
+      author: "Adrz",
+      placeholder: true
+    }
+  },
+  {
+    title: "Bouwgroep R&D",
+    tag: "Website",
     category: "website",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600",
+    image: "/portfolio/bouwgroep-rd.png",
+    description: "Bouwgroep R&D was toe aan een upgrade. We bouwden een gebruiksvriendelijke website die helder communiceert wat zij als diensten aanbieden, én die vertrouwen wekt bij potentiële klanten.",
+    review: {
+      text: "Ik ben heel erg blij met het eindresultaat. Het hele traject verliep soepel en professioneel — van het eerste gesprek tot de oplevering. De website sluit nu perfect aan bij wie we zijn als bedrijf.",
+      author: "Mischa, Bouwgroep R&D",
+      placeholder: false
+    }
   },
   {
-    title: "Adrz Kniepoli",
-    tag: "Campagne",
-    category: "marketing",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600",
-  },
-  {
-    title: "Dockwise",
-    tag: "Branding & SEA",
-    category: "marketing",
-    image: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=600",
-  },
-  {
-    title: "Tilly Rose",
-    tag: "Branding",
-    category: "marketing",
-    image: "https://placehold.co/600x800/0D0D0D/6C63FF?text=Brand+Identity&font=inter",
-  },
-  {
-    title: "DeMol Events",
-    tag: "Webshop",
+    title: "B&B Voorste Eng",
+    tag: "Website",
     category: "website",
-    image: "https://placehold.co/600x800/0D0D0D/FAF9F6?text=Webshop&font=inter",
-  },
-  {
-    title: "Smart Logistics",
-    tag: "AI Dashboards",
-    category: "software",
-    image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=600",
+    image: "/portfolio/bb-voorste-eng.png",
+    description: "B&B Voorste Eng wilde niet langer volledig afhankelijk zijn van externe boekingsplatformen. Wij bouwden een eigen website waarmee gasten direct kunnen ontdekken en boeken.",
+    review: {
+      text: "Review binnenkort beschikbaar.",
+      author: "B&B Voorste Eng",
+      placeholder: true
+    }
   },
 ];
 
@@ -78,33 +90,61 @@ const categories = [
   <div class="relative">
     <div id="cases-grid" class="flex gap-6 md:gap-8 px-6 lg:px-10 overflow-x-auto pb-8 scrollbar-hide scroll-smooth">
       {cases.map((item, i) => (
-        <a 
-          href="#" 
-          class="reveal case-card group block w-[280px] md:w-[380px] shrink-0 interactive transition-all duration-500" 
+        <div 
+          class="reveal case-card group block w-[280px] md:w-[380px] shrink-0 interactive" 
           data-category={item.category}
           style={`animation-delay: ${i * 0.1}s;`}
         >
-          <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-dark border border-white/5">
+          <!-- Image Card -->
+          <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-dark border border-white/5 cursor-pointer case-trigger">
             <img
               src={item.image}
               alt={item.title}
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
             <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-widest border border-white/10">
               {item.tag}
             </span>
+            <!-- Expand hint -->
+            <div class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <svg class="w-3.5 h-3.5 text-white expand-icon transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
           </div>
-          <h3 class="font-display text-lg md:text-xl font-bold group-hover:text-indigo transition-colors flex items-center justify-between">
+          
+          <!-- Title -->
+          <h3 class="font-display text-lg md:text-xl font-bold group-hover:text-indigo transition-colors flex items-center justify-between cursor-pointer case-trigger">
             {item.title}
             <svg class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </h3>
-        </a>
+
+          <!-- Expandable Detail Panel -->
+          <div class="case-detail overflow-hidden transition-all duration-500 ease-out" style="max-height: 0; opacity: 0;">
+            <div class="pt-4 pb-2 space-y-4">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.description}</p>
+              
+              <!-- Review -->
+              <div class={`p-4 rounded-xl border ${item.review.placeholder ? 'bg-warm-grey/30 border-warm-grey/50' : 'bg-indigo/5 border-indigo/10'}`}>
+                <div class="flex items-start gap-3">
+                  <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
+                  <div>
+                    <p class={`text-sm leading-relaxed ${item.review.placeholder ? 'text-text-secondary/50 italic' : 'text-dark'}`}>
+                      {item.review.text}
+                    </p>
+                    <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">
+                      — {item.review.author}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
     
-    <!-- Gradient Overlays for better scroll hint -->
+    <!-- Gradient Overlays -->
     <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-cream to-transparent pointer-events-none z-10 opacity-0 md:opacity-100"></div>
     <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-cream to-transparent pointer-events-none z-10 opacity-0 md:opacity-100"></div>
   </div>
@@ -122,7 +162,7 @@ const categories = [
   .case-card {
     transition: opacity 0.4s ease, transform 0.4s ease, max-width 0.4s ease, padding 0.4s ease, margin 0.4s ease;
     max-width: 380px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .case-card.filtered-out {
@@ -140,9 +180,18 @@ const categories = [
       max-width: 280px;
     }
   }
+
+  .case-detail {
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  .case-card.expanded .expand-icon {
+    transform: rotate(180deg);
+  }
 </style>
 
 <script>
+  // Filter logic
   const filterBtns = document.querySelectorAll('.filter-btn');
   const caseCards = document.querySelectorAll('.case-card');
   const grid = document.getElementById('cases-grid');
@@ -151,7 +200,6 @@ const categories = [
     btn.addEventListener('click', () => {
       const filter = btn.getAttribute('data-filter');
 
-      // Update active state
       filterBtns.forEach(b => {
         b.classList.remove('active', 'bg-white', 'text-dark', 'shadow-lg');
         b.classList.add('text-text-secondary');
@@ -159,18 +207,47 @@ const categories = [
       btn.classList.add('active', 'bg-white', 'text-dark', 'shadow-lg');
       btn.classList.remove('text-text-secondary');
 
-      // Filter cards with pure CSS class toggling
       caseCards.forEach((card: any) => {
         const category = card.getAttribute('data-category');
         if (filter === 'all' || category === filter) {
           card.classList.remove('filtered-out');
         } else {
           card.classList.add('filtered-out');
+          // Also collapse if expanded
+          card.classList.remove('expanded');
+          const detail = card.querySelector('.case-detail') as HTMLElement;
+          if (detail) {
+            detail.style.maxHeight = '0';
+            detail.style.opacity = '0';
+          }
         }
       });
       
-      // Scroll back to start
       if (grid) grid.scrollLeft = 0;
+    });
+  });
+
+  // Expand/collapse logic
+  document.querySelectorAll('.case-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = (trigger as HTMLElement).closest('.case-card');
+      if (!card) return;
+
+      const detail = card.querySelector('.case-detail') as HTMLElement;
+      if (!detail) return;
+
+      const isExpanded = card.classList.contains('expanded');
+
+      if (isExpanded) {
+        card.classList.remove('expanded');
+        detail.style.maxHeight = '0';
+        detail.style.opacity = '0';
+      } else {
+        card.classList.add('expanded');
+        detail.style.maxHeight = detail.scrollHeight + 'px';
+        detail.style.opacity = '1';
+      }
     });
   });
 </script>

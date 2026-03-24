@@ -178,10 +178,54 @@ const categories = [
     });
   });
 
+  // Drag to scroll logic
+  let isDown = false;
+  let startX: number;
+  let scrollLeft: number;
+  let isDragging = false;
+
+  if (grid) {
+    grid.addEventListener('mousedown', (e) => {
+      isDown = true;
+      isDragging = false;
+      grid.classList.add('cursor-grab');
+      grid.style.cursor = 'grabbing';
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+    
+    grid.addEventListener('mouseleave', () => {
+      isDown = false;
+      grid.style.cursor = '';
+    });
+    
+    grid.addEventListener('mouseup', () => {
+      isDown = false;
+      grid.style.cursor = '';
+    });
+    
+    grid.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - grid.offsetLeft;
+      const walk = (x - startX) * 2;
+      
+      // If dragged more than 5 pixels, consider it a drag so we don't trigger click
+      if (Math.abs(walk) > 5) {
+        isDragging = true;
+      }
+      grid.scrollLeft = scrollLeft - walk;
+    });
+  }
+
   // Open Modal logic
   document.querySelectorAll('.case-trigger').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
+      
+      // Prevent click if we were dragging the carousel
+      if (isDragging) return;
+
       const card = (trigger as HTMLElement).closest('.case-card');
       if (!card) return;
 

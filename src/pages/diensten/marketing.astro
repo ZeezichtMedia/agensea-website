@@ -227,6 +227,258 @@ import CTA from '../../components/CTA.astro';
     </section>
 
 
+    <!-- Ads Goal Selector: "Ik wil..." -->
+    <section id="doelstellingen" class="relative z-10 py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        
+        <!-- Section Header -->
+        <div class="reveal mb-12 md:mb-16">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Jouw doelstelling
+          </span>
+          <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.05] text-dark max-w-3xl">
+            Ik wil <span class="text-indigo" id="goal-heading-accent">...</span>
+          </h2>
+          <p class="mt-4 text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
+            Selecteer je doel en ontdek welke campagnestrategie het beste bij jou past.
+          </p>
+        </div>
+
+        <!-- Goal Chips -->
+        <div class="reveal flex flex-wrap gap-3 mb-10 md:mb-14" id="goal-chips">
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="zichtbaarheid">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Meer zichtbaarheid
+          </button>
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="leads">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3L6 15"></path><path d="m13 13-4-4"></path></svg>
+            Meer leads
+          </button>
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="verkopen">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            Product verkopen
+          </button>
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="imago">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>
+            Imago verbeteren
+          </button>
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="betrokkenheid">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Meer betrokkenheid
+          </button>
+          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="aanvragen">
+            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"></path><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path><path d="m16 19 2 2 4-4"></path></svg>
+            Meer aanvragen
+          </button>
+        </div>
+
+        <!-- Content Panels -->
+        <div class="relative transition-[height] duration-500 ease-out" id="goal-content-wrapper" style="height: 0px; overflow: hidden;">
+          
+          <!-- Zichtbaarheid -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="zichtbaarheid">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Awareness & Bereik campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Zichtbaar worden bij je ideale doelgroep</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    We zetten breed in op de kanalen waar jouw doelgroep actief is. Met visueel sterke advertenties en slimme targeting bouwen we naamsbekendheid op en zorgen we dat jouw merk top-of-mind wordt. Denk aan video-ads, display-campagnes en social bereik.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Bespreek jouw bereikstrategie
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg></div><span class="text-sm font-medium text-dark">YouTube & Video Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Meta (Facebook & Instagram)</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div><span class="text-sm font-medium text-dark">Google Display Netwerk</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div><span class="text-sm font-medium text-dark">LinkedIn Sponsored</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">nieuwe merken, (re)launches, evenementen</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leads -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="leads">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Lead Generation campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Gekwalificeerde leads, geen lege clicks</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    We richten campagnes in die niet alleen klikken opleveren, maar daadwerkelijk leads. Met leadformulieren, landingspagina's en retargeting bouwen we een funnel die continu nieuwe contactmomenten oplevert. Alles meetbaar tot op de euro.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Start met leadgeneratie
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><span class="text-sm font-medium text-dark">Google Search Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Meta Lead Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div><span class="text-sm font-medium text-dark">LinkedIn Lead Gen Forms</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div><span class="text-sm font-medium text-dark">Retargeting & Remarketing</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">B2B, dienstverleners, SaaS</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verkopen -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="verkopen">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">E-commerce & Conversie campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Direct meer omzet uit je webshop</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    Van shopping-campagnes tot dynamische productadvertenties: we zetten je productcatalogus om in een verkoopkanaal. Met slimme biedstrategieën en continue optimalisatie halen we het maximale uit elke advertentie-euro.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Boost jouw webshop sales
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></div><span class="text-sm font-medium text-dark">Google Shopping</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Meta Catalog Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><span class="text-sm font-medium text-dark">Google Search (koopintentie)</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div><span class="text-sm font-medium text-dark">Dynamic Remarketing</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">webshops, e-commerce, retail</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imago -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="imago">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Brand Building campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Bouw een merk waar mensen vertrouwen in hebben</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    Je imago is meer dan een logo. We creëren campagnes die jouw merkwaarden laten leven: storytelling, premium videocontent en consistente branding over alle touchpoints. Het doel? Dat mensen jou herkennen én vertrouwen.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Versterk jouw merkpositie
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg></div><span class="text-sm font-medium text-dark">YouTube Brand Campaigns</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Instagram Stories & Reels</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div><span class="text-sm font-medium text-dark">LinkedIn Thought Leadership</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div><span class="text-sm font-medium text-dark">Display & Native Ads</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">gevestigde merken, herpositionering, premium brands</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Betrokkenheid -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="betrokkenheid">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Engagement & Community campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Creëer een actieve community rondom je merk</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    Likes en volgers zijn leuk, maar echte betrokkenheid gaat verder. We ontwikkelen campagnes die reacties, shares en gesprekken uitlokken. Denk aan interactieve polls, user-generated content en community-building op de kanalen die ertoe doen.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Bouw jouw community
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Meta Engagement Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div><span class="text-sm font-medium text-dark">TikTok Interactie Ads</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div><span class="text-sm font-medium text-dark">LinkedIn Polls & Events</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div><span class="text-sm font-medium text-dark">E-mail Marketing Flows</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">community-merken, lokale bedrijven, events</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aanvragen -->
+          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="aanvragen">
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
+              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+                <div class="md:col-span-7">
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Conversie & Aanvragen campagne</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Meer offerteaanvragen en contactmomenten</h3>
+                  <p class="text-text-secondary text-base leading-relaxed mb-6">
+                    Je wilt dat mensen actie ondernemen: bellen, een formulier invullen of een offerte aanvragen. Wij richten campagnes in die precies dat doen. Met scherpe zoekadvertenties, overtuigende landingspagina's en slimme call-to-actions.
+                  </p>
+                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Genereer meer aanvragen
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="bg-cream rounded-2xl p-5 md:p-6 border border-warm-grey/20">
+                    <p class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Kanalen</p>
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><span class="text-sm font-medium text-dark">Google Search Ads (hoge intentie)</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><span class="text-sm font-medium text-dark">Google Maps & Lokaal</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span class="text-sm font-medium text-dark">Meta Conversie Campagnes</span></div>
+                      <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center"><svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div><span class="text-sm font-medium text-dark">Retargeting Warme Bezoekers</span></div>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-warm-grey/20">
+                      <p class="text-xs text-text-secondary">Geschikt voor: <span class="font-semibold text-dark">dienstverleners, makelaars, installateurs, adviseurs</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
     <!-- Werkwijze: Clean Typographic Strips -->
     <section id="werkwijze" class="relative z-10 py-24 md:py-40">
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -446,4 +698,97 @@ import CTA from '../../components/CTA.astro';
 
   showAd(0);
   setInterval(cycleAd, AD_DISPLAY + AD_FADE);
+</script>
+
+<script>
+  // Goal Selector Logic
+  const goalChips = document.querySelectorAll('.goal-chip');
+  const goalPanels = document.querySelectorAll('.goal-panel');
+  const goalWrapper = document.getElementById('goal-content-wrapper');
+  const goalHeadingAccent = document.getElementById('goal-heading-accent');
+
+  const goalLabels: Record<string, string> = {
+    zichtbaarheid: 'meer zichtbaarheid.',
+    leads: 'meer leads.',
+    verkopen: 'producten verkopen.',
+    imago: 'mijn imago verbeteren.',
+    betrokkenheid: 'meer betrokkenheid.',
+    aanvragen: 'meer aanvragen.'
+  };
+
+  let activeGoal: string | null = null;
+
+  goalChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const goalId = (chip as HTMLElement).dataset.goal;
+      if (!goalId) return;
+
+      // Toggle: clicking same chip again closes it
+      if (activeGoal === goalId) {
+        // Deactivate
+        chip.classList.remove('bg-indigo', 'text-white', 'border-indigo', 'active');
+        chip.classList.add('bg-white', 'text-dark', 'border-warm-grey/40');
+        
+        goalPanels.forEach(p => {
+          p.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+          p.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        });
+        
+        if (goalWrapper) goalWrapper.style.height = '0px';
+        if (goalHeadingAccent) {
+          goalHeadingAccent.style.opacity = '0';
+          setTimeout(() => {
+            goalHeadingAccent!.textContent = '...';
+            goalHeadingAccent!.style.opacity = '1';
+          }, 200);
+        }
+        activeGoal = null;
+        return;
+      }
+
+      // Update chips
+      goalChips.forEach(c => {
+        c.classList.remove('bg-indigo', 'text-white', 'border-indigo', 'active');
+        c.classList.add('bg-white', 'text-dark', 'border-warm-grey/40');
+      });
+      chip.classList.add('bg-indigo', 'text-white', 'border-indigo', 'active');
+      chip.classList.remove('bg-white', 'text-dark', 'border-warm-grey/40');
+
+      // Update heading
+      if (goalHeadingAccent) {
+        goalHeadingAccent.style.opacity = '0';
+        setTimeout(() => {
+          goalHeadingAccent!.textContent = goalLabels[goalId] || '...';
+          goalHeadingAccent!.style.opacity = '1';
+        }, 200);
+      }
+
+      // Show correct panel
+      goalPanels.forEach(panel => {
+        const panelId = (panel as HTMLElement).dataset.goalPanel;
+        if (panelId === goalId) {
+          panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+          panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+          
+          // Animate height
+          if (goalWrapper) {
+            // Use requestAnimationFrame to ensure the panel is rendered before measuring
+            requestAnimationFrame(() => {
+              goalWrapper!.style.height = panel.scrollHeight + 'px';
+            });
+          }
+        } else {
+          panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+          panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        }
+      });
+
+      activeGoal = goalId;
+    });
+  });
+
+  // Smooth transition for heading accent
+  if (goalHeadingAccent) {
+    goalHeadingAccent.style.transition = 'opacity 0.2s ease-out';
+  }
 </script>

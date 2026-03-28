@@ -170,10 +170,18 @@ const year = new Date().getFullYear();
 </footer>
 
 <script>
+  function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    
+    return `${hours}u ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+  }
+
   function updateOnlineStatus() {
     const now = new Date();
     const hour = now.getHours();
-    const min = now.getMinutes();
     const day = now.getDay();
     
     // Werktijden: ma t/m vr, van 08:00 tot 19:00
@@ -187,17 +195,12 @@ const year = new Date().getFullYear();
     if (isOnline) {
       dot.className = "w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]";
       
-      const remainingMinutes = ((19 * 60) - (hour * 60 + min));
-      const hoursLeft = Math.floor(remainingMinutes / 60);
-      const minsLeft = remainingMinutes % 60;
+      const close = new Date(now);
+      close.setHours(19, 0, 0, 0);
       
-      if (hoursLeft > 1) {
-        text.textContent = `Nog ${hoursLeft} uur telefonisch bereikbaar`;
-      } else if (hoursLeft === 1) {
-        text.textContent = `Nog 1 uur en ${minsLeft} min bereikbaar`;
-      } else {
-        text.textContent = `Nog ${minsLeft} minuten bereikbaar`;
-      }
+      const diffMs = close.getTime() - now.getTime();
+      text.textContent = `Nog ${formatTime(diffMs)} telefonisch bereikbaar`;
+      
     } else {
       dot.className = "w-1.5 h-1.5 rounded-full bg-red-400";
       
@@ -210,28 +213,25 @@ const year = new Date().getFullYear();
         nextOpening.setDate(nextOpening.getDate() + 1);
       }
       
-      // Als het op zaterdag valt, verplaats naar maandag (+2 dagen).
+      // Als het op zaterdag (6) of zondag (0) valt, verplaats
       if (nextOpening.getDay() === 6) {
         nextOpening.setDate(nextOpening.getDate() + 2);
       } else if (nextOpening.getDay() === 0) {
-        // Zondag? Verplaats naar maandag (+1 dag).
         nextOpening.setDate(nextOpening.getDate() + 1);
       }
       
       const diffMs = nextOpening.getTime() - now.getTime();
-      const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
       
-      if (diffHrs === 0) {
-        const diffMins = Math.ceil(diffMs / (1000 * 60));
-        text.textContent = `Binnen ${diffMins} minuten weer bereikbaar`;
-      } else if (diffHrs < 24) {
-        text.textContent = `Over ongeveer ${diffHrs} uur weer bereikbaar`;
-      } else {
+      // In het weekend tonen we de tijden niet aftellend per seconde als het heel lang duurt, 
+      // behalve als hij expliciet dat aftellen vet vindt. We doen hem altijd live.
+      if (diffMs > 24 * 60 * 60 * 1000) {
         text.textContent = 'Maandag om 08:00 weer bereikbaar';
+      } else {
+        text.textContent = `Weer bereikbaar over ${formatTime(diffMs)}`;
       }
     }
   }
 
   updateOnlineStatus();
-  setInterval(updateOnlineStatus, 60000);
+  setInterval(updateOnlineStatus, 1000);
 </script>

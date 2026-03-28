@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="ai-search-modal" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none transition-all duration-500 overflow-hidden">
+<div id="ai-search-modal" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none hidden transition-all duration-500 overflow-hidden">
   <!-- Backdrop -->
   <div class="absolute inset-0 bg-dark/40 backdrop-blur-xl" id="ai-modal-backdrop"></div>
   
@@ -136,8 +136,12 @@
   const SYSTEM_PROMPT = "Je heet \"Agensea AI\" en je bent de vriendelijke, zakelijke AI-assistent van Agensea. Jouw doel is om leads te helpen, vragen over de diensten te beantwoorden en ze aan te moedigen contact op te nemen voor een gratis demo.\n\nREGELS:\n1. Je antwoordt ALTIJD in het Nederlands.\n2. Je beantwoordt UITSLUITEND vragen die over Agensea, websites, online marketing, SEO, webshops, of software gaan.\n3. Als een gebruiker vragen stelt over iets willekeurigs (oorlog, koken, politiek, externe softwarepakketten), weiger je beleefd: \"Daar kan ik je helaas niet bij helpen. Ik ben er speciaal om vragen over Agensea te beantwoorden.\"\n4. Je houdt je antwoorden extreem beknopt. Hooguit 2 of 3 korte, to-the-point zinnen.\n5. Je bent vriendelijk en gedreven, niet koud of robotisch.\n\nDE FEITEN VAN AGENSEA:\n- Wij bieden drie hoofddiensten: Maatwerk Websites, Online Marketing en Groei, en Software en Automatisering.\n- Team Agensea kern: Jorik Schut (Online marketing specialist), Jorian Wientjens (Developer / Technical specialist) en Ruben Boogaard (Account Manager).\n- Tech-Stack en CMS: Wij gebruiken en raden het liefst Strapi aan (als Headless CMS), maar we werken ook met WordPress en andere CMS systemen.\n- Advertentie Platforms: Meta Ads (Facebook/Instagram), LinkedIn Ads en Google Ads.\n- Openingstijden: maandag t/m vrijdag van 08:00 tot 19:00.\n- Eerdere cases: Innovatiepunt KAAP, ADRZ, HZ University, Bouwgroep R&D, B&B Voorste Eng, Assieraden Specialist, Arieke van Liere, Minicamping Boogaard.\n- Gratis Website Demo aanvragen kan via agensea.nl/demo.\n\nWanneer een lead heel geinteresseerd klinkt, stuur hem/haar naar agensea.nl/demo of het contactformulier.";
 
   function openModal() {
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.querySelector('.relative > div').classList.remove('translate-y-20');
+    modal.classList.remove('hidden');
+    // Small delay so the transition can play after display changes
+    requestAnimationFrame(() => {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.querySelector('.relative > div').classList.remove('translate-y-20');
+    });
     document.body.style.overflow = 'hidden';
     setTimeout(() => input.focus(), 500);
   }
@@ -146,6 +150,8 @@
     modal.classList.add('opacity-0', 'pointer-events-none');
     modal.querySelector('.relative > div').classList.add('translate-y-20');
     document.body.style.overflow = '';
+    // Wait for transition to finish, then hide completely
+    setTimeout(() => modal.classList.add('hidden'), 500);
   }
 
   function addMessage(text, isUser = false) {

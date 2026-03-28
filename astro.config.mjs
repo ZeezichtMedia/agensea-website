@@ -7,7 +7,6 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://agensea.nl',
-  output: 'hybrid',
   adapter: vercel(),
   integrations: [sitemap()],
   vite: {

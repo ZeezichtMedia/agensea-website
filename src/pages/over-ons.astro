@@ -103,11 +103,11 @@ import TeamPopup from '../components/TeamPopup.astro';
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3"></div>
         <div class="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-[#4353FF]/50 rounded-full blur-[80px]"></div>
 
-        <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10 grid md:grid-cols-2 gap-12 items-start mb-20">
           <div class="reveal">
             <span class="inline-flex items-center gap-2 text-xs font-bold text-white/70 uppercase tracking-[0.2em] mb-4">
               <span class="w-6 h-[2px] bg-white/50"></span>
-              De flexibele schil
+              Onze specialisten
             </span>
             <h2 class="font-display text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.1] mb-6">
               Vaste <span class="text-white/60">freelancers.</span>
@@ -115,31 +115,66 @@ import TeamPopup from '../components/TeamPopup.astro';
             <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-md">
               Afhankelijk van de grootte en complexiteit van jouw project werken we samen met onze vertrouwde flex-schil. Van copywriters tot 3D-animators en gespecialiseerde ontwikkelaars. Zo blijft Agensea wendbaar, betaalbaar én leveren we altijd de hoogste kwaliteit door precies de juiste experts in te schakelen.
             </p>
-            <div class="flex items-center gap-4">
-              <div class="flex -space-x-3">
-                <div class="w-10 h-10 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
-                   <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <div class="w-10 h-10 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
-                   <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div class="w-10 h-10 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
-                   <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+
+          <!-- Highlighted Freelancers Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 reveal delay-200">
+            <!-- Aline -->
+            <button 
+              class="flex flex-col interactive text-left group"
+              onclick="window.dispatchEvent(new CustomEvent('open-team-member', { detail: { id: 'aline' } }))"
+            >
+              <div class="w-full aspect-[4/5] bg-white/10 backdrop-blur-sm rounded-2xl mb-4 overflow-hidden relative border border-white/20">
+                <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('/team/aline.png');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute bottom-4 right-4 w-10 h-10 bg-white text-dark rounded-full flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 shadow-xl">
+                  <svg class="w-4 h-4 -rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
               </div>
-              <span class="text-sm font-medium text-white/90">+ Netwerk van specialisten</span>
+              <h4 class="font-display text-lg font-bold text-white group-hover:text-white/80 transition-colors">Aline Bijleveld</h4>
+              <span class="text-xs font-medium text-white/60 mt-0.5">Communicatie Strategist</span>
+            </button>
+
+            <!-- Phaedra -->
+            <button 
+              class="flex flex-col interactive text-left group"
+              onclick="window.dispatchEvent(new CustomEvent('open-team-member', { detail: { id: 'phaedra' } }))"
+            >
+              <div class="w-full aspect-[4/5] bg-white/10 backdrop-blur-sm rounded-2xl mb-4 overflow-hidden relative border border-white/20">
+                <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute bottom-4 right-4 w-10 h-10 bg-white text-dark rounded-full flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 shadow-xl">
+                  <svg class="w-4 h-4 -rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+              <h4 class="font-display text-lg font-bold text-white group-hover:text-white/80 transition-colors">Phaedra Tenu</h4>
+              <span class="text-xs font-medium text-white/60 mt-0.5">Communicatie specialist</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative z-10 border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="flex items-center gap-6">
+            <div class="flex -space-x-3">
+              <div class="w-12 h-12 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
+                 <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="w-12 h-12 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
+                 <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="w-12 h-12 rounded-full border-2 border-indigo bg-white/20 backdrop-blur flex items-center justify-center">
+                 <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white">Toegang tot een breed netwerk</p>
+              <p class="text-xs text-white/60">Gespecialiseerde experts voor elke uitdaging</p>
             </div>
           </div>
           
-          <div class="reveal delay-200 hidden md:flex justify-end relative">
-            <!-- Decorative Badge or Shape -->
-            <div class="w-64 h-64 border border-white/20 rounded-[2rem] flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm bg-white/5 rotate-3 hover:rotate-0 transition-transform duration-500">
-              <svg class="w-12 h-12 text-white/50 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
-              <h3 class="font-display text-xl font-bold mb-2">Schaalbare Expertise</h3>
-              <p class="text-xs text-white/70">Wij groeien dynamisch mee met de behoeftes van jouw onderneming.</p>
-            </div>
+          <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span class="text-xs font-bold uppercase tracking-widest text-white/90">Ready to scale</span>
           </div>
         </div>
 

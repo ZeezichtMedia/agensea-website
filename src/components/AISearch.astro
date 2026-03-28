@@ -165,10 +165,13 @@
     `;
     
     chatHistory.appendChild(msg);
+    chatHistory.appendChild(msg);
     chatHistory.scrollTop = chatHistory.scrollHeight;
   }
 
-  function simulateResponse(query) {
+  let internalHistory = [];
+
+  async function fetchResponse(query) {
     const thinking = document.createElement('div');
     thinking.className = "flex gap-4 thinking-msg";
     thinking.innerHTML = `
@@ -188,21 +191,25 @@
     chatHistory.appendChild(thinking);
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
-    setTimeout(() => {
-      thinking.remove();
-      let response = "Dank voor je vraag. Bij Agensea focussen we op de integratie van strategie, software, marketing en AI om organisatiegroei te realiseren. Wil je specifieke informatie over onze diensten of projecten?";
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query, history: internalHistory })
+      });
       
-      const lowQuery = query.toLowerCase();
-      if (lowQuery.includes('wat') || lowQuery.includes('wie') || lowQuery.includes('over agensea')) {
-        response = "Agensea is een modern, strategisch digitaal bureau. Wij begeleiden ambitieuze organisaties bij hun digitale transformatie door middel van maatwerk software, data-gedreven marketing en AI-oplossingen, gericht op meetbaar resultaat.";
-      } else if (lowQuery.includes('case') || lowQuery.includes('project')) {
-        response = "We hebben succesvolle trajecten afgerond voor uiteenlopende opdrachtgevers, waaronder ADRZ, Dockwise en De Kaap. Deze cases illustreren onze geïntegreerde aanpak. U kunt de specifieke cases bekijken via de referentielogo's op de overzichtspagina.";
-      } else if (lowQuery.includes('ai') || lowQuery.includes('dienst')) {
-        response = "Artificiële intelligentie vormt een cruciaal onderdeel van onze oplossingen. We implementeren AI om bedrijfsprocessen te automatiseren, efficiëntie te verhogen en toekomstbestendige systemen te ontwikkelen. Daarnaast bieden we robuust development en strategische marketing.";
-      }
-
-      addMessage(response);
-    }, 1500);
+      const data = await res.json();
+      const responseText = data.response || data.error || "Oeps, er ging iets mis bij het ophalen van mijn antwoord.";
+      
+      thinking.remove();
+      addMessage(responseText, false);
+      
+      internalHistory.push({ role: 'user', content: query });
+      internalHistory.push({ role: 'assistant', content: responseText });
+    } catch (err) {
+      thinking.remove();
+      addMessage("Oeps, ik kon even geen verbinding maken met mijn brein. Laat je gegevens achter via het contactformulier!", false);
+    }
   }
 
   function handleSend() {
@@ -211,7 +218,9 @@
     
     addMessage(val, true);
     input.value = '';
-    simulateResponse(val);
+    
+    // Call real API
+    fetchResponse(val);
   }
 
   // Listeners
@@ -229,7 +238,7 @@
     btn.addEventListener('click', () => {
       const text = btn.textContent;
       addMessage(text, true);
-      simulateResponse(text);
+      fetchResponse(text);
     });
   });
 

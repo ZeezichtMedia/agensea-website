@@ -1,74 +1,117 @@
 import type { APIRoute } from 'astro';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export const prerender = false;
 
-const SYSTEM_PROMPT = `
-Je heet "Agensea AI" en je bent de vriendelijke, zakelijke AI-assistent van Agensea.
-Jouw doel is om leads te helpen, vragen over de diensten te beantwoorden en ze aan te moedigen contact op te nemen voor een gratis demo.
+/**
+ * Recursief alle .md bestanden laden uit de knowledge map
+ * en samenvoegen tot één string voor de system prompt.
+ */
+function loadKnowledgeBase(): string {
+  const knowledgeDir = path.resolve('src/knowledge');
+  const sections: string[] = [];
 
-### REGELS:
+  function readDir(dir: string) {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        readDir(fullPath);
+      } else if (entry.name.endsWith('.md')) {
+        sections.push(fs.readFileSync(fullPath, 'utf-8'));
+      }
+    }
+  }
+
+  readDir(knowledgeDir);
+  return sections.join('\n\n---\n\n');
+}
+
+// Laad kennisbank eenmalig bij server start
+const knowledgeBase = loadKnowledgeBase();
+
+const SYSTEM_PROMPT = `Je bent "Agensea AI", de vriendelijke en zakelijke AI-assistent van Agensea.
+
+## JOUW ROL
+Je helpt websitebezoekers door vragen te beantwoorden over Agensea, onze diensten, werkwijze, team en eerdere projecten. Je doel is om leads te helpen, informatief te zijn en ze aan te moedigen contact op te nemen of een gratis demo aan te vragen.
+
+## REGELS
 1. Je antwoordt ALTIJD in het Nederlands.
-2. Je beantwoordt UITSLUITEND vragen die over Agensea, websites, online marketing, SEO, webshops, of software gaan.
-3. Als een gebruiker vragen stelt over iets willekeurigs (oorlog, koken, politiek, externe softwarepakketten), weiger je beleefd ("Daar kan ik je helaas niet bij helpen. Ik ben er speciaal om vragen over Agensea te beantwoorden.").
-4. Je houdt je antwoorden extreem beknopt. Hooguit 2 of 3 korte, to-the-point zinnen.
-5. Je bent vriendelijk en gedreven, niet koud of robotisch. 
+2. Je beantwoordt UITSLUITEND vragen die gerelateerd zijn aan Agensea, websites, online marketing, SEO, webshops, software, automatisering of AI.
+3. Als een gebruiker vragen stelt over onverwante onderwerpen (politiek, koken, etc.), weiger je beleefd: "Daar kan ik je helaas niet bij helpen. Ik ben er speciaal om vragen over Agensea en onze diensten te beantwoorden!"
+4. Houd antwoorden beknopt maar informatief. Maximaal 3-4 korte zinnen, tenzij de gebruiker expliciet om meer detail vraagt.
+5. Wees vriendelijk, gedreven en professioneel. Niet koud of robotisch.
+6. Wanneer een bezoeker geinteresseerd klinkt, moedig aan om:
+   - Het contactformulier in te vullen op agensea.nl/contact
+   - Een gratis demo aan te vragen op agensea.nl/demo
+7. Verwijs NOOIT naar externe concurrenten of andere bureaus.
+8. Als je iets niet zeker weet, zeg dat eerlijk en verwijs naar het contactformulier.
+9. Gebruik markdown links voor URLs, bijvoorbeeld: [Bekijk onze demo](/demo). Gebruik ALLEEN deze bestaande pagina's:
+   - /contact - Contactformulier
+   - /demo - Gratis website demo aanvragen
+   - /diensten/websites - Maatwerk websites
+   - /diensten/marketing - Online marketing
+   - /diensten/software - Software & automatisering
+   - /over-ons - Over het team
+   - /#cases - Portfolio
+   - /#diensten - Dienstenoverzicht
+   Gebruik NOOIT externe URLs zoals www.agensea.nl. Alle links zijn relatief.
 
-### DE FEITEN VAN AGENSEA:
-*   Wij bieden drie hoofddiensten: "Maatwerk Websites", "Online Marketing & Groei" en "Software & Automatisering".
-*   Team Agensea kern: Jorik Schut (Online marketing specialist), Jorian Wientjens (Developer / Technical specialist) en Ruben Boogaard (Account Manager).
-*   Tech-Stack & CMS: Wij ontwikkelen maatwerk. Wij gebruiken en raden het liefst "Strapi" aan (als Headless CMS), maar we hebben ook veel ervaring met WordPress en allerlei andere populaire CMS systemen. We passen ons aan de klant aan.
-*   Advertentie Platforms: Wij zijn experts en adverteren voornamelijk via Meta Ads (Facebook/Instagram), LinkedIn Ads en Google Ads.
-*   Bereikbaarheid en Openingstijden: We zijn van maandag tot en met vrijdag bereikbaar van 08:00 tot 19:00. Buiten die tijden helpt deze AI.
-*   Klanten / Eerdere cases: We hebben meegewerkt aan de rebranding/platforms voor: Innovatiepunt KAAP, ADRZ, HZ University, Bouwgroep R&D en websites voor B&B Voorste Eng, Assieraden Specialist, Arieke van Liere, en Minicamping Boogaard.
-*   Speciale Promotie: Bezoekers kunnen een "Gratis Website Demo" aanvragen via agensea.nl/demo. Geheel transparant en vrijblijvend. Jorian en Jorik bouwen dan een live klikbaar concept.
+## KENNISBANK
+Hieronder staat alle informatie over Agensea. Baseer je antwoorden uitsluitend op deze kennis:
 
-Wanneer een lead heel geïnteresseerd klinkt, vertel hem/haar dan kort om het contactformulier in te vullen of om de gratis demo aan te vragen op agensea.nl/demo.`;
+${knowledgeBase}`;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
     const userMessage = data.message;
     const history = data.history || [];
-    
-    // Check if we have an API key in the environment
-    const apiKey = import.meta.env.GEMINI_API_KEY;
-    
+
+    const apiKey = import.meta.env.GROQ_API_KEY;
+
     if (!apiKey) {
-      return new Response(JSON.stringify({ error: "Configuratie fout: API Key ontbreekt in Vercel." }), { status: 500 });
+      return new Response(JSON.stringify({ error: "Configuratie fout: API Key ontbreekt." }), { status: 500 });
     }
 
-    // Format payload for Gemini REST API
-    const contents = history.map((msg: any) => ({
-      role: msg.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: msg.content }]
-    }));
-    
-    contents.push({
-      role: 'user',
-      parts: [{ text: userMessage }]
-    });
+    // Format conversation history voor Groq (OpenAI-compatible)
+    const messages = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...history.map((msg: any) => ({
+        role: msg.role,
+        content: msg.content
+      })),
+      { role: 'user', content: userMessage }
+    ];
 
-    const payload = {
-      system_instruction: {
-        parts: [{ text: SYSTEM_PROMPT }]
-      },
-      contents: contents
-    };
-
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages,
+        max_tokens: 500,
+        temperature: 0.7
+      })
     });
 
     const resultData = await response.json();
 
     if (!response.ok) {
-      console.error("Gemini API Error:", resultData);
-      return new Response(JSON.stringify({ error: resultData.error?.message || "AI Error" }), { status: response.status });
+      console.error("Groq API Error:", resultData);
+      return new Response(
+        JSON.stringify({ error: resultData.error?.message || "AI Error" }),
+        { status: response.status }
+      );
     }
 
-    const botText = resultData.candidates?.[0]?.content?.parts?.[0]?.text || "Ik kon even geen antwoord formuleren.";
+    const botText = resultData.choices?.[0]?.message?.content
+      || "Ik kon even geen antwoord formuleren. Neem gerust contact op via het contactformulier!";
 
     return new Response(JSON.stringify({ response: botText }), {
       status: 200,
@@ -76,9 +119,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
   } catch (error) {
-    console.error("Endpoint execution error:", error);
-    return new Response(JSON.stringify({ 
-      error: "Oeps! Er ging iets mis." 
+    console.error("Chat endpoint error:", error);
+    return new Response(JSON.stringify({
+      error: "Oeps! Er ging iets mis. Probeer het opnieuw of neem contact op via het contactformulier."
     }), { status: 500 });
   }
 }

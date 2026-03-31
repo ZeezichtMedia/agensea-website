@@ -149,20 +149,31 @@
     setTimeout(() => modal.classList.add('hidden'), 500);
   }
 
+  function formatMessage(text) {
+    // Markdown links [text](url) → clickable HTML
+    let formatted = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-indigo underline underline-offset-2 hover:text-indigo-light transition-colors" target="_blank" rel="noopener">$1</a>');
+    // Bold **text**
+    formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Line breaks
+    formatted = formatted.replace(/\n/g, '<br>');
+    return formatted;
+  }
+
   function addMessage(text, isUser = false) {
     const msg = document.createElement('div');
     msg.className = `flex gap-4 ${isUser ? 'flex-row-reverse' : ''}`;
-    
+    const displayText = isUser ? text : formatMessage(text);
+
     msg.innerHTML = `
       <div class="w-8 h-8 rounded-lg ${isUser ? 'bg-indigo text-white' : 'bg-indigo text-white'} flex-shrink-0 flex items-center justify-center">
-        ${isUser ? 
-          `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>` : 
+        ${isUser ?
+          `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>` :
           `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>`
         }
       </div>
       <div class="max-w-[80%] ${isUser ? 'text-right' : ''}">
         <div class="${isUser ? 'bg-indigo text-white rounded-tr-none' : 'bg-cream text-dark rounded-tl-none'} rounded-2xl p-5 shadow-sm leading-relaxed">
-          ${text}
+          ${displayText}
         </div>
         <span class="text-[10px] text-text-secondary/50 mt-2 block font-bold uppercase tracking-widest">
           ${isUser ? 'Jij' : 'Agensea AI'} • Nu

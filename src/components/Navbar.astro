@@ -14,7 +14,7 @@
       class="font-display text-2xl font-bold tracking-tight text-dark transition-colors duration-300 interactive pointer-events-auto"
       id="logo-main"
     >
-      agen<span class="text-indigo logo-sea"><span class="logo-letter">s</span><span class="logo-letter">e</span><span class="logo-letter">a</span></span>
+      agensea<span class="text-indigo">.</span>
     </a>
 
     <!-- Navigation Pill (v9.1: Right Aligned & Scaled Up) -->
@@ -274,11 +274,6 @@
     link.addEventListener("click", () => isOpen && toggleMenu()),
   );
 
-  // Logo underline: switch from animation to transition after intro completes
-  setTimeout(() => {
-    document.querySelector('.logo-sea')?.classList.add('ready');
-  }, 1400);
-
   // AI Search Trigger
   document.getElementById("nav-search-btn")?.addEventListener("click", () => {
     window.dispatchEvent(new CustomEvent("open-ai-search"));
@@ -332,68 +327,4 @@
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .logo-letter {
-    display: inline-block;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  #logo-main:hover .logo-letter:nth-child(1) {
-    transform: translateY(-4px);
-    transition-delay: 0ms;
-  }
-  #logo-main:hover .logo-letter:nth-child(2) {
-    transform: translateY(-4px);
-    transition-delay: 80ms;
-  }
-  #logo-main:hover .logo-letter:nth-child(3) {
-    transform: translateY(-4px);
-    transition-delay: 160ms;
-  }
-
-  /* Entrance: letters fade in */
-  @keyframes letterRise {
-    0%   { opacity: 0; transform: translateY(5px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .logo-sea .logo-letter {
-    opacity: 0;
-    animation: letterRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .logo-sea .logo-letter:nth-child(1) { animation-delay: 0.15s; }
-  .logo-sea .logo-letter:nth-child(2) { animation-delay: 0.28s; }
-  .logo-sea .logo-letter:nth-child(3) { animation-delay: 0.41s; }
-
-  .logo-sea {
-    position: relative;
-  }
-
-  .logo-sea::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='2'%3E%3Cpath d='M0 1 Q2 0 4 1 Q6 2 8 1' stroke='%232D3FE0' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-    background-repeat: repeat-x;
-    background-size: 8px 2px;
-    animation: revealUnderline 0.7s ease forwards;
-    animation-delay: 0.65s;
-  }
-
-  /* After intro animation: switch to transition-based so hover can retract/expand */
-  .logo-sea.ready::after {
-    animation: none;
-    width: 100%;
-    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  #logo-main:hover .logo-sea.ready::after {
-    width: 0;
-  }
-
-  @keyframes revealUnderline {
-    to { width: 100%; }
-  }
 </style>

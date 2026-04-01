@@ -50,7 +50,27 @@ const finalDescription = seoDescription || description;
     <AISearch />
     <CookieBanner />
     <script>
-      // ── Scroll Reveal ──────────────────────────
+      // ── Console Easter Egg ───────────────────
+      console.log(
+        "%c\n" +
+        " █████╗  ██████╗ ███████╗███╗   ██╗███████╗███████╗ █████╗ \n" +
+        "██╔══██╗██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔════╝██╔══██╗\n" +
+        "███████║██║  ███╗█████╗  ██╔██╗ ██║███████╗█████╗  ███████║\n" +
+        "██╔══██║██║   ██║██╔══╝  ██║╚██╗██║╚════██║██╔══╝  ██╔══██║\n" +
+        "██║  ██║╚██████╔╝███████╗██║ ╚████║███████║███████╗██║  ██║\n" +
+        "╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝\n" +
+        "〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰\n",
+        "color: #2D3FE0; font-family: monospace;"
+      );
+      console.log(
+        "%cHé, wat doe jij hier?\n\n%cOnze code is niet voor jouw ogen bedoeld. Maar nu je toch hier bent... we zijn altijd op zoek naar scherpe koppen. Stuur een berichtje naar %cinfo@agensea.nl%c — dan zien we wel of jij ook zo slim bent als je denkt. 😏",
+        "color: #2D3FE0; font-size: 16px; font-weight: bold;",
+        "color: #555; font-size: 13px;",
+        "color: #2D3FE0; font-size: 13px; font-weight: bold; text-decoration: underline;",
+        "color: #555; font-size: 13px;"
+      );
+
+// ── Scroll Reveal ──────────────────────────
       const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {

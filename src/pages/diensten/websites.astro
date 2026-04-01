@@ -19,7 +19,7 @@ import CTA from '../../components/CTA.astro';
     </div>
 
     <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-28">
+    <section class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 mb-12 md:mb-20">
       <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         <!-- Content -->
         <div class="lg:col-span-7">
@@ -243,7 +243,7 @@ import CTA from '../../components/CTA.astro';
     </section>
 
     <!-- Ads Goal Selector: "Ik wil..." -->
-    <section id="doelstellingen" class="relative z-10 py-20 md:py-32">
+    <section id="doelstellingen" class="relative z-10 py-16 md:py-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
         
         <!-- Section Header -->
@@ -260,28 +260,59 @@ import CTA from '../../components/CTA.astro';
           </p>
         </div>
 
-        <!-- Goal Chips -->
-        <div class="reveal flex flex-wrap gap-3 mb-10 md:mb-14" id="goal-chips">
-          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="nieuwe-website">
-            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-            Nieuwe website
+        <!-- Goal Cards -->
+        <div class="reveal grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-10 md:mb-14" id="goal-chips">
+
+          <button class="goal-chip group flex flex-col items-start gap-3 p-5 rounded-2xl border border-warm-grey/40 bg-white text-left hover:border-indigo hover:shadow-md transition-all duration-300 cursor-pointer" data-goal="nieuwe-website">
+            <div class="w-10 h-10 rounded-xl bg-indigo/10 group-[.active]:bg-white/20 flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5 text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm md:text-base text-dark group-[.active]:text-white transition-colors leading-tight">Nieuwe website</p>
+              <p class="text-xs text-text-secondary group-[.active]:text-white/70 mt-1 transition-colors leading-tight">Professioneel online staan</p>
+            </div>
           </button>
-          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="webshop">
-            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-            Een webshop
+
+          <button class="goal-chip group flex flex-col items-start gap-3 p-5 rounded-2xl border border-warm-grey/40 bg-white text-left hover:border-indigo hover:shadow-md transition-all duration-300 cursor-pointer" data-goal="webshop">
+            <div class="w-10 h-10 rounded-xl bg-indigo/10 group-[.active]:bg-white/20 flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5 text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm md:text-base text-dark group-[.active]:text-white transition-colors leading-tight">Een webshop</p>
+              <p class="text-xs text-text-secondary group-[.active]:text-white/70 mt-1 transition-colors leading-tight">Producten online verkopen</p>
+            </div>
           </button>
-          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="rebranding">
-            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12A10 10 0 0 0 15 21.54A10 10 0 0 1 15 2.46A10 10 0 0 0 2 12Z"/></svg>
-            Website vernieuwen
+
+          <button class="goal-chip group flex flex-col items-start gap-3 p-5 rounded-2xl border border-warm-grey/40 bg-white text-left hover:border-indigo hover:shadow-md transition-all duration-300 cursor-pointer" data-goal="rebranding">
+            <div class="w-10 h-10 rounded-xl bg-indigo/10 group-[.active]:bg-white/20 flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5 text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm md:text-base text-dark group-[.active]:text-white transition-colors leading-tight">Website vernieuwen</p>
+              <p class="text-xs text-text-secondary group-[.active]:text-white/70 mt-1 transition-colors leading-tight">Tijd voor een frisse start</p>
+            </div>
           </button>
-          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="snelheid">
-            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-            Snellere website
+
+          <button class="goal-chip group flex flex-col items-start gap-3 p-5 rounded-2xl border border-warm-grey/40 bg-white text-left hover:border-indigo hover:shadow-md transition-all duration-300 cursor-pointer" data-goal="snelheid">
+            <div class="w-10 h-10 rounded-xl bg-indigo/10 group-[.active]:bg-white/20 flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5 text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm md:text-base text-dark group-[.active]:text-white transition-colors leading-tight">Snellere website</p>
+              <p class="text-xs text-text-secondary group-[.active]:text-white/70 mt-1 transition-colors leading-tight">Beter vindbaar en sneller</p>
+            </div>
           </button>
-          <button class="goal-chip flex items-center gap-2 px-5 py-3 rounded-full text-sm md:text-base font-medium border border-warm-grey/40 bg-white text-dark hover:border-indigo hover:text-indigo transition-all duration-300 cursor-pointer group" data-goal="maatwerk">
-            <svg class="w-4 h-4 text-indigo/70 group-hover:text-indigo group-[.active]:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Maatwerk platform
-          </button>
+
+          <a href="/diensten/software" class="group flex flex-col items-start gap-3 p-5 rounded-2xl border border-dashed border-warm-grey/60 bg-white/50 text-left hover:border-indigo hover:shadow-md transition-all duration-300">
+            <div class="w-10 h-10 rounded-xl bg-indigo/10 flex items-center justify-center transition-colors group-hover:bg-indigo/20">
+              <svg class="w-5 h-5 text-indigo transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm md:text-base text-dark leading-tight">Iets specifieks nodig?</p>
+              <p class="text-xs text-text-secondary mt-1 leading-tight group-hover:text-indigo transition-colors">Bekijk onze maatwerk software dienst</p>
+            </div>
+          </a>
+
         </div>
 
         <!-- Content Panels -->
@@ -292,13 +323,13 @@ import CTA from '../../components/CTA.astro';
             <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
               <div class="grid md:grid-cols-12 gap-6 md:gap-10">
                 <div class="md:col-span-7">
-                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Zakelijke Website</span>
-                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Een ijzersterke digitale eerste indruk</h3>
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Nieuwe website</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Een website die past bij wie jij bent</h3>
                   <p class="text-text-secondary text-base leading-relaxed mb-6">
-                    De fundering van jouw online succes. We bouwen krachtige, razendsnelle websites die jouw merkverhaal overbrengen en bezoekers omzetten in klanten. Van corporate bedrijfsites tot overtuigende landingspagina's.
+                    We bouwen een snelle, professionele website die aansluit bij jouw organisatie en jouw bezoekers. Geen standaard template, maar gebouwd op wat jij nodig hebt.
                   </p>
                   <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Bekijk de mogelijkheden
+                    Plan een gratis kennismaking
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
@@ -312,13 +343,13 @@ import CTA from '../../components/CTA.astro';
             <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
               <div class="grid md:grid-cols-12 gap-6 md:gap-10">
                 <div class="md:col-span-7">
-                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">E-Commerce App</span>
-                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Meer verkopen uit een geoptimaliseerde shop</h3>
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Webshop</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Producten verkopen die ook echt gekocht worden</h3>
                   <p class="text-text-secondary text-base leading-relaxed mb-6">
-                    We ontwerpen webshops met focus op conversie. Minimale afleiding, een logisch bestelproces en razendsnelle laadtijden. Volledig op maat of gekoppeld aan de bekende back-end systemen. Laat je omzet exponentieel groeien.
+                    We bouwen webshops waarbij het makkelijk bestellen centraal staat. Duidelijke structuur, snel laden en een prettig koopproces. Volledig op maat of gekoppeld aan de systemen die je al gebruikt.
                   </p>
                   <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Start jouw webshop
+                    Plan een gratis kennismaking
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
@@ -331,13 +362,13 @@ import CTA from '../../components/CTA.astro';
             <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
               <div class="grid md:grid-cols-12 gap-6 md:gap-10">
                 <div class="md:col-span-7">
-                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Redesign Strategie</span>
-                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Blaas nieuw leven in jouw online huis</h3>
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Website vernieuwen</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Je huidige website verdient een frisse start</h3>
                   <p class="text-text-secondary text-base leading-relaxed mb-6">
-                    Laat je website niet achterlopen. Een doordachte redesign zorgt voor een modern design, betere techniek en gebruiksvriendelijke structuur. We brengen de look-en-feel weer helemaal in lijn met jullie visie.
+                    Soms past een website gewoon niet meer bij waar je nu staat. We geven hem een nieuw jasje: beter ontwerp, snellere techniek en een structuur die logischer aanvoelt voor je bezoekers.
                   </p>
                   <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Plan een redesign sprint
+                    Plan een gratis kennismaking
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
@@ -350,13 +381,13 @@ import CTA from '../../components/CTA.astro';
             <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
               <div class="grid md:grid-cols-12 gap-6 md:gap-10">
                 <div class="md:col-span-7">
-                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Performance & SEO</span>
-                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Snelle laadtijden, hogere Google posities</h3>
+                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Snelheid & vindbaarheid</span>
+                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Sneller laden, beter gevonden worden</h3>
                   <p class="text-text-secondary text-base leading-relaxed mb-6">
-                     Bezoekers haken af als je site langzaam laadt, en ook Google straft trage pagina's genadeloos af. We bouwen een moderne, lichtgewicht architectuur waarmee je website pijlsnel aanvoelt op alle apparaten. 
+                    Een trage website kost je bezoekers én Google-posities. We zorgen dat jouw website snel laadt op elk apparaat, technisch op orde is en beter scoort in de zoekresultaten.
                   </p>
                   <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Optimaliseer jouw techniek
+                    Plan een gratis kennismaking
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
@@ -364,49 +395,247 @@ import CTA from '../../components/CTA.astro';
             </div>
           </div>
 
-          <!-- Maatwerk -->
-          <div class="goal-panel absolute inset-x-0 top-0 opacity-0 translate-y-6 pointer-events-none transition-all duration-500" data-goal-panel="maatwerk">
-            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 rounded-3xl p-6 md:p-10 shadow-xl">
-              <div class="grid md:grid-cols-12 gap-6 md:gap-10">
-                <div class="md:col-span-7">
-                  <span class="inline-block text-xs font-bold text-indigo uppercase tracking-widest mb-3">Custom Development</span>
-                  <h3 class="font-display text-2xl md:text-3xl font-bold text-dark mb-4">Meer dan een standaard template</h3>
-                  <p class="text-text-secondary text-base leading-relaxed mb-6">
-                     Heb je specifieke wensen of complexe functionaliteiten nodig? Van portalen voor klanten tot calculatoren en API-koppelingen. Wij leveren een 100% kloppende, maatwerk oplossing die met jullie meegroeit.
-                  </p>
-                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Bespreek jouw concept
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
     </section>
 
-    <!-- Details Section -->
-    <section id="aanpak" class="py-24 bg-white relative z-10 w-full rounded-[3rem] shadow-sm mb-24 md:mb-40">
+
+    <!-- Werkwijze -->
+    <section id="werkwijze" class="relative z-10 py-16 md:py-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
-        <h2 class="font-display text-4xl leading-tight font-bold mb-16 text-center max-w-2xl mx-auto">Niet zomaar een mooi plaatje, maar een <span class="text-indigo">strategisch fundament.</span></h2>
-        
-        <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-          <!-- Feature 1 -->
-          <div class="p-8 rounded-3xl bg-cream border border-warm-grey/30 hover:border-indigo/30 transition-colors">
-            <h3 class="font-bold text-xl mb-4">Razendsnel</h3>
-            <p class="text-text-secondary leading-relaxed">Niets is zo frustrerend als een trage website. Wij bouwen op de nieuwste technieken waardoor jouw pagina's direct laden. Goed voor je bezoeker én voor Google.</p>
+        <div class="reveal mb-16 md:mb-24">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Werkwijze
+          </span>
+          <h2 class="font-display text-4xl md:text-6xl font-bold leading-[1.05] text-dark max-w-3xl">
+            Vier stappen naar <span class="text-indigo">jouw nieuwe website.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="border-t border-warm-grey">
+
+        <!-- Stap 1 -->
+        <div class="reveal group block border-b border-warm-grey">
+          <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16 grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+            <div class="md:col-span-2">
+              <span class="font-display text-7xl md:text-8xl font-bold bg-gradient-to-b from-indigo to-indigo/20 bg-clip-text text-transparent leading-none select-none">01</span>
+            </div>
+            <div class="md:col-span-4">
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-dark">Kennismaking & conceptfase</h3>
+              <span class="inline-block mt-2 text-xs font-bold text-text-secondary uppercase tracking-widest">Vrijblijvend</span>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+                We duiken in je bedrijf, doelgroep en wensen. Op basis daarvan doen we een transparant voorstel met platformkeuze, een helder kostenplaatje en een globale planning. Geen verrassingen.
+              </p>
+            </div>
           </div>
-          <!-- Feature 2 -->
-          <div class="p-8 rounded-3xl bg-cream border border-warm-grey/30 hover:border-indigo/30 transition-colors">
-            <h3 class="font-bold text-xl mb-4">Conversie Gericht</h3>
-            <p class="text-text-secondary leading-relaxed">Elk onderdeel is ontworpen om bezoekers te begeleiden naar de volgende stap. Of dat nu een offerte-aanvraag, een belletje of een aankoop is.</p>
+        </div>
+
+        <!-- Stap 2 -->
+        <div class="reveal group block border-b border-warm-grey">
+          <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16 grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+            <div class="md:col-span-2">
+              <span class="font-display text-7xl md:text-8xl font-bold bg-gradient-to-b from-violet to-violet/20 bg-clip-text text-transparent leading-none select-none">02</span>
+            </div>
+            <div class="md:col-span-4">
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-dark">Strategische ontwikkeling</h3>
+              <span class="inline-block mt-2 text-xs font-bold text-violet bg-violet/10 px-3 py-1 rounded-full uppercase tracking-widest">Na akkoord</span>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+                Van indicatie naar definitief plan. We werken de structuur, branding, SEO-strategie en planning volledig uit voordat er ook maar één regel code wordt geschreven. Zodat we bouwen met een doel.
+              </p>
+            </div>
           </div>
-          <!-- Feature 3 -->
-          <div class="p-8 rounded-3xl bg-cream border border-warm-grey/30 hover:border-indigo/30 transition-colors">
-            <h3 class="font-bold text-xl mb-4">Meegroeien</h3>
-            <p class="text-text-secondary leading-relaxed">Jouw bedrijf staat niet stil. Daarom bouwen we websites die je in de toekomst makkelijk uit kunt breiden met nieuwe pagina's of features.</p>
+        </div>
+
+        <!-- Stap 3 -->
+        <div class="reveal group block border-b border-warm-grey">
+          <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16 grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+            <div class="md:col-span-2">
+              <span class="font-display text-7xl md:text-8xl font-bold bg-gradient-to-b from-indigo to-indigo/20 bg-clip-text text-transparent leading-none select-none">03</span>
+            </div>
+            <div class="md:col-span-4">
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-dark">Realisatie & Development</h3>
+              <span class="inline-block mt-2 text-xs font-bold text-text-secondary uppercase tracking-widest">Bouw fase</span>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+                Het ontwerp wordt omgezet naar een snelle, betrouwbare website die op elk scherm klopt. We richten het CMS in, koppelen formulieren en tracking, en sluiten af met een interne testfase en feedbackronde.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stap 4 -->
+        <div class="reveal group block border-b border-warm-grey bg-gradient-to-r from-indigo/[0.04] to-transparent">
+          <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16 grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+            <div class="md:col-span-2">
+              <span class="font-display text-7xl md:text-8xl font-bold bg-gradient-to-b from-emerald-500 to-emerald-500/20 bg-clip-text text-transparent leading-none select-none">04</span>
+            </div>
+            <div class="md:col-span-4">
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-dark">Lancering & Optimalisatie</h3>
+              <span class="inline-flex items-center gap-2 mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest">
+                <span class="relative flex h-1.5 w-1.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                Doorlopend
+              </span>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+                De website gaat live en daarna stopt het niet. We monitoren prestaties, draaien updates, beheren hosting en blijven strategisch bijsturen. Zodat jouw website blijft groeien met je bedrijf mee.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Website Scan Tool -->
+    <section class="relative z-10 py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="reveal max-w-3xl mx-auto text-center mb-10 md:mb-14">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-4">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Gratis tool
+            <span class="w-8 h-[2px] bg-indigo"></span>
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-dark mb-4">
+            Hoe scoort jouw website?
+          </h2>
+          <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+            Vul je URL in en ontdek in seconden hoe je website presteert op snelheid, SEO en gebruiksvriendelijkheid.
+          </p>
+        </div>
+
+        <!-- Input -->
+        <div class="reveal max-w-2xl mx-auto mb-10" style="transition-delay:100ms">
+          <div class="flex gap-3 p-2 bg-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white">
+            <input
+              id="scan-input"
+              type="url"
+              placeholder="https://jouwwebsite.nl"
+              class="flex-1 px-4 py-3 text-sm md:text-base text-dark placeholder:text-muted bg-transparent outline-none"
+            />
+            <button
+              id="scan-btn"
+              class="px-6 py-3 bg-indigo text-white text-sm font-bold rounded-xl hover:bg-indigo-light transition-colors duration-200 whitespace-nowrap"
+            >
+              Scan nu
+            </button>
+          </div>
+          <p id="scan-error" class="text-sm text-red-500 mt-2 px-2 hidden"></p>
+        </div>
+
+        <!-- Loading -->
+        <div id="scan-loading" class="hidden max-w-2xl mx-auto py-12">
+          <div class="flex flex-col items-center gap-6">
+            <!-- Progress bar -->
+            <div class="w-full max-w-sm">
+              <div class="h-1.5 bg-warm-grey/30 rounded-full overflow-hidden">
+                <div id="scan-progress" class="h-full bg-indigo rounded-full transition-all duration-700 ease-out" style="width:0%"></div>
+              </div>
+            </div>
+            <!-- Step label -->
+            <p id="scan-step" class="text-sm font-medium text-text-secondary"></p>
+            <p class="text-xs text-muted">Dit duurt gemiddeld 15-30 seconden</p>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="scan-results" class="hidden max-w-3xl mx-auto">
+          <div class="bg-white rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white overflow-hidden">
+            <!-- Header -->
+            <div class="px-8 py-6 border-b border-warm-grey/30 flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.25em] mb-1">Scanresultaat voor</p>
+                <p id="scan-url-label" class="text-sm font-bold text-dark truncate max-w-xs"></p>
+              </div>
+              <span class="text-[10px] font-bold text-indigo uppercase tracking-[0.2em] bg-indigo/8 px-3 py-1.5 rounded-full">Mobiel</span>
+            </div>
+
+            <!-- Scores -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-warm-grey/20">
+              <div class="score-card bg-white px-6 py-8 text-center">
+                <div class="relative w-16 h-16 mx-auto mb-3">
+                  <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="#f0ede8" stroke-width="5"/>
+                    <circle id="score-perf-ring" cx="32" cy="32" r="26" fill="none" stroke="#2D3FE0" stroke-width="5" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163"/>
+                  </svg>
+                  <span id="score-perf" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-dark">—</span>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Snelheid</p>
+              </div>
+              <div class="score-card bg-white px-6 py-8 text-center">
+                <div class="relative w-16 h-16 mx-auto mb-3">
+                  <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="#f0ede8" stroke-width="5"/>
+                    <circle id="score-seo-ring" cx="32" cy="32" r="26" fill="none" stroke="#2D3FE0" stroke-width="5" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163"/>
+                  </svg>
+                  <span id="score-seo" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-dark">—</span>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">SEO</p>
+              </div>
+              <div class="score-card bg-white px-6 py-8 text-center">
+                <div class="relative w-16 h-16 mx-auto mb-3">
+                  <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="#f0ede8" stroke-width="5"/>
+                    <circle id="score-acc-ring" cx="32" cy="32" r="26" fill="none" stroke="#2D3FE0" stroke-width="5" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163"/>
+                  </svg>
+                  <span id="score-acc" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-dark">—</span>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Toegankelijkheid</p>
+              </div>
+              <div class="score-card bg-white px-6 py-8 text-center">
+                <div class="relative w-16 h-16 mx-auto mb-3">
+                  <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="#f0ede8" stroke-width="5"/>
+                    <circle id="score-bp-ring" cx="32" cy="32" r="26" fill="none" stroke="#2D3FE0" stroke-width="5" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163"/>
+                  </svg>
+                  <span id="score-bp" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-dark">—</span>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Best practices</p>
+              </div>
+            </div>
+
+            <!-- AI Roast -->
+            <div id="scan-roast" class="px-8 py-6 border-b border-warm-grey/30 hidden">
+              <p class="text-[10px] font-bold text-text-secondary uppercase tracking-[0.25em] mb-4">Onze analyse</p>
+              <ul id="scan-issues" class="space-y-3"></ul>
+            </div>
+
+            <!-- Verdict + Lead Capture -->
+            <div class="px-8 py-6">
+              <p id="scan-verdict" class="font-bold text-dark text-sm mb-4"></p>
+              <div id="scan-lead-form" class="flex gap-3 p-1.5 bg-cream rounded-xl border border-warm-grey/30">
+                <input
+                  id="scan-email"
+                  type="email"
+                  placeholder="Je e-mailadres"
+                  class="flex-1 px-4 py-2.5 text-sm text-dark placeholder:text-muted bg-transparent outline-none"
+                />
+                <button
+                  id="scan-send-btn"
+                  class="px-5 py-2.5 bg-indigo text-white text-xs font-bold rounded-lg hover:bg-indigo-light transition-colors whitespace-nowrap"
+                >
+                  Ontvang rapport
+                </button>
+              </div>
+              <p class="text-[10px] text-muted mt-2">We sturen je de resultaten en een paar concrete verbeterpunten.</p>
+              <div id="scan-lead-success" class="hidden py-3">
+                <p class="text-sm font-bold text-green-600 flex items-center gap-2">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  Verstuurd! Check je inbox.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -493,6 +722,224 @@ import CTA from '../../components/CTA.astro';
 </style>
 
 <script>
+  // ── Website Scan Tool ─────────────────────────────
+  const scanBtn = document.getElementById('scan-btn') as HTMLButtonElement;
+  const scanInput = document.getElementById('scan-input') as HTMLInputElement;
+  const scanLoading = document.getElementById('scan-loading')!;
+  const scanResults = document.getElementById('scan-results')!;
+  const scanError = document.getElementById('scan-error')!;
+
+  function setScore(id: string, ringId: string, score: number) {
+    const el = document.getElementById(id)!;
+    const ring = document.getElementById(ringId)!;
+    el.textContent = String(score);
+    // Color by score
+    const color = score >= 90 ? '#22c55e' : score >= 50 ? '#f59e0b' : '#ef4444';
+    el.style.color = color;
+    ring.style.stroke = color;
+    // Animate ring: circumference = 2π×26 ≈ 163
+    const offset = 163 - (163 * score) / 100;
+    ring.style.transition = 'stroke-dashoffset 1s cubic-bezier(0.22,1,0.36,1)';
+    requestAnimationFrame(() => {
+      ring.style.strokeDashoffset = String(offset);
+    });
+  }
+
+  async function runScan() {
+    let url = scanInput.value.trim();
+    if (!url) return;
+    if (!url.startsWith('http')) url = 'https://' + url;
+
+    scanError.classList.add('hidden');
+    scanResults.classList.add('hidden');
+    scanLoading.classList.remove('hidden');
+    scanBtn.disabled = true;
+
+    // Simulated progress steps
+    const steps = [
+      { label: 'Verbinding maken...', progress: 10 },
+      { label: 'Pagina laden...', progress: 25 },
+      { label: 'Snelheid meten...', progress: 40 },
+      { label: 'SEO analyseren...', progress: 55 },
+      { label: 'Toegankelijkheid checken...', progress: 70 },
+      { label: 'Best practices controleren...', progress: 82 },
+      { label: 'Resultaten verwerken...', progress: 90 },
+    ];
+    const progressBar = document.getElementById('scan-progress')!;
+    const stepLabel = document.getElementById('scan-step')!;
+    let stepIndex = 0;
+    stepLabel.textContent = steps[0].label;
+    progressBar.style.width = steps[0].progress + '%';
+
+    const stepInterval = setInterval(() => {
+      stepIndex++;
+      if (stepIndex < steps.length) {
+        stepLabel.textContent = steps[stepIndex].label;
+        progressBar.style.width = steps[stepIndex].progress + '%';
+      }
+    }, 3500);
+
+    try {
+      const key = import.meta.env.PUBLIC_PAGESPEED_KEY;
+      const api = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance&category=seo&category=accessibility&category=best-practices&key=${key}`;
+      const res = await fetch(api);
+      if (!res.ok) {
+        const body = await res.text();
+        console.error('PageSpeed API status:', res.status, body);
+        throw new Error(`API fout (${res.status})`);
+      }
+      const data = await res.json();
+
+      const cats = data.lighthouseResult?.categories;
+      const perf = Math.round((cats?.performance?.score ?? 0) * 100);
+      const seo  = Math.round((cats?.seo?.score ?? 0) * 100);
+      const acc  = Math.round((cats?.accessibility?.score ?? 0) * 100);
+      const bp   = Math.round((cats?.['best-practices']?.score ?? 0) * 100);
+      const avg  = Math.round((perf + seo + acc + bp) / 4);
+
+      clearInterval(stepInterval);
+      progressBar.style.width = '100%';
+      stepLabel.textContent = 'Klaar!';
+      await new Promise(r => setTimeout(r, 400));
+
+      scanLoading.classList.add('hidden');
+      scanResults.classList.remove('hidden');
+
+      const label = document.getElementById('scan-url-label')!;
+      label.textContent = url;
+
+      // Reset rings first
+      ['score-perf-ring','score-seo-ring','score-acc-ring','score-bp-ring'].forEach(id => {
+        const r = document.getElementById(id)!;
+        r.style.transition = 'none';
+        r.style.strokeDashoffset = '163';
+      });
+
+      setTimeout(() => {
+        setScore('score-perf', 'score-perf-ring', perf);
+        setScore('score-seo',  'score-seo-ring',  seo);
+        setScore('score-acc',  'score-acc-ring',  acc);
+        setScore('score-bp',   'score-bp-ring',   bp);
+      }, 50);
+
+      const verdict = document.getElementById('scan-verdict')!;
+      if (avg >= 90) verdict.textContent = 'Sterke website! Er is altijd ruimte voor verbetering.';
+      else if (avg >= 70) verdict.textContent = 'Redelijke score, maar je laat klanten liggen.';
+      else if (avg >= 50) verdict.textContent = 'Hier valt flink winst te behalen.';
+      else verdict.textContent = 'Je website heeft serieuze aandacht nodig.';
+
+      // ── AI Roast: parse failed audits ──
+      const auditMap: Record<string, string> = {
+        'render-blocking-resources': 'Je pagina laadt traag door bestanden die het renderen blokkeren.',
+        'uses-responsive-images': 'Afbeeldingen zijn niet geoptimaliseerd voor verschillende schermformaten.',
+        'offscreen-images': 'Afbeeldingen buiten beeld worden direct geladen, dat vertraagt je site.',
+        'unused-css-rules': 'Er zit ongebruikte CSS in je code die de laadtijd onnodig verhoogt.',
+        'unused-javascript': 'Er wordt JavaScript geladen dat niet wordt gebruikt.',
+        'uses-optimized-images': 'Afbeeldingen kunnen flink kleiner zonder kwaliteitsverlies.',
+        'uses-text-compression': 'Tekstbestanden worden niet gecomprimeerd verstuurd.',
+        'uses-long-cache-ttl': 'Bestanden worden niet gecacht, waardoor terugkerende bezoekers alles opnieuw laden.',
+        'dom-size': 'De pagina bevat te veel HTML-elementen, wat mobiel traag aanvoelt.',
+        'total-blocking-time': 'De pagina reageert traag op interactie door zware scripts.',
+        'largest-contentful-paint': 'Het grootste zichtbare element laadt te langzaam.',
+        'cumulative-layout-shift': 'Elementen verspringen tijdens het laden, dat is storend voor bezoekers.',
+        'meta-description': 'Er ontbreekt een meta-omschrijving. Dat kost je clicks in Google.',
+        'document-title': 'De paginatitel ontbreekt of is niet optimaal voor zoekmachines.',
+        'image-alt': 'Afbeeldingen missen alt-teksten, slecht voor toegankelijkheid en SEO.',
+        'link-text': 'Linkteksten zoals "klik hier" zijn niet beschrijvend genoeg.',
+        'color-contrast': 'Het kleurcontrast is op sommige plekken te laag om goed leesbaar te zijn.',
+        'heading-order': 'De koppenstructuur is niet logisch opgebouwd (H1, H2, H3...).',
+        'viewport': 'De viewport is niet goed ingesteld voor mobiele apparaten.',
+        'is-crawlable': 'Zoekmachines worden geblokkeerd om je site te indexeren.',
+        'robots-txt': 'Het robots.txt bestand mist of blokkeert belangrijke pagina\'s.',
+        'font-display': 'Lettertypen blokkeren de weergave van tekst tijdens het laden.',
+        'modern-image-formats': 'Afbeeldingen gebruiken oudere formaten. WebP of AVIF is veel sneller.',
+        'redirects': 'Er zijn onnodige redirects die de laadtijd vertragen.',
+        'server-response-time': 'De server reageert langzaam. Een snellere hosting maakt een groot verschil.',
+      };
+
+      const audits = data.lighthouseResult?.audits || {};
+      const failedIssues: string[] = [];
+      for (const [key, desc] of Object.entries(auditMap)) {
+        const audit = audits[key];
+        if (audit && typeof audit.score === 'number' && audit.score < 0.5 && failedIssues.length < 4) {
+          failedIssues.push(desc);
+        }
+      }
+
+      const roastEl = document.getElementById('scan-roast')!;
+      const issuesList = document.getElementById('scan-issues')!;
+      if (failedIssues.length > 0) {
+        roastEl.classList.remove('hidden');
+        issuesList.innerHTML = failedIssues.map(issue =>
+          `<li class="flex gap-3 items-start text-sm">
+            <svg class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-text-secondary">${issue}</span>
+          </li>`
+        ).join('');
+      }
+
+      // Store data for lead capture
+      const scanPayload = { url, scores: { performance: perf, seo, accessibility: acc, bestPractices: bp }, issues: failedIssues };
+      (window as any).__scanData = scanPayload;
+
+      // Log elke scan (ook zonder e-mail)
+      fetch('/api/scan-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...scanPayload, email: null }),
+      }).catch(() => {});
+
+    } catch (e) {
+      clearInterval(stepInterval);
+      console.error('Scan error:', e);
+      scanLoading.classList.add('hidden');
+      scanError.textContent = e instanceof Error ? e.message : 'Scan mislukt. Controleer de URL en probeer opnieuw.';
+      scanError.classList.remove('hidden');
+    } finally {
+      scanBtn.disabled = false;
+    }
+  }
+
+  scanBtn?.addEventListener('click', runScan);
+  scanInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') runScan(); });
+
+  // ── Lead Capture ─────────────────────────────
+  const sendBtn = document.getElementById('scan-send-btn');
+  const emailInput = document.getElementById('scan-email') as HTMLInputElement;
+
+  sendBtn?.addEventListener('click', async () => {
+    const email = emailInput?.value.trim();
+    if (!email || !email.includes('@')) {
+      emailInput?.focus();
+      return;
+    }
+
+    const scanData = (window as any).__scanData;
+    if (!scanData) return;
+
+    sendBtn.textContent = 'Versturen...';
+    (sendBtn as HTMLButtonElement).disabled = true;
+
+    try {
+      await fetch('/api/scan-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: scanData.url,
+          email,
+          scores: scanData.scores,
+          issues: scanData.issues,
+        }),
+      });
+
+      document.getElementById('scan-lead-form')!.classList.add('hidden');
+      document.getElementById('scan-lead-success')!.classList.remove('hidden');
+    } catch {
+      sendBtn.textContent = 'Ontvang rapport';
+      (sendBtn as HTMLButtonElement).disabled = false;
+    }
+  });
+
   const observeElements = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -570,7 +1017,6 @@ import CTA from '../../components/CTA.astro';
     'webshop': 'een webshop starten.',
     'rebranding': 'mijn website vernieuwen.',
     'snelheid': 'een snellere website.',
-    'maatwerk': 'een maatwerk platform.'
   };
 
   let activeGoal: string | null = null;
@@ -633,6 +1079,15 @@ import CTA from '../../components/CTA.astro';
               goalWrapper!.style.height = panel.scrollHeight + 'px';
             });
           }
+
+          // Scroll cards into view
+          setTimeout(() => {
+            const chipsEl = document.getElementById('goal-chips');
+            if (chipsEl) {
+              const top = chipsEl.getBoundingClientRect().top + window.scrollY - 100;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }
+          }, 50);
         } else {
           panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
           panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');

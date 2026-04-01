@@ -140,19 +140,21 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.service-row:hover {
-    background-color: #0D0D0D;
-    color: #FAF9F6;
-    padding-left: 3rem;
-}
+@media (hover: hover) {
+    .service-row:hover {
+        background-color: #0D0D0D;
+        color: #FAF9F6;
+        padding-left: 3rem;
+    }
 
-.service-row:hover .service-num {
-    color: #2D3FE0;
-}
+    .service-row:hover .service-num {
+        color: #2D3FE0;
+    }
 
-.service-row:hover .service-arrow {
-    opacity: 1;
-    transform: translateX(0);
+    .service-row:hover .service-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .service-arrow {
@@ -206,4 +208,17 @@
     filter: blur(80px);
     animation: meshMove 15s ease-in-out infinite;
     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .mesh-blob {
+        animation: meshMove 25s ease-in-out infinite;
+        filter: blur(60px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mesh-blob {
+        animation: none;
+    }
 }

@@ -21,13 +21,18 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Stuur notificatie via Google Apps Script webhook
     const webhookUrl = import.meta.env.SCAN_WEBHOOK_URL;
+    console.log('Webhook URL aanwezig:', !!webhookUrl);
     if (webhookUrl) {
       try {
-        await fetch(webhookUrl, {
+        const webhookRes = await fetch(webhookUrl, {
           method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url, email, scores, issues }),
           redirect: 'follow',
         });
+        console.log('Webhook response status:', webhookRes.status);
+        const webhookBody = await webhookRes.text();
+        console.log('Webhook response body:', webhookBody);
       } catch (webhookErr) {
         console.error('Webhook fout:', webhookErr);
       }

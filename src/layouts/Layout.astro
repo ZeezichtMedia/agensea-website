@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import AISearch from "../components/AISearch.astro";
 import CookieBanner from "../components/CookieBanner.astro";
@@ -48,7 +47,6 @@ const finalDescription = seoDescription || description;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <ClientRouter />
   </head>
   <body class="grain bg-cream min-h-screen overflow-x-hidden">
     <slot />

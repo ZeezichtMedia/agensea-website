@@ -99,7 +99,7 @@ Webdesign is complex omdat het op duizenden verschillende schermen moet werken. 
 
 Je bent een expert in jouw vakgebied. Focus daarop. Daar verdien je je geld mee en daar krijg je energie van.
 
-Een website is een investering die zichzelf terugverdient door nieuwe klanten aan te trekken. Als je het zelf doet, kost het je zeeën van tijd, levert het vaak een matig resultaat op, en loop je klanten mis. Lees ook ons artikel over [Facebook vs. een Eigen Website](/blog/facebook-vs-eigen-website) voor meer inzichten over eigendom en bereik.
+Een website is een investering die zichzelf terugverdient door nieuwe klanten aan te trekken. Als je het zelf doet, kost het je zeeën van tijd, levert het vaak een matig resultaat op, en loop je klanten mis. Lees ook ons artikel over [Facebook vs. een Eigen Website](/kennisbank/facebook-vs-eigen-website) voor meer inzichten over eigendom en bereik.
 
 **Wil je wél een professionele website, maar geen duizenden euro's in één keer investeren?**
 Bekijk dan onze optie voor [Website Huren](/diensten/website-huren/). Voor een vast maandelijks bedrag krijg je een complete, professionele website, inclusief onderhoud en updates. Zonder de kopzorgen, zonder de hoge opstartkosten.

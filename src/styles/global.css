@@ -23,6 +23,7 @@
     html {
         font-family: var(--font-body);
         scroll-behavior: smooth;
+        scroll-padding-top: 30vh;
         background-color: #FAF9F6;
         color: #2A2A2A;
     }

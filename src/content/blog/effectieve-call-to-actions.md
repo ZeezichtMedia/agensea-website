@@ -93,7 +93,7 @@ Wist je dat veel bezoekers nooit tot de onderkant van je pagina scrollen? Als jo
 Plaats je belangrijkste CTA altijd in de "Hero" (het bovenste deel van je site dat direct zichtbaar is).
 En voor mobiele gebruikers: overweeg een **sticky button**. Een knop die onderin het scherm blijft zweven terwijl je scrolt. Zo is de "koop-knop" altijd binnen handbereik van de duim.
 
-> **Pro Tip:** Wist je dat Google snelheid ook meeneemt in je ranking? Een trage knop is net zo erg als geen knop. Lees meer over hoe [Core Web Vitals](/blog/waarom-website-vernieuwen) jouw conversie beïnvloeden.
+> **Pro Tip:** Wist je dat Google snelheid ook meeneemt in je ranking? Een trage knop is net zo erg als geen knop. Lees meer over hoe [Core Web Vitals](/kennisbank/waarom-website-vernieuwen) jouw conversie beïnvloeden.
 
 ## Is jouw website een doolhof of een glijbaan?
 

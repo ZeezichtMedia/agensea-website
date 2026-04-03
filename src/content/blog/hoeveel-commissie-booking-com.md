@@ -172,7 +172,7 @@ Dit betekent dat bijna een derde van je omzet rechtstreeks naar Booking.com en g
 
 **Break-even:** Na slechts 4 maanden heb je de investering terugverdiend!
 
-[Lees meer: Booking.com Alternatief →](/blog/booking-com-alternatief/)
+[Lees meer: Booking.com Alternatief →](/kennisbank/booking-com-alternatief/)
 
 ### Optie 2: Hybride Strategie
 

@@ -37,7 +37,7 @@ const schema = {
         dateModified: entry.data.updatedDate.toISOString(),
     }),
     ...(entry.data.image && { image: entry.data.image.src }),
-    url: `https://agensea.nl/blog/${entry.id}/`,
+    url: `https://agensea.nl/kennisbank/${entry.id}/`,
     publisher: {
         "@type": "Organization",
         name: "Agensea",
@@ -88,7 +88,7 @@ const schema = {
         <header class="max-w-4xl mx-auto px-6 mb-16 md:mb-24">
             <div class="mb-8">
                 <a
-                    href="/blog"
+                    href="/kennisbank"
                     class="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-dark/40 hover:text-indigo transition-colors"
                 >
                     <svg

@@ -45,14 +45,27 @@ import CTA from '../../components/CTA.astro';
           </div>
         </div>
         <!-- Right Image/Graphic area -->        <div class="lg:col-span-5 reveal" style="transition-delay: 200ms;">
+          <!-- Hint -->
+          <div id="mockup-hint" class="flex justify-center mb-3">
+            <span class="text-xs text-indigo font-medium flex items-center gap-1.5 animate-pulse">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V19M5 12l7 7 7-7"/></svg>
+              Typ je bedrijfsnaam in de adresbalk
+            </span>
+          </div>
           <div class="w-full bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-white relative">
             <!-- Browser Chrome -->
             <div class="h-9 bg-[#f5f3ef] flex items-center px-4 gap-1.5 border-b border-warm-grey/15">
               <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></div>
               <div class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></div>
               <div class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></div>
-              <div class="ml-3 flex-1 h-5 bg-white/80 rounded-md border border-warm-grey/15 flex items-center px-2">
-                <span id="urlText" class="text-[8px] text-text-secondary/40 font-mono transition-opacity duration-300">jouwbedrijf.nl</span>
+              <div class="ml-3 flex-1 h-5 bg-white rounded-md border-2 border-indigo/30 flex items-center px-2 url-bar-hint transition-all duration-300">
+                <input
+                  id="urlInput"
+                  type="text"
+                  value="jouwbedrijf.nl"
+                  class="w-full text-[8px] text-dark/60 font-mono bg-transparent outline-none cursor-text"
+                  placeholder="jouwbedrijf.nl"
+                />
               </div>
             </div>
 
@@ -63,7 +76,7 @@ import CTA from '../../components/CTA.astro';
               <div class="site-layout active" data-url="jouwbedrijf.nl" id="layout1">
                 <div class="space-y-4">
                   <div class="mini-el flex items-center justify-between">
-                    <div class="w-14 h-4 bg-dark rounded-sm"></div>
+                    <span class="mock-logo text-[9px] font-bold text-dark truncate max-w-[80px] leading-none">jouwbedrijf</span>
                     <div class="flex gap-3">
                       <div class="w-10 h-2.5 bg-warm-grey/30 rounded-sm"></div>
                       <div class="w-10 h-2.5 bg-warm-grey/30 rounded-sm"></div>
@@ -101,7 +114,7 @@ import CTA from '../../components/CTA.astro';
               <div class="site-layout" data-url="jouwwebshop.nl/producten" id="layout2">
                 <div class="space-y-4">
                   <div class="mini-el flex items-center justify-between">
-                    <div class="w-14 h-4 bg-dark rounded-sm"></div>
+                    <span class="mock-logo text-[9px] font-bold text-dark truncate max-w-[80px] leading-none">jouwwebshop</span>
                     <div class="flex gap-2 items-center">
                       <div class="w-8 h-2.5 bg-warm-grey/30 rounded-sm"></div>
                       <div class="w-8 h-2.5 bg-warm-grey/30 rounded-sm"></div>
@@ -151,7 +164,7 @@ import CTA from '../../components/CTA.astro';
               <div class="site-layout" data-url="creatief-bureau.nl" id="layout3">
                 <div class="space-y-4">
                   <div class="mini-el flex items-center justify-between">
-                    <div class="w-10 h-4 bg-dark rounded-sm"></div>
+                    <span class="mock-logo text-[9px] font-bold text-dark truncate max-w-[80px] leading-none">creatief-bureau</span>
                     <div class="flex gap-4">
                       <div class="w-8 h-2.5 bg-warm-grey/30 rounded-sm"></div>
                       <div class="w-8 h-2.5 bg-warm-grey/30 rounded-sm"></div>
@@ -180,7 +193,9 @@ import CTA from '../../components/CTA.astro';
               <div class="site-layout" data-url="app.jouwplatform.nl/dashboard" id="layout4">
                 <div class="flex gap-3">
                   <div class="w-10 shrink-0 space-y-3 pt-1">
-                    <div class="mini-el w-8 h-8 bg-dark rounded-lg"></div>
+                    <div class="mini-el w-8 h-8 bg-dark rounded-lg flex items-center justify-center">
+                      <span class="mock-logo text-[5px] font-bold text-white truncate leading-none px-0.5"></span>
+                    </div>
                     <div class="mini-el w-6 h-1.5 bg-warm-grey/30 rounded-sm mx-auto"></div>
                     <div class="mini-el w-6 h-1.5 bg-indigo/40 rounded-sm mx-auto"></div>
                     <div class="mini-el w-6 h-1.5 bg-warm-grey/30 rounded-sm mx-auto"></div>
@@ -386,8 +401,8 @@ import CTA from '../../components/CTA.astro';
                   <p class="text-text-secondary text-base leading-relaxed mb-6">
                     Een trage website kost je bezoekers én Google-posities. We zorgen dat jouw website snel laadt op elk apparaat, technisch op orde is en beter scoort in de zoekresultaten.
                   </p>
-                  <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
-                    Plan een gratis kennismaking
+                  <a href="#scan-tool" class="inline-flex items-center gap-2 px-6 py-3 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300 text-sm">
+                    Test hoe snel jouw website is
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
@@ -402,7 +417,7 @@ import CTA from '../../components/CTA.astro';
 
 
     <!-- Website Scan Tool -->
-    <section class="relative z-10 py-8 md:py-12">
+    <section id="scan-tool" class="relative z-10 py-8 md:py-12">
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
         <div class="reveal max-w-3xl mx-auto text-center mb-10 md:mb-14">
           <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-4">
@@ -824,31 +839,31 @@ import CTA from '../../components/CTA.astro';
 
       // ── AI Roast: parse failed audits ──
       const auditMap: Record<string, string> = {
-        'render-blocking-resources': 'Je pagina laadt traag door bestanden die het renderen blokkeren.',
-        'uses-responsive-images': 'Afbeeldingen zijn niet geoptimaliseerd voor verschillende schermformaten.',
-        'offscreen-images': 'Afbeeldingen buiten beeld worden direct geladen, dat vertraagt je site.',
-        'unused-css-rules': 'Er zit ongebruikte CSS in je code die de laadtijd onnodig verhoogt.',
-        'unused-javascript': 'Er wordt JavaScript geladen dat niet wordt gebruikt.',
-        'uses-optimized-images': 'Afbeeldingen kunnen flink kleiner zonder kwaliteitsverlies.',
-        'uses-text-compression': 'Tekstbestanden worden niet gecomprimeerd verstuurd.',
-        'uses-long-cache-ttl': 'Bestanden worden niet gecacht, waardoor terugkerende bezoekers alles opnieuw laden.',
-        'dom-size': 'De pagina bevat te veel HTML-elementen, wat mobiel traag aanvoelt.',
-        'total-blocking-time': 'De pagina reageert traag op interactie door zware scripts.',
-        'largest-contentful-paint': 'Het grootste zichtbare element laadt te langzaam.',
-        'cumulative-layout-shift': 'Elementen verspringen tijdens het laden, dat is storend voor bezoekers.',
-        'meta-description': 'Er ontbreekt een meta-omschrijving. Dat kost je clicks in Google.',
-        'document-title': 'De paginatitel ontbreekt of is niet optimaal voor zoekmachines.',
-        'image-alt': 'Afbeeldingen missen alt-teksten, slecht voor toegankelijkheid en SEO.',
-        'link-text': 'Linkteksten zoals "klik hier" zijn niet beschrijvend genoeg.',
-        'color-contrast': 'Het kleurcontrast is op sommige plekken te laag om goed leesbaar te zijn.',
-        'heading-order': 'De koppenstructuur is niet logisch opgebouwd (H1, H2, H3...).',
-        'viewport': 'De viewport is niet goed ingesteld voor mobiele apparaten.',
-        'is-crawlable': 'Zoekmachines worden geblokkeerd om je site te indexeren.',
-        'robots-txt': 'Het robots.txt bestand mist of blokkeert belangrijke pagina\'s.',
-        'font-display': 'Lettertypen blokkeren de weergave van tekst tijdens het laden.',
-        'modern-image-formats': 'Afbeeldingen gebruiken oudere formaten. WebP of AVIF is veel sneller.',
-        'redirects': 'Er zijn onnodige redirects die de laadtijd vertragen.',
-        'server-response-time': 'De server reageert langzaam. Een snellere hosting maakt een groot verschil.',
+        'render-blocking-resources': 'Je website wordt geblokkeerd door bestanden die eerst volledig moeten laden. Daardoor zien bezoekers even een wit scherm.',
+        'uses-responsive-images': 'Je foto\'s worden op een telefoon even groot geladen als op een groot scherm. Dat maakt je site onnodig traag op mobiel.',
+        'offscreen-images': 'Foto\'s die je pas ziet als je naar beneden scrollt, worden nu al meteen geladen. Dat vertraagt het eerste wat bezoekers zien.',
+        'unused-css-rules': 'Er zit opmaakcode op je site die nergens voor wordt gebruikt. Dat is alsof je bagage meesleept die je nooit openmaakt.',
+        'unused-javascript': 'Er wordt code geladen die niks doet op deze pagina. Dat maakt je site trager zonder reden.',
+        'uses-optimized-images': 'Je foto\'s zijn groter dan nodig. Kleiner maken zonder zichtbaar kwaliteitsverlies kan je site flink versnellen.',
+        'uses-text-compression': 'Je website stuurt bestanden ongecomprimeerd naar de browser. Met compressie laadt je site tot 3x sneller.',
+        'uses-long-cache-ttl': 'Als iemand je site opnieuw bezoekt, moet alles opnieuw worden geladen. Met caching onthouden browsers wat ze al hebben.',
+        'dom-size': 'Je pagina bevat heel veel elementen. Op een telefoon voelt dat alsof je door stroop scrollt.',
+        'total-blocking-time': 'Je site reageert traag als je ergens op klikt of tikt. Bezoekers merken dat direct.',
+        'largest-contentful-paint': 'Het belangrijkste onderdeel van je pagina (vaak een grote afbeelding of kop) laadt te langzaam. Bezoekers haken dan af.',
+        'cumulative-layout-shift': 'Elementen op je pagina verspringen terwijl hij laadt. Bezoekers klikken daardoor soms op het verkeerde.',
+        'meta-description': 'Je pagina mist een omschrijving voor Google. Daardoor bepaalt Google zelf wat er onder je link staat in de zoekresultaten.',
+        'document-title': 'Je pagina heeft geen duidelijke titel. Dat is het eerste wat mensen zien in Google en in hun browsertabblad.',
+        'image-alt': 'Je foto\'s hebben geen beschrijving. Daardoor kan Google ze niet vinden, en kunnen slechtzienden niet horen wat erop staat.',
+        'link-text': 'Links met teksten als "klik hier" zeggen niets over waar ze naartoe gaan. Dat is verwarrend voor bezoekers en slecht voor Google.',
+        'color-contrast': 'Sommige tekst is moeilijk leesbaar omdat de kleur te weinig verschilt van de achtergrond.',
+        'heading-order': 'De koppen op je pagina staan niet in een logische volgorde. Dat maakt het voor Google lastiger om je pagina te begrijpen.',
+        'viewport': 'Je website is niet goed ingesteld voor mobiel. Op een telefoon moet je waarschijnlijk inzoomen om tekst te lezen.',
+        'is-crawlable': 'Google mag je site niet bezoeken. Dat betekent dat je onzichtbaar bent in de zoekresultaten.',
+        'robots-txt': 'Een technisch bestand blokkeert Google om bepaalde pagina\'s te bekijken. Mogelijk missen er pagina\'s in de zoekresultaten.',
+        'font-display': 'Je lettertypen blokkeren het laden van tekst. Bezoekers zien even helemaal geen tekst totdat het lettertype geladen is.',
+        'modern-image-formats': 'Je foto\'s staan in een oud formaat. Modernere formaten zijn tot 50% kleiner bij dezelfde kwaliteit.',
+        'redirects': 'Bezoekers worden doorgestuurd via omwegen voordat ze op de juiste pagina komen. Elke omweg kost extra laadtijd.',
+        'server-response-time': 'Je server doet er te lang over om te reageren. Dat is vaak op te lossen met betere hosting.',
       };
 
       const audits = data.lighthouseResult?.audits || {};
@@ -953,19 +968,47 @@ import CTA from '../../components/CTA.astro';
 
   // Layout cycler
   const layouts = document.querySelectorAll('.site-layout');
-  const urlText = document.getElementById('urlText');
+  const urlInput = document.getElementById('urlInput') as HTMLInputElement | null;
+  const mockLogos = document.querySelectorAll('.mock-logo');
   let current = 0;
+  let userHasTyped = false;
   const DISPLAY_TIME = 4000;
   const FADE_TIME = 500;
 
-  function showLayout(index) {
+  // When user types in the URL bar, update all mock logos
+  if (urlInput) {
+    const hint = document.getElementById('mockup-hint');
+    const urlBar = urlInput.closest('.url-bar-hint');
+
+    urlInput.addEventListener('input', () => {
+      userHasTyped = true;
+      const val = urlInput.value.replace(/^https?:\/\//, '').replace(/\.nl.*|\.com.*|\.be.*/, '').replace(/^www\./, '');
+      const displayName = val || 'jouwbedrijf';
+      mockLogos.forEach(logo => {
+        logo.textContent = displayName;
+      });
+      // Hide hint after typing
+      if (hint) hint.style.display = 'none';
+      if (urlBar) {
+        urlBar.classList.remove('border-indigo/30');
+        urlBar.classList.add('border-warm-grey/15');
+      }
+    });
+
+    urlInput.addEventListener('focus', () => {
+      urlInput.select();
+      if (hint) hint.style.display = 'none';
+    });
+  }
+
+  function showLayout(index: number) {
     const layout = layouts[index];
-    // Update URL
-    if (urlText && layout.dataset.url) {
-      urlText.style.opacity = '0';
+    // Update URL bar only if user hasn't typed
+    if (urlInput && layout.dataset.url && !userHasTyped) {
+      urlInput.style.opacity = '0';
       setTimeout(() => {
-        urlText.textContent = layout.dataset.url;
-        urlText.style.opacity = '1';
+        urlInput.value = layout.dataset.url!;
+        urlInput.style.opacity = '1';
       }, 200);
     }
     // Reset animations

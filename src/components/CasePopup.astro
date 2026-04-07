@@ -313,8 +313,11 @@
     // Show modal
     modal.classList.remove('opacity-0', 'pointer-events-none');
     modal.querySelector('.relative').classList.remove('translate-y-8');
-    // Stop Lenis smooth scroll and prevent body scroll
-    if (window.lenis) window.lenis.stop();
+    // Destroy Lenis completely so it doesn't intercept scroll events
+    if (window.lenis) {
+      window.lenis.destroy();
+      window.lenis = null;
+    }
     document.body.classList.add('modal-open');
 
     // Reset scroll position to top
@@ -341,7 +344,13 @@
     modal.classList.add('opacity-0', 'pointer-events-none');
     modal.querySelector('.relative').classList.add('translate-y-8');
     document.body.classList.remove('modal-open');
-    if (window.lenis) window.lenis.start();
+    // Recreate Lenis
+    if (typeof Lenis !== 'undefined' && !window.lenis) {
+      const l = new Lenis();
+      window.lenis = l;
+      function raf(time: number) { l.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }
   }
 
   // Event Listeners

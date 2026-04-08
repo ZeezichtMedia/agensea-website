@@ -11,9 +11,9 @@
     <!-- Logo -->
     <a
       href="/"
-      class="font-display text-2xl font-bold tracking-tight interactive pointer-events-auto"
+      class="interactive pointer-events-auto"
       id="logo-main"
-    ><span class="logo-char text-dark transition-colors duration-300">a</span><span class="logo-char text-dark transition-colors duration-300">g</span><span class="logo-char text-dark transition-colors duration-300">e</span><span class="logo-char text-dark transition-colors duration-300">n</span><span class="logo-char logo-flicker text-indigo transition-colors duration-300" style="animation-delay: 0s;">s</span><span class="logo-char logo-flicker text-indigo transition-colors duration-300" style="animation-delay: 0.15s;">e</span><span class="logo-char logo-flicker text-indigo transition-colors duration-300" style="animation-delay: 0.08s;">a</span><span class="logo-char text-indigo transition-colors duration-300">.</span></a>
+    ><img src="/brand/agensea-navbar.webp" alt="Agensea" width="120" height="120" class="h-8 w-auto transition-all duration-300" id="logo-img" /></a>
 
     <!-- Logo Download Popup -->
     <div id="logo-download-popup" class="fixed z-[2000] hidden pointer-events-none">
@@ -324,63 +324,27 @@
     const logo = document.getElementById("logo-main");
     const darkSections = document.querySelectorAll(".bg-dark, .bg-indigo");
 
-    // 1. Dynamic Logo Color — per-character sampling
+    // 1. Dynamic Logo — invert on dark sections
     if (logo) {
-      const chars = logo.querySelectorAll('.logo-char');
+      const logoImg = document.getElementById('logo-img');
+      const logoRect = logo.getBoundingClientRect();
+      const logoCenter = logoRect.top + logoRect.height / 2;
+      let isOverDark = false;
 
-      // Hide logo to sample what's behind each character
-      logo.style.visibility = 'hidden';
-
-      const results: { char: Element; isDark: boolean }[] = [];
-
-      chars.forEach((char) => {
-        const rect = char.getBoundingClientRect();
-        const cx = Math.round(rect.left + rect.width / 2);
-        const cy = Math.round(rect.top + rect.height / 2);
-        const el = document.elementFromPoint(cx, cy);
-
-        let isDark = false;
-        if (el) {
-          // Walk up to find the nearest element with a non-transparent bg
-          let target: Element | null = el;
-          while (target && target !== document.documentElement) {
-            const bg = getComputedStyle(target).backgroundColor;
-            const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-            if (match) {
-              const [, r, g, b] = match.map(Number);
-              const alphaMatch = bg.match(/rgba\(\d+,\s*\d+,\s*\d+,\s*([\d.]+)/);
-              const alpha = alphaMatch ? parseFloat(alphaMatch[1]) : 1;
-              if (alpha > 0.1) {
-                const lum = 0.299 * r + 0.587 * g + 0.114 * b;
-                isDark = lum < 128;
-                break;
-              }
-            }
-            target = target.parentElement;
-          }
+      darkSections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        if (logoCenter >= rect.top && logoCenter <= rect.bottom) {
+          isOverDark = true;
         }
-        results.push({ char, isDark });
       });
 
-      logo.style.visibility = '';
-
-      results.forEach(({ char, isDark }) => {
-        const isDot = char.textContent === '.';
-        const isFlicker = char.classList.contains('logo-flicker');
-        if (isDark) {
-          char.classList.remove('text-dark', 'text-indigo');
-          char.classList.add('text-white');
+      if (logoImg) {
+        if (isOverDark) {
+          logoImg.classList.add('brightness-0', 'invert');
         } else {
-          char.classList.remove('text-white');
-          if (isDot || isFlicker) {
-            char.classList.add('text-indigo');
-            char.classList.remove('text-dark');
-          } else {
-            char.classList.add('text-dark');
-            char.classList.remove('text-indigo');
-          }
+          logoImg.classList.remove('brightness-0', 'invert');
         }
-      });
+      }
     }
 
     // 2. Shrink/Aesthetic Change on Scroll
@@ -439,35 +403,4 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  .logo-flicker {
-    animation: neonFlicker 2s ease-in-out 1 forwards;
-  }
-
-  @keyframes neonFlicker {
-    0%, 100% { opacity: 1; }
-    15% { opacity: 1; }
-    16% { opacity: 0.05; }
-    17% { opacity: 0.7; }
-    17.5% { opacity: 0.08; }
-    19% { opacity: 0.85; }
-    19.5% { opacity: 0.1; }
-    20.5% { opacity: 1; }
-    21% { opacity: 0.3; }
-    22% { opacity: 1; }
-    55% { opacity: 1; }
-    56% { opacity: 0.08; }
-    56.5% { opacity: 0.5; }
-    57% { opacity: 0.05; }
-    58.5% { opacity: 0.75; }
-    59% { opacity: 0.12; }
-    60% { opacity: 0.9; }
-    60.5% { opacity: 0.2; }
-    62% { opacity: 1; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .logo-flicker {
-      animation: none;
-    }
-  }
 </style>

@@ -99,15 +99,11 @@
           id="menu-toggle"
           class="relative group flex items-center gap-3 interactive hover:text-indigo transition-colors"
         >
-          <div
-            class="relative w-5 h-4 flex flex-col justify-between items-center py-0.5"
-          >
-            <span
-              class="block w-5 h-[2px] bg-current transition-all duration-300 origin-center"
-              id="menu-line-1"></span>
-            <span
-              class="block w-5 h-[2px] bg-current transition-all duration-300 origin-center"
-              id="menu-line-2"></span>
+          <div class="relative w-4 h-4" id="menu-dots">
+            <span class="absolute top-0 left-0 w-1.5 h-1.5 rounded-full bg-current transition-all duration-500 ease-out-expo" id="menu-dot-1"></span>
+            <span class="absolute top-0 right-0 w-1.5 h-1.5 rounded-full bg-current transition-all duration-500 ease-out-expo" id="menu-dot-2"></span>
+            <span class="absolute bottom-0 left-0 w-1.5 h-1.5 rounded-full bg-current transition-all duration-500 ease-out-expo" id="menu-dot-3"></span>
+            <span class="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-current transition-all duration-500 ease-out-expo" id="menu-dot-4"></span>
           </div>
           <span
             id="menu-text"
@@ -260,8 +256,10 @@
   const toggleBtn = document.getElementById("menu-toggle");
   const megaMenu = document.getElementById("mega-menu");
   const menuText = document.getElementById("menu-text");
-  const line1 = document.getElementById("menu-line-1");
-  const line2 = document.getElementById("menu-line-2");
+  const dot1 = document.getElementById("menu-dot-1");
+  const dot2 = document.getElementById("menu-dot-2");
+  const dot3 = document.getElementById("menu-dot-3");
+  const dot4 = document.getElementById("menu-dot-4");
   const mainNav = document.getElementById("main-nav");
   const navWrapper = document.getElementById("nav-wrapper");
   const links = document.querySelectorAll(".mega-link");
@@ -284,8 +282,10 @@
         "scale-100",
       );
 
-      line1?.classList.add("translate-y-[6px]", "rotate-45");
-      line2?.classList.add("-translate-y-[6px]", "-rotate-45");
+      dot1?.classList.add("translate-x-[5px]", "translate-y-[5px]");
+      dot2?.classList.add("-translate-x-[5px]", "translate-y-[5px]");
+      dot3?.classList.add("translate-x-[5px]", "-translate-y-[5px]");
+      dot4?.classList.add("-translate-x-[5px]", "-translate-y-[5px]");
 
       if (menuText) menuText.textContent = "Dicht";
       document.body.style.overflow = "hidden";
@@ -298,8 +298,10 @@
         "scale-100",
       );
 
-      line1?.classList.remove("translate-y-[6px]", "rotate-45");
-      line2?.classList.remove("-translate-y-[6px]", "-rotate-45");
+      dot1?.classList.remove("translate-x-[5px]", "translate-y-[5px]");
+      dot2?.classList.remove("-translate-x-[5px]", "translate-y-[5px]");
+      dot3?.classList.remove("translate-x-[5px]", "-translate-y-[5px]");
+      dot4?.classList.remove("-translate-x-[5px]", "-translate-y-[5px]");
 
       if (menuText) menuText.textContent = "Menu";
       document.body.style.overflow = "";

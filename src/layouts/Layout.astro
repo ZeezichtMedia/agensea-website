@@ -45,18 +45,16 @@ const finalDescription = seoDescription || description;
     <link rel="stylesheet" href="https://unpkg.com/lenis@1/dist/lenis.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://unpkg.com/lenis@1/dist/lenis.css" /></noscript>
 
-    <!-- Self-hosted fonts (inlined, no extra request) -->
+    <!-- Fonts: Inter (body, self-hosted) + Outfit (display, Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
     <style is:inline>
       @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2')}
       @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2')}
       @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2')}
       @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2')}
-      @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2) format('woff2')}
-      @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2) format('woff2')}
-      @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2) format('woff2')}
-      @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2) format('woff2')}
     </style>
   </head>
   <body class="grain bg-cream min-h-screen overflow-x-hidden">

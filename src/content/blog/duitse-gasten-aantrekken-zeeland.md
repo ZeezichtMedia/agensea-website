@@ -3,10 +3,7 @@ title: "Meer Duitse Gasten Aantrekken in 2026? Maak Je Website 'Duits-Proof"
 description: "Wil jij meer Duitse gasten aantrekken voor je camping of B&B in Zeeland? Ontdek waarom een professionele vertaling, betaalopties en een 'Impressum' cruciaal zijn voor seizoen 2026."
 excerpt: "De Duitse toerist is de motor van de Zeeuwse recreatiesector. Optimaliseer je site met vertalingen en betaalopties voor 2026."
 pubDate: 2025-11-24
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in website optimalisatie voor de internationale toeristische markt."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80"
   alt: "Gelukkig gezin op het strand - Duitse toeristen in Zeeland"

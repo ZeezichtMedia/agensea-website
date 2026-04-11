@@ -4,10 +4,7 @@ description: "Ontdek precies hoeveel commissie Booking.com rekent voor B&B's, ca
 excerpt: "Booking.com rekent 15-20% commissie. Bij €50.000 omzet = €7.500-10.000 verlies per jaar. Ontdek alle kosten en alternatieven."
 pubDate: 2025-10-05
 updatedDate: 2025-10-15
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. 5+ jaar ervaring in website ontwikkeling voor toeristische sector. Expert in commissievrije boekingssystemen."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2011&q=80"
   alt: "Calculator en factuur - Booking.com commissie berekening"

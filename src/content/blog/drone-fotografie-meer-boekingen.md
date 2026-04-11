@@ -3,10 +3,7 @@ title: "Meer Boekingen door Drone Fotografie: Waarom Beelden Allesbepalend Zijn 
 description: "Ontdek waarom professionele drone fotografie cruciaal is voor meer directe boekingen voor jouw B&B of camping in Zeeland. Laat je unieke locatie zien vanuit de lucht."
 excerpt: "Standaard foto's zijn niet meer genoeg. Leer hoe drone beelden de context van jouw locatie verkopen en zorgen voor 30% meer boekingen."
 pubDate: 2025-12-16
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in digitale marketing voor toerisme."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/drone-strand-zeeland.png"
   alt: "Drone foto van een vakantiehuis aan de Zeeuwse kust"

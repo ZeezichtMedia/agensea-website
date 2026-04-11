@@ -4,10 +4,7 @@ description: "Ontdek wat een professionele B&B website moet bevatten. Van boekin
 excerpt: "Een goede B&B website verhoogt directe boekingen aanzienlijk. Ontdek wat erin moet: boekingssysteem, foto's, SEO en meer."
 pubDate: 2025-10-14
 updatedDate: 2025-10-18
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. 5+ jaar ervaring in website ontwikkeling voor B&B's en accommodaties. Specialist in conversie-geoptimaliseerde websites."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
   alt: "Luxe B&B kamer met modern design - professionele website"

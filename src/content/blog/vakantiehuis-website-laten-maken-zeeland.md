@@ -3,10 +3,7 @@ title: "Vakantiehuis Website Laten Maken Zeeland? 100% Snelheid & Design"
 description: "Zoek je een specialist in Zeeland voor je vakantiehuis website? Wij combineren schitterend design met de allersnelste techniek. Versla Booking.com en krijg meer directe boekingen."
 excerpt: "Veel webbouwers maken mooie plaatjes, wen boekingsmachines. Ontdek waarom onze websites sneller laden, beter scoren in Google en meer opleveren."
 pubDate: 2025-12-18
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Specialist in high-performance websites voor de recreatiesector."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/vakantiehuis-website-laten-maken-zeeland.webp"
   alt: "Webdeveloper werkt aan een razendsnelle vakantiehuis website op een laptop met uitzicht op zee"

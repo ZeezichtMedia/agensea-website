@@ -3,10 +3,7 @@ title: "Wel bezoekers, geen klanten? 5 conversie-killers op jouw website"
 description: "Heb je wel traffic maar geen sales of aanvragen? Ontdek de 5 grootste conversie-killers en hoe je van bezoekers klanten maakt."
 excerpt: "Frustrerend: je stopt geld in marketing, mensen klikken, maar kopen niet. Waar gaat het mis? Wij onthullen de 5 design- en snelheidsfouten die je omzet kosten."
 pubDate: 2026-01-27
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in high-performance websites en conversie-optimalisatie."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/wel-bezoekers-geen-klanten.webp"
   alt: "Grafieken die omhoog gaan op een laptop scherm, symbool voor conversie"

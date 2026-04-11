@@ -3,10 +3,7 @@ title: "5 Redenen waarom je niet zelf je zakelijke website moet bouwen (ook niet
 description: "Twijfel je tussen zelf bouwen met Wix of uitbesteden? Ontdek waarom een DIY-website je meer tijd en geld kost dan je denkt. Focus op je eigen vak!"
 excerpt: "Ben je loodgieter of coach? Bouw dan niet je eigen website. Ontdek waarom zelfbouwers vaak duurder uit zijn en klanten mislopen."
 pubDate: 2025-12-11
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in webdesign en conversie-optimalisatie voor MKB."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2671&auto=format&fit=crop"
   alt: "Frustratie achter de computer tijdens het bouwen van een eigen website"

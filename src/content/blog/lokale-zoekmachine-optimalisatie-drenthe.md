@@ -3,10 +3,7 @@ title: "Lokale Zoekmachine Optimalisatie Drenthe: Win van de Concurrentie [2026]
 description: "Wil jij beter gevonden worden in Drenthe? Ontdek hoe lokale zoekmachine optimalisatie (Local SEO) zorgt voor meer klanten uit de regio. Praktische tips & strategie."
 excerpt: "Sta jij bovenaan als iemand zoekt op 'Camping Drenthe' of 'Bedrijf Emmen'? Lokale SEO is dé manier om meer klanten uit de regio aan te trekken."
 pubDate: 2025-12-08
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in lokale SEO strategieën voor regionale bedrijven en toerisme."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://cdn.pixabay.com/photo/2023/08/06/17/13/roads-8173355_1280.jpg"
   alt: "Wegen, Straat, Brug in Drenthe landschap"

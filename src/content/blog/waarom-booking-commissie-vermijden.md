@@ -3,10 +3,7 @@ title: "Waarom Booking.com 15-20% commissie kost (en hoe je dit vermijdt)"
 description: "Ontdek waarom Booking.com zoveel commissie rekent en hoe je met een eigen boekingssysteem 100% van je inkomsten kunt behouden. Complete gids voor accommodatie-eigenaren."
 excerpt: "Booking.com rekent 15-20% commissie. Voor €100k omzet = €15-20k verlies/jaar. Ontdek hoe je dit vermijdt met eigen boekingssysteem."
 pubDate: 2025-10-10
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Zee-zicht Media. 5+ jaar ervaring in website ontwikkeling voor toeristische sector. Specialist in commissievrije boekingssystemen."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
   alt: "Calculator en geld - Booking.com commissie berekening voor accommodaties"

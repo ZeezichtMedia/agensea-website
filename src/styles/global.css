@@ -23,7 +23,10 @@
     html {
         font-family: var(--font-body);
         scroll-behavior: smooth;
-        scroll-padding-top: 30vh;
+        /* Offset voor anchor-navigatie (#cases etc.).
+           5px ademruimte vanaf viewport-top — heading landt vrijwel
+           tegen de bovenkant. */
+        scroll-padding-top: 5px;
         background-color: #FAF9F6;
         color: #2A2A2A;
     }

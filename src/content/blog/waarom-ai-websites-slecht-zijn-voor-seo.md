@@ -3,10 +3,7 @@ title: "Waarom AI-websites slecht zijn voor SEO (en wat daar achter zit) [2026]"
 description: "Tools zoals Lovable en Bolt bouwen snel een mooie AI website, maar voor SEO is het geen succes. Ontdek waarom AI-websites slecht vindbaar zijn in Google."
 excerpt: "Een AI-website is supersnel gebouwd, maar vaak blind voor Google. Lees waarom een handgebouwde site wint als het gaat om online vindbaarheid."
 pubDate: 2026-03-13
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in maatwerk webontwikkeling en technische SEO."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/waarom-ai-websites-slecht-zijn-voor-seo.png"
   alt: "Conceptuele afbeelding van een AI code matrix die botst met een SEO vergrootglas"

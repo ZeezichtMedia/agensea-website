@@ -3,10 +3,7 @@ title: "WordPress website laten maken in Zeeland? Waarom wij voor snellere alter
 description: "Overweeg je een WordPress website te laten maken in Zeeland? Lees waarom wij kiezen voor snellere, veiligere alternatieven zoals Astro voor betere vindbaarheid."
 excerpt: "Een eerlijk verhaal over de nadelen van WordPress en waarom een maatwerk website sneller, veiliger en winstgevender is voor jouw Zeeuwse onderneming."
 pubDate: 2025-12-17
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in high-performance websites en lokale SEO."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop"
   alt: "Code op een beeldscherm,symbool voor maatwerk webdevelopment vs wordpress"

@@ -3,10 +3,7 @@ title: "Facebookpagina vs Eigen Website: Wat Heeft Jouw B&B, Camping of Restaura
 description: "Vergelijk het bereik van Facebook met de conversiekracht van een eigen website. Ontdek welke combinatie het beste werkt voor toeristische ondernemers in Zeeland."
 excerpt: "Facebook biedt bereik, maar een eigen website zorgt voor boekingen. Ontdek hoe je ze slim combineert voor jouw camping, B&B of restaurant."
 pubDate: 2025-11-14
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in social media en website conversie voor de toeristische sector."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://res.cloudinary.com/dksisczdx/image/upload/v1763118882/Facebook_versus_eigen_website_m0jufc.webp"
   alt: "Vergelijking tussen een Facebookpagina en een eigen website voor toeristische ondernemers"

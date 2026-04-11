@@ -3,10 +3,7 @@ title: "Recranet vs. Mews: Welk systeem past bij een park van 200+ eenheden? [20
 description: "Een eerlijke, strategische vergelijking tussen Recranet en Mews voor grote vakantieparken. We analyseren features, automatisering en waarom uw frontend-keuze de doorslag geeft voor rendement."
 excerpt: "Twijfelt u tussen Recranet en Mews voor uw park? Wij analyseren de verschillen in automatisering en conversie voor parken met 200+ eenheden."
 pubDate: 2025-12-22
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Specialist in Headless Booking Architectures voor de recreatiesector."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
   alt: "Dashboard analyse op tablet met vakantiepark achtergrond"

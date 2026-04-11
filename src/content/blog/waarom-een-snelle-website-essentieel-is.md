@@ -2,6 +2,10 @@
 title: "Waarom een snelle website essentieel is voor je conversie"
 description: "In de snelle digitale wereld van vandaag is een trage website funest. Ontdek waarom snelheid cruciaal is voor ambitieuze ondernemers en hoe je er direct mee aan de slag kunt."
 pubDate: 2026-03-25
+author: jorian
+image:
+  src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  alt: "Dashboard met website performance metrics"
 ---
 
 # De kracht van snelheid

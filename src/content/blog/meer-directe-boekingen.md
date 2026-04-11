@@ -4,10 +4,7 @@ description: "Ontdek hoe B&B's en campings hun directe boekingen aanzienlijk ver
 excerpt: "Stop met afhankelijk zijn van Booking.com. Deze 5 strategieën verhogen je directe boekingen aanzienlijk en besparen duizenden euro's commissie."
 pubDate: 2025-10-08
 updatedDate: 2025-10-15
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. 5+ jaar ervaring in website ontwikkeling voor toeristische sector. Specialist in directe boekingen en commissievrije systemen."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80"
   alt: "Laptop met stijgende grafiek - meer directe boekingen"

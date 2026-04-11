@@ -2,18 +2,32 @@
 
 ---
 
+<!-- Skip to main content link voor toetsenbordgebruikers -->
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[2000] focus:bg-indigo focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:font-bold focus:shadow-lg"
+>Direct naar inhoud</a>
+
 <!-- Top Bar: Logo & Navigation Container -->
-<div
-  class="fixed top-10 left-0 right-0 z-[900] pointer-events-none"
+<!--
+  Header bevat logo-pill (links) en nav-pill (rechts). De volledige header
+  verbergt zich met translate-y bij scroll naar beneden, en komt terug bij
+  scroll naar boven (Medium-pattern). Logo zit in een eigen frosted-glass
+  chip in dezelfde stijl als de nav-pill, zodat het visueel rust geeft en
+  niet meer "naked" over content drijft.
+-->
+<header
+  class="fixed top-10 left-0 right-0 z-[900] pointer-events-none transition-transform duration-500 ease-out-expo"
   id="nav-header"
 >
   <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    <!-- Logo -->
+    <!-- Logo Pill -->
     <a
       href="/"
-      class="interactive pointer-events-auto"
+      aria-label="Agensea — naar homepagina"
+      class="interactive pointer-events-auto inline-flex items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-4 md:px-5 py-2 md:py-2.5 transition-all duration-500"
       id="logo-main"
-    ><img src="/brand/Agensea%20logo.svg" alt="Agensea" width="400" height="400" class="h-11 md:h-12 w-auto transition-all duration-300" id="logo-img" /></a>
+    ><img src="/brand/Agensea%20logo.svg" alt="Agensea" width="400" height="400" class="h-7 md:h-8 w-auto transition-all duration-300" id="logo-img" /></a>
 
     <!-- Logo Download Popup -->
     <div id="logo-download-popup" class="fixed z-[2000] hidden pointer-events-none">
@@ -74,6 +88,8 @@
 
           <button
             id="nav-search-btn"
+            type="button"
+            aria-label="Open AI zoeken"
             class="flex items-center gap-2 md:gap-3 text-xs font-bold uppercase tracking-widest text-dark/60 hover:text-indigo transition-colors interactive"
           >
             <svg
@@ -83,6 +99,7 @@
               fill="none"
               stroke="currentColor"
               stroke-width="3"
+              aria-hidden="true"
             >
               <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"
               ></path>
@@ -97,6 +114,10 @@
         <!-- Menu Toggle Button -->
         <button
           id="menu-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mega-menu"
           class="relative group flex items-center gap-3 interactive hover:text-indigo transition-colors"
         >
           <div class="relative w-4 h-4" id="menu-dots">
@@ -114,11 +135,13 @@
       </nav>
     </div>
   </div>
-</div>
+</header>
 
 <!-- Mega Menu Overlay -->
-<div
+<nav
   id="mega-menu"
+  aria-label="Hoofdnavigatie"
+  aria-hidden="true"
   class="fixed inset-0 z-[899] bg-cream/95 backdrop-blur-3xl pt-24 pb-20 md:flex md:flex-col md:justify-center overflow-y-auto overflow-x-hidden opacity-0 pointer-events-none transition-all duration-700 ease-out-expo scale-110"
 >
   <!-- Decorative Background Blobs -->
@@ -250,7 +273,7 @@
       </div>
     </div>
   </div>
-</div>
+</nav>
 
 <script>
   const toggleBtn = document.getElementById("menu-toggle");
@@ -281,6 +304,9 @@
         "pointer-events-auto",
         "scale-100",
       );
+      megaMenu?.setAttribute("aria-hidden", "false");
+      toggleBtn?.setAttribute("aria-expanded", "true");
+      toggleBtn?.setAttribute("aria-label", "Sluit menu");
 
       dot1?.classList.add("translate-x-[5px]", "translate-y-[5px]");
       dot2?.classList.add("-translate-x-[5px]", "translate-y-[5px]");
@@ -297,6 +323,9 @@
         "pointer-events-auto",
         "scale-100",
       );
+      megaMenu?.setAttribute("aria-hidden", "true");
+      toggleBtn?.setAttribute("aria-expanded", "false");
+      toggleBtn?.setAttribute("aria-label", "Open menu");
 
       dot1?.classList.remove("translate-x-[5px]", "translate-y-[5px]");
       dot2?.classList.remove("-translate-x-[5px]", "translate-y-[5px]");
@@ -309,6 +338,11 @@
     }
   }
 
+  // Sluit menu met Escape voor toetsenbordgebruikers.
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) toggleMenu();
+  });
+
   toggleBtn?.addEventListener("click", toggleMenu);
   links.forEach((link) =>
     link.addEventListener("click", () => isOpen && toggleMenu()),
@@ -319,47 +353,39 @@
     window.dispatchEvent(new CustomEvent("open-ai-search"));
   });
 
-  // ── Smart Scroll & Color Logic ────────────────────
-  window.addEventListener("scroll", () => {
+  // ── Smart Scroll: shrink-on-scroll ────────────────
+  // Header blijft altijd sticky. Voorbij de drempel krijgen logo-pill en
+  // nav-pill een iets opaker witte achtergrond zodat ze beter "loskomen"
+  // van de content eronder.
+  const logoPill = document.getElementById("logo-main");
+  const SHRINK_THRESHOLD = 80;
+
+  function applyScroll() {
     const currentScroll = window.pageYOffset;
-    const navHeader = document.getElementById("nav-header");
-    const logo = document.getElementById("logo-main");
-    const darkSections = document.querySelectorAll(".bg-dark, .bg-indigo");
-
-    // 1. Dynamic Logo — invert on dark sections
-    if (logo) {
-      const logoImg = document.getElementById('logo-img');
-      const logoRect = logo.getBoundingClientRect();
-      const logoCenter = logoRect.top + logoRect.height / 2;
-      let isOverDark = false;
-
-      darkSections.forEach((sec) => {
-        const rect = sec.getBoundingClientRect();
-        if (logoCenter >= rect.top && logoCenter <= rect.bottom) {
-          isOverDark = true;
-        }
-      });
-
-      if (logoImg) {
-        if (isOverDark) {
-          logoImg.classList.add('brightness-0', 'invert');
-        } else {
-          logoImg.classList.remove('brightness-0', 'invert');
-        }
-      }
-    }
-
-    // 2. Shrink/Aesthetic Change on Scroll
-    if (currentScroll > 50) {
-      mainNav?.classList.add("bg-white/80", "py-2", "px-5");
-      mainNav?.classList.remove("bg-white/60", "py-3", "px-6");
-    } else {
+    if (currentScroll < SHRINK_THRESHOLD) {
       mainNav?.classList.remove("bg-white/80", "py-2", "px-5");
       mainNav?.classList.add("bg-white/60", "py-3", "px-6");
+      logoPill?.classList.remove("bg-white/80");
+      logoPill?.classList.add("bg-white/60");
+    } else {
+      mainNav?.classList.add("bg-white/80", "py-2", "px-5");
+      mainNav?.classList.remove("bg-white/60", "py-3", "px-6");
+      logoPill?.classList.add("bg-white/80");
+      logoPill?.classList.remove("bg-white/60");
     }
-
     lastScroll = currentScroll;
-  });
+  }
+
+  let scrollTicking = false;
+  window.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        applyScroll();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 
   // ── Logo Download Popup ──────────────────
   const logoEl = document.getElementById('logo-main');

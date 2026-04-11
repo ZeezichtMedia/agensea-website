@@ -3,10 +3,7 @@ title: "SEO voor B&B Zeeland: Zo Word Je #1 in Google [2026]"
 description: "Wil je meer gasten voor je Bed & Breakfast in Zeeland? Ontdek hoe je met lokale SEO hoger scoort in Google dan Booking.com. Praktische tips voor 2026."
 excerpt: "Ben je eigenaar van een B&B in Zeeland? Stop met wachten op Booking.com. Met deze lokale SEO strategieën trek je meer gasten rechtstreeks naar je eigen website."
 pubDate: 2025-12-22
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Specialist in Online Marketing & SEO voor de recreatiesector in Zeeland."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/seo-bb-zeeland.png"
   alt: "Luxe B&B in de Zeeuwse duinen met laptop en koffie, symboliseert online groei"

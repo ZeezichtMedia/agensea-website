@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="ai-search-modal" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none hidden transition-all duration-500 overflow-hidden">
+<div id="ai-search-modal" role="dialog" aria-modal="true" aria-label="Agensea AI zoeken" aria-hidden="true" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none hidden transition-all duration-500 overflow-hidden">
   <!-- Backdrop -->
   <div class="absolute inset-0 bg-dark/40 backdrop-blur-xl" id="ai-modal-backdrop"></div>
   
@@ -38,8 +38,8 @@
       <div class="flex-1 flex flex-col bg-white">
         <!-- Close Button -->
         <div class="flex justify-end p-6">
-          <button id="close-ai-search" class="w-12 h-12 rounded-full bg-cream hover:bg-warm-grey flex items-center justify-center transition-all interactive">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button id="close-ai-search" type="button" aria-label="Sluit AI zoeken" class="w-12 h-12 rounded-full bg-cream hover:bg-warm-grey flex items-center justify-center transition-all interactive">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
@@ -89,8 +89,12 @@
 </div>
 
 <!-- Floating AI Button (Humanized) -->
-<button 
+<button
   id="ai-fab"
+  type="button"
+  aria-label="Open Agensea AI assistent"
+  aria-controls="ai-search-modal"
+  aria-expanded="false"
   class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[1900] h-14 bg-white/80 backdrop-blur-xl text-dark shadow-2xl flex items-center gap-0 px-1 pr-6 rounded-full hover:gap-3 transition-all duration-500 interactive pointer-events-auto group overflow-hidden border border-warm-grey"
   title="Hulp nodig?"
 >
@@ -130,6 +134,8 @@
 
   function openModal() {
     modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    aiFab?.setAttribute('aria-expanded', 'true');
     // Small delay so the transition can play after display changes
     requestAnimationFrame(() => {
       modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -142,12 +148,21 @@
 
   function closeModal() {
     modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.setAttribute('aria-hidden', 'true');
+    aiFab?.setAttribute('aria-expanded', 'false');
     modal.querySelector('.relative > div').classList.add('translate-y-20');
     document.body.style.overflow = '';
     if (window.lenis) window.lenis.start();
     // Wait for transition to finish, then hide completely
     setTimeout(() => modal.classList.add('hidden'), 500);
   }
+
+  // Sluit AI modal met Escape voor toetsenbordgebruikers.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
 
   function formatMessage(text) {
     // Markdown links [text](url) → clickable HTML

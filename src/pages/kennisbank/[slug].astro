@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import CTA from "../../components/CTA.astro";
 import AuthorBox from "../../components/blog/AuthorBox.astro";
+import { authorsById } from "../../data/authors";
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
@@ -22,11 +23,15 @@ interface Props {
 const { entry } = Astro.props as Props;
 const { Content, headings } = await render(entry);
 
+// Resolve author-ID naar volledig Author object via centrale data file.
+// Frontmatter bevat alleen `author: jorian` (id), niet een inline object.
+const author = entry.data.author ? authorsById[entry.data.author] : undefined;
+
 // Reading time
 const wordCount = entry.body ? entry.body.split(/\s+/).length : 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-// Schema.org BlogPosting JSON-LD
+// Schema.org BlogPosting JSON-LD — bevat author + image als beschikbaar.
 const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -42,14 +47,18 @@ const schema = {
         "@type": "Organization",
         name: "Agensea",
         url: "https://agensea.nl",
+        logo: {
+            "@type": "ImageObject",
+            url: "https://agensea.nl/brand/agensea-logo-512.png",
+        },
     },
-    ...(entry.data.author && {
+    ...(author && {
         author: {
             "@type": "Person",
-            name: entry.data.author.name,
-            ...(entry.data.author.bio && {
-                description: entry.data.author.bio,
-            }),
+            name: author.name,
+            description: author.bio,
+            image: `https://agensea.nl${author.avatar}`,
+            ...(author.linkedin && { sameAs: [author.linkedin] }),
         },
     }),
 };
@@ -83,7 +92,7 @@ const schema = {
         </div>
     </div>
 
-    <main class="min-h-screen pt-36 md:pt-44 pb-20">
+    <main id="main-content" class="min-h-screen pt-36 md:pt-44 pb-20">
         <!-- Hero Header -->
         <header class="max-w-4xl mx-auto px-6 mb-16 md:mb-24">
             <div class="mb-8">
@@ -200,12 +209,12 @@ const schema = {
 
                     <!-- Author Box (EEAT) -->
                     {
-                        entry.data.author && (
+                        author && (
                             <AuthorBox
-                                name={entry.data.author.name}
-                                bio={entry.data.author.bio}
-                                avatar={entry.data.author.avatar}
-                                credentials={entry.data.author.credentials}
+                                name={author.name}
+                                bio={author.bio}
+                                avatar={author.avatar}
+                                credentials={author.credentials}
                             />
                         )
                     }

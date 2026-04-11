@@ -3,10 +3,7 @@ title: "Marketing uitbesteden in Zeeland: Wanneer is het tijd om een bureau in t
 description: "Twijfel je tussen zelf doen of uitbesteden? Ontdek wanneer het slim is om je online marketing aan een Zeeuws bureau over te laten. Kosten, baten en signalen."
 excerpt: "Als ondernemer doe je het liefst alles zelf. Maar wanneer kost je eigen marketing meer tijd dan het oplevert? Ontdek de kantelpunten voor Zeeuwse bedrijven."
 pubDate: 2026-01-22
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Specialist in Online Marketing & SEO voor de recreatiesector in Zeeland."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/marketing-uitbesteden-zeeland.jpg"
   alt: "Ondernemer in Zeeland kijkt peinzend naar laptop, overweegt marketing uitbesteden"

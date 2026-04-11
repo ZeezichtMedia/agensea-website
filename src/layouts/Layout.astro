@@ -9,6 +9,8 @@ interface Props {
   seoTitle?: string;
   seoDescription?: string;
   ogImage?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
 }
 
 const {
@@ -17,10 +19,42 @@ const {
   seoTitle,
   seoDescription,
   ogImage,
+  ogType = "website",
+  noindex = false,
 } = Astro.props;
 
 const finalTitle = seoTitle || `${title} | Agensea`;
 const finalDescription = seoDescription || description;
+
+// Canonical URL — gebaseerd op de huidige request URL t.o.v. de site origin.
+// Voorkomt duplicate-content issues met query-strings en trailing slashes.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Default OG-image: gebruik het Agensea brand-logo zodat alle pagina's
+// een fallback share-preview hebben. Pages kunnen dit overrulen via prop.
+const finalOgImage = new URL(ogImage || "/brand/agensea-logo-512.png", Astro.site).toString();
+
+// Organization JSON-LD: alleen op de homepage (Astro.url.pathname === "/")
+// om duplicate structured data te voorkomen.
+const isHome = Astro.url.pathname === "/";
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Agensea",
+  url: "https://agensea.nl",
+  logo: "https://agensea.nl/brand/agensea-logo-512.png",
+  description,
+  sameAs: [
+    "https://www.linkedin.com/company/agensea",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+31-6-81383601",
+    contactType: "customer service",
+    areaServed: "NL",
+    availableLanguage: ["Dutch", "English"],
+  },
+};
 ---
 
 <!doctype html>
@@ -32,10 +66,28 @@ const finalDescription = seoDescription || description;
     <meta name="generator" content={Astro.generator} />
     <title>{finalTitle}</title>
     <meta name="description" content={finalDescription} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
     <meta property="og:title" content={finalTitle} />
     <meta property="og:description" content={finalDescription} />
-    <meta property="og:type" content="website" />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:image" content={finalOgImage} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Agensea" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={finalOgImage} />
+
+    {isHome && (
+      <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+    )}
+
     <slot name="head" />
 
     <!-- Preconnect to unpkg for Lenis -->
@@ -280,6 +332,12 @@ const finalDescription = seoDescription || description;
     <!-- Lenis smooth scroll -->
     <script is:inline src="https://unpkg.com/lenis@1/dist/lenis.min.js" defer></script>
     <script is:inline>
+      // Header-offset voor anchor-navigatie. 5px vanaf viewport-top —
+      // heading landt vrijwel tegen de bovenkant.
+      function getHeaderOffset() {
+        return 5;
+      }
+
       function initLenis() {
         var lenis = new Lenis();
         window.lenis = lenis;
@@ -288,6 +346,31 @@ const finalDescription = seoDescription || description;
           requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // Delegate click handler: vang interne anchor-links af en laat Lenis
+        // scrollen met een negatieve offset, zodat de sectiekop netjes onder
+        // de fixed header pill landt i.p.v. erachter te verdwijnen.
+        document.addEventListener('click', function (e) {
+          var anchor = e.target.closest && e.target.closest('a[href^="#"], a[href*="#"]');
+          if (!anchor) return;
+          var href = anchor.getAttribute('href');
+          if (!href || href === '#') return;
+
+          // Alleen same-page anchors afhandelen — externe pagina + hash laten we
+          // door de browser doen (die honoreert scroll-padding-top vanzelf).
+          var hashIndex = href.indexOf('#');
+          var path = href.slice(0, hashIndex);
+          if (path && path !== window.location.pathname) return;
+
+          var id = href.slice(hashIndex + 1);
+          var target = document.getElementById(id);
+          if (!target) return;
+
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -getHeaderOffset() });
+          // Update URL hash zonder browser-jump.
+          history.replaceState(null, '', '#' + id);
+        });
       }
       if (typeof Lenis !== 'undefined') {
         initLenis();

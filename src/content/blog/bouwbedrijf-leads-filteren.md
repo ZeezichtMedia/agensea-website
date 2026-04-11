@@ -3,10 +3,7 @@ title: "Stop met offertes schrijven voor niets: Laat je website het zware werk d
 description: "Ben jij meer tijd kwijt aan offertes voor 'koopjesjagers' dan aan bouwen? Ontdek hoe slimme websoftware jouw leads filtert en alleen droomprojecten overlaat."
 excerpt: "Elke aannemer kent het: uren rekenen, en dan horen 'we vonden het toch te duur'. Frustrerend. Leer hoe je website de nee-zeggers filtert voordat ze bellen."
 pubDate: 2026-02-04
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Helpt bouwbedrijven en MKB in Zeeland groeien met slimme websites en software."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/bouwbedrijf-leads-filteren.jpg"
   alt: "Close-up van een tablet op een bouwplaats met een digitale bouwtekening en statistieken"

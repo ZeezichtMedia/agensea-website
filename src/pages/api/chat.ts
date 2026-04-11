@@ -13,15 +13,23 @@ function loadKnowledgeBase(): string {
   const sections: string[] = [];
 
   function readDir(dir: string) {
-    if (!fs.existsSync(dir)) return;
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        readDir(fullPath);
-      } else if (entry.name.endsWith('.md')) {
-        sections.push(fs.readFileSync(fullPath, 'utf-8'));
+    try {
+      if (!fs.existsSync(dir)) return;
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          readDir(fullPath);
+        } else if (entry.name.endsWith('.md')) {
+          try {
+            sections.push(fs.readFileSync(fullPath, 'utf-8'));
+          } catch (e) {
+            console.warn('Kon knowledge file niet lezen:', fullPath, e);
+          }
+        }
       }
+    } catch (e) {
+      console.warn('Kon knowledge dir niet lezen:', dir, e);
     }
   }
 
@@ -29,8 +37,12 @@ function loadKnowledgeBase(): string {
   return sections.join('\n\n---\n\n');
 }
 
-// Laad kennisbank eenmalig bij server start
+// Laad kennisbank eenmalig bij server start. Bij een lege/missende folder
+// blijft de bot werken — alleen dan zonder bedrijfsspecifieke context.
 const knowledgeBase = loadKnowledgeBase();
+if (!knowledgeBase) {
+  console.warn('[chat.ts] Kennisbank is leeg — AI antwoorden zullen generiek zijn.');
+}
 
 const SYSTEM_PROMPT = `Je bent "Agensea AI", de vriendelijke en zakelijke AI-assistent van Agensea.
 
@@ -64,11 +76,68 @@ Hieronder staat alle informatie over Agensea. Baseer je antwoorden uitsluitend o
 
 ${knowledgeBase}`;
 
-export const POST: APIRoute = async ({ request }) => {
+// ── Rate limiting ────────────────────────────
+// In-memory bucket per IP. Reset bij cold start; goed genoeg om casual abuse
+// af te slaan. Voor harde garanties: Vercel KV/Upstash.
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 10; // 10 berichten per minuut per IP
+const chatBuckets = new Map<string, { count: number; reset: number }>();
+
+function checkChatRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const bucket = chatBuckets.get(ip);
+  if (!bucket || bucket.reset < now) {
+    chatBuckets.set(ip, { count: 1, reset: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (bucket.count >= RATE_LIMIT_MAX) return false;
+  bucket.count++;
+  return true;
+}
+
+// Maximale lengte van één bericht en het maximaal aantal history items dat we
+// doorsturen. Voorkomt context-window abuse en hoge token-kosten.
+const MAX_MESSAGE_CHARS = 1500;
+const MAX_HISTORY_ITEMS = 20;
+
+function sanitizeHistory(input: unknown): Array<{ role: 'user' | 'assistant'; content: string }> {
+  if (!Array.isArray(input)) return [];
+  const out: Array<{ role: 'user' | 'assistant'; content: string }> = [];
+  for (const item of input.slice(-MAX_HISTORY_ITEMS)) {
+    if (!item || typeof item !== 'object') continue;
+    const role = (item as any).role;
+    const content = (item as any).content;
+    // Whitelist: alleen 'user' en 'assistant' — geen 'system' (prompt injection guard).
+    if (role !== 'user' && role !== 'assistant') continue;
+    if (typeof content !== 'string') continue;
+    const trimmed = content.slice(0, MAX_MESSAGE_CHARS);
+    if (!trimmed) continue;
+    out.push({ role, content: trimmed });
+  }
+  return out;
+}
+
+export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
-    const data = await request.json();
-    const userMessage = data.message;
-    const history = data.history || [];
+    const ip = clientAddress || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!checkChatRateLimit(ip)) {
+      return new Response(
+        JSON.stringify({ error: 'Te veel vragen achter elkaar. Wacht even en probeer het opnieuw.' }),
+        { status: 429, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const data = await request.json().catch(() => null);
+    if (!data || typeof data !== 'object') {
+      return new Response(JSON.stringify({ error: 'Ongeldige aanvraag.' }), { status: 400 });
+    }
+
+    const rawMessage = (data as any).message;
+    if (typeof rawMessage !== 'string' || !rawMessage.trim()) {
+      return new Response(JSON.stringify({ error: 'Bericht ontbreekt.' }), { status: 400 });
+    }
+    const userMessage = rawMessage.trim().slice(0, MAX_MESSAGE_CHARS);
+    const history = sanitizeHistory((data as any).history);
 
     const apiKey = import.meta.env.GROQ_API_KEY;
 
@@ -76,13 +145,12 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: "Configuratie fout: API Key ontbreekt." }), { status: 500 });
     }
 
-    // Format conversation history voor Groq (OpenAI-compatible)
+    // Format conversation history voor Groq (OpenAI-compatible). De system
+    // prompt wordt hier toegevoegd — sanitizeHistory garandeert dat de client
+    // geen extra system-rol kan smokkelen.
     const messages = [
       { role: 'system', content: SYSTEM_PROMPT },
-      ...history.map((msg: any) => ({
-        role: msg.role,
-        content: msg.content
-      })),
+      ...history,
       { role: 'user', content: userMessage }
     ];
 

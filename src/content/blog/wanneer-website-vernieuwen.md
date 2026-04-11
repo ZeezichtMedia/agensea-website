@@ -3,10 +3,7 @@ title: "Tijd voor een nieuwe website? 5 signalen dat je bestaande website vernie
 description: "Twijfel je tussen je bestaande website vernieuwen of een compleet nieuwe website laten bouwen? Ontdek de 5 signalen dat oplappen geen zin meer heeft."
 excerpt: "Is jouw website nog klaar voor 2026? Lees waarom 'een beetje aanpassen' vaak duurder is dan nieuwbouw en hoe je kiest voor online groei."
 pubDate: 2026-01-26
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in high-performance websites en lokale SEO."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/wanneer-website-vernieuwen.webp"
   alt: "Oude versus nieuwe website vergelijking op een modern scherm"

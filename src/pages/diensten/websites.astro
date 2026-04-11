@@ -11,7 +11,7 @@ import CTA from '../../components/CTA.astro';
   <Navbar />
   <CasePopup />
   
-  <main class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
     <!-- Background Decor -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
@@ -794,21 +794,20 @@ import CTA from '../../components/CTA.astro';
     }, 3500);
 
     try {
-      const key = import.meta.env.PUBLIC_PAGESPEED_KEY;
-      const api = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance&category=seo&category=accessibility&category=best-practices&key=${key}`;
-      const res = await fetch(api);
-      if (!res.ok) {
-        const body = await res.text();
-        console.error('PageSpeed API status:', res.status, body);
-        throw new Error(`API fout (${res.status})`);
-      }
+      const res = await fetch('/api/pagespeed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || `API fout (${res.status})`);
+      }
 
-      const cats = data.lighthouseResult?.categories;
-      const perf = Math.round((cats?.performance?.score ?? 0) * 100);
-      const seo  = Math.round((cats?.seo?.score ?? 0) * 100);
-      const acc  = Math.round((cats?.accessibility?.score ?? 0) * 100);
-      const bp   = Math.round((cats?.['best-practices']?.score ?? 0) * 100);
+      const perf = data.scores.performance;
+      const seo  = data.scores.seo;
+      const acc  = data.scores.accessibility;
+      const bp   = data.scores.bestPractices;
       const avg  = Math.round((perf + seo + acc + bp) / 4);
 
       clearInterval(stepInterval);
@@ -871,10 +870,11 @@ import CTA from '../../components/CTA.astro';
         'server-response-time': 'Je server doet er te lang over om te reageren. Dat is vaak op te lossen met betere hosting.',
       };
 
-      const audits = data.lighthouseResult?.audits || {};
+      const failedAudits: Array<{ id: string; score: number }> = data.failedAudits || [];
+      const failedById = new Map(failedAudits.map(a => [a.id, a]));
       const failedIssues: string[] = [];
       for (const [key, desc] of Object.entries(auditMap)) {
-        const audit = audits[key];
+        const audit = failedById.get(key);
         if (audit && typeof audit.score === 'number' && audit.score < 0.5 && failedIssues.length < 4) {
           failedIssues.push(desc);
         }

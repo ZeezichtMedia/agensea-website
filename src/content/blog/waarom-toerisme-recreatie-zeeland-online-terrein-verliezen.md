@@ -3,10 +3,7 @@ title: "Waarom Toerisme- en Recreatiebedrijven in Zeeland Online Terrein Verliez
 description: "Ontdek waarom veel toerismebedrijven in Zeeland hun online zichtbaarheid verliezen en wat een goede website toerisme Zeeland kan doen voor meer directe boekingen."
 excerpt: "Zeeuwse toerismebedrijven verliezen gasten al voor ze geboekt hebben. Lees hoe een snelle website en directe boekingen je concurrentiepositie versterken."
 pubDate: 2026-03-13
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in website toerisme Zeeland, techniek en conversie-optimalisatie."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/waarom-toerisme-zeeland-online-terrein-verliezen.png"
   alt: "Drone view van strand en kust in Zeeland met een website toerisme Zeeland focus"

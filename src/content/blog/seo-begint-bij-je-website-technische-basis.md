@@ -3,10 +3,7 @@ title: "SEO begint bij je website: Waarom technische basis alles bepaalt"
 description: "Google rankt geen pagina's, maar ervaringen. Ontdek waarom een snelle, technisch sterke website de basis is voor SEO-succes en hoe Core Web Vitals hierbij meespelen."
 excerpt: "Zonder goede technische basis heeft de beste content moeite om te ranken. Ontdek waarom technische SEO cruciaal is."
 pubDate: 2026-03-11
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Stopt met 'pleisters plakken' op trage websites en bouwt snelle, SEO-first online ervaringen."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/seo-technische-basis.png"
   alt: "Rustige illustratie van een laptop waarop een website analyse en SEO score van 100 wordt weergegeven"

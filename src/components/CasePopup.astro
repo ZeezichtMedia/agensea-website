@@ -1,29 +1,35 @@
 ---
 ---
 
-<div 
-  id="case-modal" 
+<div
+  id="case-modal"
   class="fixed inset-0 z-[1000] flex items-center justify-center p-6 md:p-12 opacity-0 pointer-events-none transition-all duration-500 overscroll-none"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="case-title"
+  aria-hidden="true"
 >
   <!-- Backdrop -->
-  <div class="absolute inset-0 bg-dark/20 backdrop-blur-md" id="case-modal-close"></div>
-  
+  <div class="absolute inset-0 bg-dark/20 backdrop-blur-md" id="case-modal-close" aria-hidden="true"></div>
+
   <!-- Modal Container -->
   <div class="relative bg-white rounded-3xl w-full max-w-5xl max-h-[85vh] shadow-2xl translate-y-8 transition-all duration-500 flex flex-col md:flex-row overflow-hidden">
 
     <!-- Left: Image/Visual -->
     <div class="w-full md:w-1/2 h-48 sm:h-64 md:h-auto bg-warm-grey relative overflow-hidden shrink-0">
       <img id="case-image" src="" alt="" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent md:bg-gradient-to-r"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent md:bg-gradient-to-r" aria-hidden="true"></div>
     </div>
 
     <!-- Right: Content -->
     <div id="case-content-scroll" class="w-full md:w-1/2 p-6 md:p-12 relative overflow-y-auto overscroll-contain" style="-webkit-overflow-scrolling: touch; touch-action: pan-y;">
-      <button 
+      <button
         id="case-modal-close-btn"
+        type="button"
+        aria-label="Sluit case"
         class="absolute top-6 right-6 w-10 h-10 rounded-full bg-cream hover:bg-warm-grey flex items-center justify-center transition-colors interactive"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
       </button>
@@ -53,266 +59,90 @@
 </div>
 
 <script>
-  const cases = {
-    arieke: {
-      category: "LinkedIn Campagne",
-      title: "Arieke van Liere",
-      description: `
-        <div class="p-4 rounded-xl border bg-warm-grey/30 border-warm-grey/50 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-text-secondary italic">"ZeeZicht heeft voor mij een LinkedIn-campagne ingericht die boven verwachting goed heeft gepresteerd. Ze dachten proactief mee en kwamen zelf met het slimme voorstel om de campagne via mijn persoonlijke account te laten lopen – een aanpak die duidelijk zijn vruchten heeft afgeworpen. De campagne leverde niet alleen veel nieuwe leads op, maar ook concrete boekingen voor mijn bedrijf. Wat ZeeZicht voor mij onderscheidt, is hun flexibiliteit, ervaring en kennis van de nieuwste mogelijkheden. Daarnaast is het gewoon heel prettig samenwerken. Ik kan ZeeZicht dan ook van harte aanbevelen."</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Arieke van Liere</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Arieke wilde haar nieuwe showreel krachtig onder de aandacht brengen bij een specifieke, zakelijke doelgroep via LinkedIn, met als hoofddoel het genereren van maximale engagement en concrete aanvragen voor haar rol als dagvoorzitter.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We ontwikkelden een gerichte, data-gedreven LinkedIn-strategie. Van het scherpstellen van de doelgroep tot de daadwerkelijke uitrol, planning en optimalisatie van de campagne we begeleidden het volledige traject van A tot Z.</p>
-      `,
-      image: "/portfolio/arieke-van-liere.png",
-    },
-    adrz: {
-      category: "Imago Campagne",
-      title: "Adrz",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Agensea heeft onze campagne digitaal precies bij de juiste doelgroep weten te brengen. Prettige samenwerking, snelle schakels en duidelijke rapportages.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Adrz</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Adrz had sterke nieuwe imagocontent gecreëerd en zocht een strategische partner om deze visuele verhalen lokaal (binnen heel Zeeland) zo krachtig en efficiënt mogelijk digitaal te verspreiden.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">De imagocampagne is volledig door Adrz zelf opgezet, inclusief de creatieve uitwerking en de inzet op fysieke kanalen zoals billboards en bioscoop. Wij verzorgden de digitale verspreiding via gerichte Meta-advertenties (Facebook/Instagram) en YouTube (Google Ads), zodat de campagne precies de juiste Zeeuwen bereikte.</p>
-      `,
-      image: "/portfolio/adrz.png",
-    },
-    kaap: {
-      category: "Marketing",
-      title: "Innovatiepunt KAAP",
-      description: `
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Innovatiepunt KAAP bevond zich in een 'early stage' en had als primaire behoefte om krachtige naamsbekendheid op te bouwen. Het doel was om de juiste regionale ondernemers en doelgroepen bekend te maken met het merk, ze naar de website te leiden en ze een tastbaar beeld te geven van wat er binnen KAAP eigenlijk allemaal gebeurt en mogelijk is.</p>
-        
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We hebben een strategische awareness- en considerationcampagne ontwikkeld en uitgerold via Meta en LinkedIn. Door doelbewuste targeting en inspirerende, authentieke content hebben we het abstracte begrip 'innovatie' tastbaar en aantrekkelijk gemaakt voor de Zeeuwse ondernemer.</p>
-        
-        <h4 class="font-bold text-dark mb-6">Resultaat</h4>
-        <p class="mb-6">Een sterke lancering van het merk KAAP. Meer ondernemers in de regio weten inmiddels beter de weg te vinden naar het innovatiepunt en zien sneller de potentie van het netwerk.</p>
-      `,
-      image: "/portfolio/innovatiepunt-kaap.png",
-    },
-    rd: {
-      category: "Website",
-      title: "Bouwgroep R&D",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Ik ben heel erg blij met het eindresultaat. Het hele traject verliep soepel en professioneel, van het eerste gesprek tot de oplevering. De website sluit nu perfect aan bij wie we zijn als bedrijf.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Mischa, Bouwgroep R&D</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">De toenmalige website van Bouwgroep R&D sloot qua uitstraling niet meer aan bij hun professionaliteit en actuele aanbod. Ze zochten een online visueel visitekaartje dat makkelijk navigeert en commercieel klopt.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We ontwierpen en bouwden een compleet nieuwe, strategisch doordachte website. De nadruk lag op logische UX (User Experience) en een fris, modern design dat hun unieke kwaliteiten direct vertaalt naar de bezoeker.</p>
-      `,
-      image: "/portfolio/bouwgroep-rd.png",
-    },
-    boogaard: {
-      category: "Website",
-      title: "Minicamping Boogaard",
-      link: "https://www.minicamping-boogaard.nl/nl",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">De drone beelden maken echt het verschil. Gasten zien meteen wat voor prachtige plek we hebben. En we worden nu veel beter gevonden in Google!</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Minicamping Boogaard</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Minicamping Boogaard had een verouderde website en was voor boekingen grotendeels afhankelijk van externe platforms. Dit betekende hoge commissies en weinig controle. Ze wilden onafhankelijkheid, meer directe inkomsten en een uitstraling die de prachtige locatie weerspiegelt.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">Door strategische inzet van dronebeelden en een conversiegerichte, sfeervolle website lieten we de camping echt spreken. Het nieuwe platform geeft gasten direct het vakantiegevoel en maakt soepel online boeken zonder tussenkomst van dure bemiddelaars mogelijk.</p>
-      `,
-      image: "/portfolio/minicamping-boogaard.webp",
-    },
-    assieraden: {
-      category: "Website",
-      title: "Assieraden Specialist",
-      link: "https://www.assieradenspecialist.nl/",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Onze klanten waarderen de rustige uitstraling en het gemak waarmee ze een persoonlijk sieraad kunnen samenstellen. De site straalt precies uit wat we willen: zorg en kwaliteit.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Assieraden Specialist</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Het ontwerpen en ontwikkelen van een platform voor een zeer emotioneel product waarbij vertrouwen, ingetogenheid, respect en personalisatie centraal staan in de online klantervaring.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We kozen bewust voor een 'soft commerce' benadering: verfijnde begeleiding en puur advies, zonder harde sales-triggers. Dit vertaalde zich in een strak, rustgevend design dat tegelijkertijd e-commerce functioneel is.</p>
-      `,
-      image: "/portfolio/assieraden-specialist.webp",
-    },
-    bb: {
-      category: "Website",
-      title: "B&B Voorste Eng",
-      link: "https://www.boerderijvoorste-eng.nl/nl",
-      description: `
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">B&B Voorste Eng was voor hun reserveringen volledig afhankelijk van dure, externe boekingsplatforms en miste nog de regie en uitstraling van een volwaardige eigen website.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We hebben de fundamenten gelegd voor hun online eigenwaarde: een heldere en sfeervolle maatwerk website. Hierdoor verlaagden we direct de drempel voor potentiële gasten om informatie te vinden en zonder tussenpartij actie te ondernemen.</p>
-      `,
-      image: "/portfolio/bb-voorste-eng.png",
-    },
-    contentportal: {
-      category: "Software op maat",
-      title: "Content Portal",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Eindelijk geen losse mailtjes en appjes meer over content. Alles staat op één plek, het scheelt ons echt uren per week.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Content Portal gebruiker</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Organisaties die op meerdere kanalen communiceren (social media, website, nieuwsberichten) lopen vast op losse mailtjes, appjes en vergeten verzoeken. Er was behoefte aan één centrale plek waar teamleden snel en zonder drempels content kunnen aanleveren.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We hebben een complete SaaS-applicatie gebouwd waarmee teams in drie klikken content kunnen indienen voor social media, nieuwsartikelen of websitewijzigingen. Inclusief spraak-naar-tekst, bestanduploads, een overzichtelijk dashboard en volledige branding-aanpassing per organisatie.</p>
-      `,
-      image: "/portfolio/content-portal.png",
-    },
-    offertegenerator: {
-      category: "Software op maat",
-      title: "Offerte Generator",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Wat voorheen een uur kostte, doen we nu in vijf minuten. De offertes zien er professioneler uit dan ooit en we maken geen fouten meer met prijzen.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Offerte Generator gebruiker</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Het handmatig opstellen van offertes kost veel tijd, is foutgevoelig en levert vaak inconsistente documenten op. Medewerkers kopieerden oude offertes en pasten ze aan, met het risico op verkeerde prijzen of verouderde voorwaarden.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We bouwden een stapsgewijze offerte-tool waarmee medewerkers in een paar klikken een professionele offerte samenstellen. Klantgegevens, diensten en voorwaarden worden automatisch ingeladen. Het resultaat is een op maat gemaakte PDF die direct verstuurd kan worden.</p>
-      `,
-      image: "/portfolio/offerte-generator.png",
-    },
-    aikennisbank: {
-      category: "Software op maat",
-      title: "AI Kennisbank",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Onze medewerkers vinden nu in seconden antwoord op vragen waar ze voorheen tien minuten naar moesten zoeken in mappen en documenten.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">AI Kennisbank gebruiker</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Bedrijfskennis zit vaak verspreid over documenten, handleidingen en de hoofden van medewerkers. Nieuwe collega's moeten eindeloos zoeken en vragen stellen. Bestaande medewerkers worden steeds onderbroken met dezelfde vragen.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We ontwikkelden een AI-chatbot die getraind is op alle interne documenten, handleidingen en procedures van de organisatie. Medewerkers stellen gewoon een vraag in normaal Nederlands en krijgen direct het juiste antwoord, inclusief een verwijzing naar het brondocument.</p>
-      `,
-      image: "/portfolio/ai-kennisbank.png",
-    },
-    dashboardtool: {
-      category: "Software op maat",
-      title: "Dashboard & Rapportage",
-      description: `
-        <div class="p-4 rounded-xl border bg-indigo/5 border-indigo/10 mb-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-4 h-4 mt-0.5 shrink-0 text-indigo/40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-            <div>
-              <p class="text-sm leading-relaxed text-dark">Eindelijk alle cijfers op één plek. We hoeven niet meer drie verschillende tools te openen om te weten hoe we ervoor staan.</p>
-              <span class="block mt-2 text-[10px] font-bold uppercase tracking-widest text-text-secondary/60">Dashboard gebruiker</span>
-            </div>
-          </div>
-        </div>
-
-        <h4 class="font-bold text-dark mb-2">Vraagstuk</h4>
-        <p class="mb-6">Bedrijfsdata zit verspreid over verschillende tools: Google Analytics, het CRM, de boekhouding en spreadsheets. Om een compleet beeld te krijgen moet je meerdere systemen openen en zelf de cijfers combineren.</p>
-
-        <h4 class="font-bold text-dark mb-2">Wat Agensea heeft gedaan</h4>
-        <p class="mb-6">We bouwden een centraal dashboard dat automatisch data ophaalt uit alle relevante bronnen. Omzet, leads, websiteverkeer en conversies staan overzichtelijk bij elkaar. Met realtime updates en een activiteitenfeed mis je nooit meer een belangrijk moment.</p>
-      `,
-      image: "/portfolio/dashboard-tool.png",
-    }
-  };
+  // Lenis types staan globaal in src/env.d.ts
+  // Cases data komt uit één centrale bron — gedeeld met Cases.astro.
+  import { casesById } from "../data/cases";
 
   const modal = document.getElementById('case-modal');
   const closeTriggers = [
     document.getElementById('case-modal-close'),
     document.getElementById('case-modal-close-btn')
   ];
+  const closeBtn = document.getElementById('case-modal-close-btn') as HTMLButtonElement | null;
 
-  function openCase(id) {
-    const caseData = cases[id];
-    if (!caseData) return;
+  // Onthoud welk element focus had vóór de modal opende, zodat we 'm
+  // kunnen herstellen bij sluiten — vereiste voor WCAG focus management.
+  let lastFocusedEl: HTMLElement | null = null;
 
-    // Update content
-    document.getElementById('case-title').textContent = caseData.title;
-    document.getElementById('case-category').textContent = caseData.category;
-    document.getElementById('case-description').innerHTML = caseData.description;
-    document.getElementById('case-image').src = caseData.image;
+  // Focus-trap: vang Tab in en houd focus binnen de modal.
+  function getFocusable(container: HTMLElement): HTMLElement[] {
+    return Array.from(
+      container.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute('aria-hidden') && el.offsetParent !== null);
+  }
+
+  function trapFocus(e: KeyboardEvent) {
+    if (!modal || e.key !== 'Tab') return;
+    const focusables = getFocusable(modal);
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+    if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      closeCase();
+    } else if (e.key === 'Tab') {
+      trapFocus(e);
+    }
+  }
+
+  function openCase(id: string) {
+    const caseData = casesById[id];
+    if (!caseData || !modal) return;
+
+    lastFocusedEl = document.activeElement as HTMLElement | null;
+
+    const titleEl = document.getElementById('case-title');
+    const catEl = document.getElementById('case-category');
+    const descEl = document.getElementById('case-description');
+    const imgEl = document.getElementById('case-image') as HTMLImageElement | null;
+
+    if (titleEl) titleEl.textContent = caseData.title;
+    if (catEl) catEl.textContent = caseData.tag;
+    // description bevat trusted, ontwikkelaar-geschreven HTML — geen user input.
+    if (descEl) descEl.innerHTML = caseData.description;
+    if (imgEl) {
+      imgEl.src = caseData.image;
+      // Vul alt dynamisch met tag + titel zodat screen readers context krijgen.
+      imgEl.alt = caseData.imageAlt || `${caseData.tag} — ${caseData.title}`;
+    }
 
     // Handle optional external link
     const linkContainer = document.getElementById('case-link-container');
     const linkBtn = document.getElementById('case-link');
     if (caseData.link) {
-      linkContainer.classList.remove('hidden');
-      linkBtn.setAttribute('href', caseData.link);
+      linkContainer?.classList.remove('hidden');
+      linkBtn?.setAttribute('href', caseData.link);
     } else {
-      linkContainer.classList.add('hidden');
+      linkContainer?.classList.add('hidden');
     }
 
     // Show modal
     modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.querySelector('.relative').classList.remove('translate-y-8');
+    modal.setAttribute('aria-hidden', 'false');
+    const inner = modal.querySelector('.relative');
+    inner?.classList.remove('translate-y-8');
     // Destroy Lenis completely so it doesn't intercept scroll events
     if (window.lenis) {
       window.lenis.destroy();
@@ -338,12 +168,19 @@
         }
       });
     }
+
+    // Focus-trap activeren en initiale focus naar close-knop verplaatsen.
+    document.addEventListener('keydown', onKeyDown);
+    requestAnimationFrame(() => closeBtn?.focus());
   }
 
   function closeCase() {
+    if (!modal) return;
     modal.classList.add('opacity-0', 'pointer-events-none');
-    modal.querySelector('.relative').classList.add('translate-y-8');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.querySelector('.relative')?.classList.add('translate-y-8');
     document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', onKeyDown);
     // Recreate Lenis
     if (typeof Lenis !== 'undefined' && !window.lenis) {
       const l = new Lenis();
@@ -351,9 +188,15 @@
       function raf(time: number) { l.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
     }
+    // Restore focus naar het element dat de modal opende.
+    lastFocusedEl?.focus();
+    lastFocusedEl = null;
   }
 
   // Event Listeners
-  window.addEventListener('open-case', (e: any) => openCase(e.detail.id));
+  window.addEventListener('open-case', (e: Event) => {
+    const id = (e as CustomEvent<{ id: string }>).detail?.id;
+    if (id) openCase(id);
+  });
   closeTriggers.forEach(t => t?.addEventListener('click', closeCase));
 </script>

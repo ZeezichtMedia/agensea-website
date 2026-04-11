@@ -3,10 +3,7 @@ title: "Wat kost een website laten maken in Zeeland? (Tarieven 2025)"
 description: "Transparant overzicht van webdesign kosten in Zeeland. Van budget websites tot maatwerk en het unieke 'Website Huren' model van Agensea."
 excerpt: "Wat kost een professionele website eigenlijk? Wij geven openheid van zaken over tarieven, uurtarieven en de keuze tussen kopen of huren."
 pubDate: 2025-12-16
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in winstgevende websites."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/website-kosten-zeeland.png"
   alt: "Laptop en rekenmachine op een bureau, visualiserend wat een website kost"

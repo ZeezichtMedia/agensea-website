@@ -4,10 +4,7 @@ description: "Betaal je 15-20% commissie aan Booking.com? Ontdek hoe een eigen w
 excerpt: "Stop met 15-20% commissie betalen! Ontdek hoe B&B's en campings met een eigen website duizenden euro's besparen."
 pubDate: 2025-9-01
 updatedDate: 2025-9-15
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. 5+ jaar ervaring in website ontwikkeling voor toeristische sector. Specialist in commissievrije boekingssystemen voor accommodaties."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
   alt: "Modern kantoor met laptop - Booking.com alternatief"

@@ -1,99 +1,14 @@
 ---
+import { cases, caseCategories } from "../data/cases";
+
 interface Props {
   categoryFilter?: string;
 }
 
 const { categoryFilter } = Astro.props;
 
-const cases = [
-  {
-    id: "arieke",
-    title: "Arieke van Liere",
-    tag: "LinkedIn Campagne",
-    category: "marketing",
-    image: "/portfolio/arieke-van-liere.png",
-  },
-  {
-    id: "adrz",
-    title: "Adrz",
-    tag: "Imago Campagne",
-    category: "marketing",
-    image: "/portfolio/adrz.png",
-  },
-  {
-    id: "kaap",
-    title: "Innovatiepunt KAAP",
-    tag: "Awareness Campagne",
-    category: "marketing",
-    image: "/portfolio/innovatiepunt-kaap.png",
-  },
-  {
-    id: "rd",
-    title: "Bouwgroep R&D",
-    tag: "Website",
-    category: "website",
-    image: "/portfolio/bouwgroep-rd.png",
-  },
-  {
-    id: "boogaard",
-    title: "Minicamping Boogaard",
-    tag: "Website",
-    category: "website",
-    image: "/portfolio/minicamping-boogaard.webp",
-  },
-  {
-    id: "assieraden",
-    title: "Assieraden Specialist",
-    tag: "Website",
-    category: "website",
-    image: "/portfolio/assieraden-specialist.webp",
-  },
-  {
-    id: "bb",
-    title: "B&B Voorste Eng",
-    tag: "Website",
-    category: "website",
-    image: "/portfolio/bb-voorste-eng.png",
-  },
-  {
-    id: "contentportal",
-    title: "Content Portal",
-    tag: "Software op maat",
-    category: "software",
-    image: "/portfolio/content-portal.png",
-  },
-  {
-    id: "offertegenerator",
-    title: "Offerte Generator",
-    tag: "Software op maat",
-    category: "software",
-    image: "/portfolio/offerte-generator.png",
-  },
-  {
-    id: "aikennisbank",
-    title: "AI Kennisbank",
-    tag: "Software op maat",
-    category: "software",
-    image: "/portfolio/ai-kennisbank.png",
-  },
-  {
-    id: "dashboardtool",
-    title: "Dashboard & Rapportage",
-    tag: "Software op maat",
-    category: "software",
-    image: "/portfolio/dashboard-tool.png",
-  },
-];
-
-const categories = [
-  { id: 'all', label: 'Alles' },
-  { id: 'website', label: 'Websites' },
-  { id: 'marketing', label: 'Marketing' },
-  { id: 'software', label: 'Software' },
-];
-
-const displayCases = categoryFilter 
-  ? cases.filter(c => c.category === categoryFilter)
+const displayCases = categoryFilter
+  ? cases.filter((c) => c.category === categoryFilter)
   : cases;
 ---
 
@@ -114,7 +29,7 @@ const displayCases = categoryFilter
       <!-- Filters (Only show if no strict categoryFilter is applied) -->
       {!categoryFilter && (
         <div class="flex flex-wrap gap-2 md:gap-4 p-1 bg-dark-lighter/30 rounded-full border border-white/5 w-fit">
-          {categories.map((cat) => (
+          {caseCategories.map((cat) => (
             <button
               class={`filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 interactive ${cat.id === 'all' ? 'active bg-white text-dark shadow-lg' : 'text-text-secondary hover:bg-white hover:text-dark'}`}
               data-filter={cat.id}
@@ -138,12 +53,11 @@ const displayCases = categoryFilter
       <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
     <div id="cases-grid" class="flex gap-6 md:gap-8 px-6 lg:px-10 overflow-x-auto pb-8 scrollbar-hide scroll-smooth select-none">
-      {displayCases.map((item, i) => (
-        <div 
-          class="reveal case-card group block w-[280px] md:w-[380px] shrink-0 interactive" 
+      {displayCases.map((item) => (
+        <div
+          class="case-card group block w-[280px] md:w-[380px] shrink-0 interactive"
           data-category={item.category}
           data-id={item.id}
-          style={`animation-delay: ${i * 0.1}s;`}
         >
           <!-- Image Card -->
           <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-dark cursor-pointer case-trigger">
@@ -188,20 +102,13 @@ const displayCases = categoryFilter
   }
 
   .case-card {
-    transition: opacity 0.4s ease, transform 0.4s ease;
     max-width: 380px;
   }
 
+  /* Verborgen tijdens filter — display:none zodat de overige cards
+     soepel kunnen herorganiseren via de View Transitions API. */
   .case-card.filtered-out {
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+    display: none;
   }
 
   @media (max-width: 767px) {
@@ -210,42 +117,237 @@ const displayCases = categoryFilter
     }
   }
 
-  .case-detail {
-    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-  }
-
-  .case-card.expanded .expand-icon {
-    transform: rotate(180deg);
+  /* ── Filter animations ─────────────────────────────────
+     Cards worden volledig via Web Animations API gestuurd in JS.
+     CSS doet alleen het ruwe verbergen + GPU layer hint. Geen CSS
+     transitions die met de WAAPI-animaties kunnen vechten. */
+  .case-card {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 </style>
 
 <script>
-  // Filter logic
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const caseCards = document.querySelectorAll('.case-card');
+  // ── Enterprise-grade filter logic ───────────────────────────────────
+  // Web Animations API met cancellation. Elke filter-klik is direct
+  // responsive: lopende animaties worden gecancelled (na commitStyles
+  // zodat de huidige visuele frame behouden blijft) en de nieuwe animatie
+  // start vanaf die frame. Geen lock, geen wachtrij, geen flicker.
+  //
+  // Architectuur:
+  //   1. Cancel + cleanup alle in-flight animaties (incl. cards die nog
+  //      in een leaving-fixed positie hangen)
+  //   2. Capture FIRST rectangles van cards die zichtbaar blijven of nieuw
+  //      zichtbaar worden
+  //   3. Pin leaving cards op position:fixed bij hun huidige rect zodat ze
+  //      niet meer in de layout-flow zitten
+  //   4. Update DOM (entering cards: filtered-out class weg)
+  //   5. Capture LAST rectangles
+  //   6. Run drie animatie-types parallel:
+  //        - LEAVING: fade + scale + slide (op fixed-positioned card)
+  //        - MOVING:  FLIP transform van first→last
+  //        - ENTERING: slide-up + fade van eerste frame
+  //
+  // NB: gebruik `as` casts ipv generic-syntax op querySelectorAll — Astro's
+  // parser verwart de hoekige haken met HTML tags en breekt het script.
+  const filterBtns = Array.from(document.querySelectorAll('.filter-btn')) as HTMLButtonElement[];
+  const caseCards = Array.from(document.querySelectorAll('.case-card')) as HTMLElement[];
   const grid = document.getElementById('cases-grid');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+  // Per-card lopende animatie. WeakMap zodat cards GC'd kunnen worden.
+  const cardAnims = new WeakMap<HTMLElement, Animation>();
 
-      filterBtns.forEach(b => {
-        b.classList.remove('active', 'bg-white', 'text-dark', 'shadow-lg');
-        b.classList.add('text-text-secondary');
-      });
-      btn.classList.add('active', 'bg-white', 'text-dark', 'shadow-lg');
-      btn.classList.remove('text-text-secondary');
+  // Easing matched aan rest van de site
+  const EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  const EASING_OUT = 'cubic-bezier(0.4, 0, 1, 1)';
 
-      caseCards.forEach((card: any) => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.classList.remove('filtered-out');
-        } else {
-          card.classList.add('filtered-out');
-        }
+  function clearLeavingStyles(card: HTMLElement) {
+    card.style.position = '';
+    card.style.left = '';
+    card.style.top = '';
+    card.style.width = '';
+    card.style.height = '';
+    card.style.margin = '';
+    card.style.zIndex = '';
+    card.style.pointerEvents = '';
+    delete card.dataset.leaving;
+  }
+
+  function applyFilter(filter: string, activeBtn: HTMLButtonElement) {
+    // 0. No-op als deze filter al actief is. Voorkomt dat een dubbelklik
+    //    op dezelfde knop de filter-logica opnieuw start, lopende animaties
+    //    cancelt en de cards in een rare tussenstaat achterlaat.
+    if (activeBtn.classList.contains('active')) {
+      return;
+    }
+
+    // 1. Button state synchroon — instant feedback ongeacht animaties.
+    filterBtns.forEach((b) => {
+      b.classList.remove('active', 'bg-white', 'text-dark', 'shadow-lg');
+      b.classList.add('text-text-secondary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    activeBtn.classList.add('active', 'bg-white', 'text-dark', 'shadow-lg');
+    activeBtn.classList.remove('text-text-secondary');
+    activeBtn.setAttribute('aria-pressed', 'true');
+
+    // 2. Bereken doel-zichtbaarheid
+    const shouldBeVisible = (card: HTMLElement) => {
+      const cat = card.getAttribute('data-category');
+      return filter === 'all' || cat === filter;
+    };
+
+    // 3. Reduced motion? Schakel direct, klaar.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      caseCards.forEach((c) => {
+        clearLeavingStyles(c);
+        c.classList.toggle('filtered-out', !shouldBeVisible(c));
       });
-      
       if (grid) grid.scrollLeft = 0;
+      return;
+    }
+
+    // 4. CANCEL alle in-flight animaties + freeze huidige visuele staat.
+    //    commitStyles bakt de huidige animation values als inline styles in,
+    //    zodat na cancel de card zichtbaar blijft op exact die positie.
+    caseCards.forEach((card) => {
+      const anim = cardAnims.get(card);
+      if (anim) {
+        try { anim.commitStyles(); } catch {}
+        anim.cancel();
+        cardAnims.delete(card);
+      }
+    });
+
+    // 5. Restore in-flight leaving cards naar normale flow.
+    //    Een card die nog gepinned was op fixed-positie wordt teruggezet
+    //    in de layout zodat de FIRST-meting hieronder klopt.
+    caseCards.forEach((card) => {
+      if (card.dataset.leaving === 'true') {
+        clearLeavingStyles(card);
+        // Was bezig met leaving — staat nu visueel ergens halverwege fade.
+        // Reset transform/opacity zodat de nieuwe animatie clean kan starten.
+        card.style.transform = '';
+        card.style.opacity = '';
+      }
+    });
+
+    // 6. FIRST: capture huidige rectangles van cards die niet hidden zijn.
+    const firstRects = new Map<HTMLElement, DOMRect>();
+    caseCards.forEach((card) => {
+      if (!card.classList.contains('filtered-out')) {
+        firstRects.set(card, card.getBoundingClientRect());
+      }
+    });
+
+    // 7. Pin leaving cards op hun huidige positie (out of flow).
+    const leavingCards: HTMLElement[] = [];
+    caseCards.forEach((card) => {
+      const wasVisible = firstRects.has(card);
+      if (wasVisible && !shouldBeVisible(card)) {
+        const r = firstRects.get(card)!;
+        card.dataset.leaving = 'true';
+        card.style.position = 'fixed';
+        card.style.left = `${r.left}px`;
+        card.style.top = `${r.top}px`;
+        card.style.width = `${r.width}px`;
+        card.style.height = `${r.height}px`;
+        card.style.margin = '0';
+        card.style.zIndex = '5';
+        card.style.pointerEvents = 'none';
+        leavingCards.push(card);
+      }
+    });
+
+    // 8. Reveal entering cards (toggle filtered-out off).
+    caseCards.forEach((card) => {
+      if (shouldBeVisible(card)) {
+        card.classList.remove('filtered-out');
+      }
+    });
+
+    // 9. Reset scroll en force reflow.
+    if (grid) grid.scrollLeft = 0;
+    void grid?.offsetHeight;
+
+    // 10. LAST: capture nieuwe positions van cards die zichtbaar zijn.
+    const lastRects = new Map<HTMLElement, DOMRect>();
+    caseCards.forEach((card) => {
+      if (shouldBeVisible(card)) {
+        lastRects.set(card, card.getBoundingClientRect());
+      }
+    });
+
+    // 11. Animate alles parallel met WAAPI.
+    //     Elk type animatie wordt opgeslagen in cardAnims voor cancellation.
+
+    // LEAVING — fade + scale + slide naar onder
+    leavingCards.forEach((card) => {
+      const anim = card.animate(
+        [
+          { opacity: 1, transform: 'scale(1) translateY(0)' },
+          { opacity: 0, transform: 'scale(0.92) translateY(12px)' },
+        ],
+        { duration: 280, easing: EASING_OUT, fill: 'forwards' }
+      );
+      cardAnims.set(card, anim);
+      anim.finished
+        .then(() => {
+          // Animation klaar: card definitief verbergen + cleanup.
+          clearLeavingStyles(card);
+          card.classList.add('filtered-out');
+          cardAnims.delete(card);
+        })
+        .catch(() => {
+          // Cancelled door volgende klik — niks doen, nieuwe applyFilter
+          // heeft de cleanup al overgenomen.
+        });
+    });
+
+    // MOVING (FLIP) en ENTERING
+    caseCards.forEach((card) => {
+      if (!shouldBeVisible(card)) return;
+      const first = firstRects.get(card);
+      const last = lastRects.get(card);
+      if (!last) return;
+
+      if (first) {
+        // MOVING — FLIP transform van first naar last
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+        if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return; // staat al goed
+        const anim = card.animate(
+          [
+            { transform: `translate(${dx}px, ${dy}px)` },
+            { transform: 'translate(0, 0)' },
+          ],
+          { duration: 500, easing: EASING, fill: 'both' }
+        );
+        cardAnims.set(card, anim);
+        anim.finished
+          .then(() => cardAnims.delete(card))
+          .catch(() => {});
+      } else {
+        // ENTERING — slide-up + fade van eerste frame
+        const anim = card.animate(
+          [
+            { opacity: 0, transform: 'translateY(28px) scale(0.95)' },
+            { opacity: 1, transform: 'translateY(0) scale(1)' },
+          ],
+          { duration: 500, easing: EASING, fill: 'both' }
+        );
+        cardAnims.set(card, anim);
+        anim.finished
+          .then(() => cardAnims.delete(card))
+          .catch(() => {});
+      }
+    });
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'all';
+      applyFilter(filter, btn);
     });
   });
 

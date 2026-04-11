@@ -3,10 +3,7 @@ title: "Klikken ze wel? Waarom jouw 'Neem contact op' knop niet werkt (en hoe he
 description: "Een knop is toch maar een knop? Fout. Ontdek de psychologie achter Call-to-Actions die wel converteren en verander kijkers in kopers."
 excerpt: "Waarom klikken bezoekers niet? Vaak ligt het aan die ene knop. Leer hoe je met tekst, kleur en placering je conversie direct verhoogt."
 pubDate: 2026-02-03
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Expert in high-performance websites en conversie-optimalisatie."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/call-to-action-optimalisatie.webp"
   alt: "Een vinger die op het punt staat op een opvallende knop te klikken op een tablet"

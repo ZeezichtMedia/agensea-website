@@ -3,10 +3,7 @@ title: "Vakantiepark Marketing 2026: De Strategie voor 80% Directe Boekingen"
 description: "Draait uw vakantiepark nog steeds op de automatische piloot van touroperators? Ontdek hoe toonaangevende parken in 2026 hun marge terugpakken met een 'Direct-First' strategie."
 excerpt: "Voor parkdirecteuren en eigenaren: Waarom 2026 het jaar is om uw afhankelijkheid van touroperators te doorbreken. Een technische en strategische deep-dive."
 pubDate: 2025-12-22
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. Specialist in Digital Infrastructure voor vakantieparken >200 eenheden."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "/images/blog/vakantiepark-marketing-hero.png"
   alt: "Luchtfoto van een modern vakantiepark met data-visualisatie overlay over bezettingsgraad"

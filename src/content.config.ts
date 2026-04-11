@@ -12,12 +12,9 @@ const blogCollection = defineCollection({
         updatedDate: z.coerce.date().optional(),
 
         // ── EEAT Author ───────────────────────────
-        author: z.object({
-            name: z.string(),
-            bio: z.string().optional(),
-            avatar: z.string().optional(),
-            credentials: z.array(z.string()).optional(),
-        }).optional(),
+        // ID-referentie naar src/data/authors.ts. Vroeger inline object —
+        // nu DRY: één auteur-record voedt alle blogs.
+        author: z.string().optional(),
 
         // ── Visual ────────────────────────────────
         image: z.object({

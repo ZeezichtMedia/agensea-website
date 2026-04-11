@@ -4,10 +4,7 @@ description: "Vergelijk Airbnb commissies (14-20%) met een eigen website (0%). O
 excerpt: "Airbnb rekent 14-20% commissie. Bij €60.000 omzet = €8.400-12.000 verlies. Ontdek of een eigen website meer oplevert."
 pubDate: 2025-10-12
 updatedDate: 2025-10-15
-author:
-  name: "Jorian Wientjens"
-  bio: "CEO & Lead Developer bij Agensea. 5+ jaar ervaring in website ontwikkeling voor toeristische sector. Expert in vergelijkingen tussen boekingsplatformen."
-  avatar: "/images/team/jorian-avatar.webp"
+author: jorian
 image:
   src: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80"
   alt: "Moderne vakantiewoning - Airbnb vs eigen website vergelijking"

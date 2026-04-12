@@ -1,4 +1,28 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://agensea.nl/sitemap-index.xml
+
+# Crawl-delay voor beleefde bots (niet gerespecteerd door Google, wel door Bing/Yandex)
+User-agent: Bingbot
+Crawl-delay: 2
+
+User-agent: Yandex
+Crawl-delay: 5
+
+# AI scrapers blokkeren — beschermt content tegen training datasets
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

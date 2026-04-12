@@ -22,6 +22,14 @@ const categories = [
     title="Kennisbank"
     description="Onze nieuwste inzichten en kennis over webdevelopment, marketing en AI."
 >
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agensea.nl/" },
+        { "@type": "ListItem", "position": 2, "name": "Kennisbank", "item": "https://agensea.nl/kennisbank/" }
+      ]
+    })} />
     <Navbar />
     <main id="main-content" class="min-h-screen pt-40 pb-20">
         <div class="max-w-7xl mx-auto px-6">

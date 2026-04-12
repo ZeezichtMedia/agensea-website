@@ -34,16 +34,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // een fallback share-preview hebben. Pages kunnen dit overrulen via prop.
 const finalOgImage = new URL(ogImage || "/brand/agensea-logo-512.png", Astro.site).toString();
 
-// Organization JSON-LD: alleen op de homepage (Astro.url.pathname === "/")
-// om duplicate structured data te voorkomen.
+// ── Structured Data (JSON-LD) ─────────────────────────────────────
+// Homepage krijgt LocalBusiness + WebSite schema's.
+// Alle andere pagina's kunnen via <slot name="head" /> extra schema's injecteren.
 const isHome = Astro.url.pathname === "/";
-const orgJsonLd = {
+
+// LocalBusiness — krachtiger dan Organization voor lokale SEO (Google Maps,
+// local pack). Bevat adres, openingstijden, contactgegevens.
+const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
+  "@id": "https://agensea.nl/#business",
   name: "Agensea",
+  alternateName: "Agensea — Websites, Software & Marketing",
   url: "https://agensea.nl",
   logo: "https://agensea.nl/brand/agensea-logo-512.png",
-  description,
+  image: "https://agensea.nl/brand/agensea-logo-512.png",
+  description: "Agensea is het digitale bureau voor ambitieuze ondernemers in Zeeland. Maatwerk websites, online marketing en software op maat.",
+  telephone: "+31-6-81383601",
+  email: "info@agensea.nl",
+  priceRange: "$$",
+  currenciesAccepted: "EUR",
+  paymentAccepted: "Bankoverschrijving",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Edisonweg 41B",
+    addressLocality: "Vlissingen",
+    addressRegion: "Zeeland",
+    postalCode: "4382 NV",
+    addressCountry: "NL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.4427,
+    longitude: 3.5718,
+  },
+  areaServed: [
+    { "@type": "State", name: "Zeeland" },
+    { "@type": "Country", name: "NL" },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+  ],
   sameAs: [
     "https://www.linkedin.com/company/agensea",
   ],
@@ -53,6 +90,31 @@ const orgJsonLd = {
     contactType: "customer service",
     areaServed: "NL",
     availableLanguage: ["Dutch", "English"],
+  },
+  founder: {
+    "@type": "Person",
+    name: "Jorian Wientjens",
+  },
+};
+
+// WebSite schema met SearchAction — geeft Google de hint dat je site een
+// ingebouwde zoekfunctie heeft (onze AI-zoek). Verschijnt als sitelinks
+// search box in SERP.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://agensea.nl/#website",
+  name: "Agensea",
+  url: "https://agensea.nl",
+  inLanguage: "nl-NL",
+  publisher: { "@id": "https://agensea.nl/#business" },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://agensea.nl/?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
   },
 };
 ---
@@ -75,6 +137,9 @@ const orgJsonLd = {
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL.toString()} />
     <meta property="og:image" content={finalOgImage} />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:site_name" content="Agensea" />
 
@@ -85,7 +150,10 @@ const orgJsonLd = {
     <meta name="twitter:image" content={finalOgImage} />
 
     {isHome && (
-      <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+      <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+    )}
+    {isHome && (
+      <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     )}
 
     <slot name="head" />

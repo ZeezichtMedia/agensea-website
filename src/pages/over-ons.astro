@@ -1,9 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 import TeamPopup from '../components/TeamPopup.astro';
+import jorikFoto from '../assets/team/Jorik_foto.webp';
+import jorianFoto from '../assets/team/Jorian_foto.webp';
+import rubenFoto from '../assets/team/Ruben_foto.webp';
+import alineFoto from '../assets/team/Aline_foto.webp';
 ---
 
 <Layout
@@ -51,7 +56,8 @@ import TeamPopup from '../components/TeamPopup.astro';
           onclick="window.dispatchEvent(new CustomEvent('open-team-member', { detail: { id: 'jorik' } }))"
         >
           <div class="w-full aspect-[4/5] bg-warm-grey rounded-2xl mb-6 overflow-hidden relative border border-warm-grey/50">
-            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('/team/jorik-new.webp');"></div>
+            <Image src={jorikFoto} alt="Jorik Schut" widths={[400, 600, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
             <!-- Overlay hover effect -->
             <div class="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute bottom-6 right-6 w-12 h-12 bg-white text-dark rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 shadow-xl">
@@ -68,7 +74,8 @@ import TeamPopup from '../components/TeamPopup.astro';
           onclick="window.dispatchEvent(new CustomEvent('open-team-member', { detail: { id: 'jorian' } }))"
         >
           <div class="w-full aspect-[4/5] bg-warm-grey rounded-2xl mb-6 overflow-hidden relative border border-warm-grey/50">
-            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('/team/jorian.webp');"></div>
+            <Image src={jorianFoto} alt="Jorian Wientjens" widths={[400, 600, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
             <div class="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute bottom-6 right-6 w-12 h-12 bg-white text-dark rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 shadow-xl">
               <svg class="w-5 h-5 -rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -84,7 +91,8 @@ import TeamPopup from '../components/TeamPopup.astro';
           onclick="window.dispatchEvent(new CustomEvent('open-team-member', { detail: { id: 'ruben' } }))"
         >
           <div class="w-full aspect-[4/5] bg-warm-grey rounded-2xl mb-6 overflow-hidden relative border border-warm-grey/50">
-            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('/team/ruben.webp');"></div>
+            <Image src={rubenFoto} alt="Ruben Boogaard" widths={[400, 600, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
             <div class="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute bottom-6 right-6 w-12 h-12 bg-white text-dark rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 shadow-xl">
               <svg class="w-5 h-5 -rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -124,7 +132,7 @@ import TeamPopup from '../components/TeamPopup.astro';
             <!-- Aline -->
             <div class="flex flex-col text-left group">
               <div class="w-full aspect-[4/5] bg-white/10 backdrop-blur-sm rounded-2xl mb-4 overflow-hidden relative border border-white/20">
-                <div class="w-full h-full bg-cover bg-center" style="background-image: url('/team/aline.png');"></div>
+                <Image src={alineFoto} alt="Aline Bijleveld" widths={[300, 500]} sizes="(min-width: 768px) 25vw, 50vw" class="w-full h-full object-cover" />
               </div>
               <h4 class="font-display text-lg font-bold text-white">Aline Bijleveld</h4>
               <span class="text-xs font-medium text-white/60 mt-0.5">Communicatie Strategist</span>

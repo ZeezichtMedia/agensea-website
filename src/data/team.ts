@@ -54,7 +54,7 @@ export const team: TeamMember[] = [
       <p>Ik help bedrijven bij het vinden van hun unieke stem en vertaal complexe visies naar heldere, effectieve communicatiestrategieën. Bij Agensea zorg ik voor de strategische diepgang.</p>
       <p>Met jarenlange ervaring in merkpositionering en copywriting zorg ik dat elk project een ijzersterk fundament heeft.</p>
     `,
-    image: "/team/aline.png",
+    image: "/team/aline.webp",
     linkedin: "https://www.linkedin.com/in/aline-bijleveld/",
   },
   {

@@ -18,7 +18,7 @@ relatedPosts:
   - "airbnb-vs-eigen-website"
   - "meer-directe-boekingen"
 seo:
-  metaTitle: "Meer Duitse Gasten Aantrekken in 2026? Maak Je Website 'Duits-Proof' | Zee-zicht"
+  metaTitle: "Meer Duitse Gasten Aantrekken in 2026? Maak Je Website 'Duits-Proof' | Agensea"
   metaDescription: "Wil jij meer Duitse gasten aantrekken voor je camping of B&B in Zeeland? Ontdek waarom een professionele vertaling, betaalopties en een 'Impressum' cruciaal zijn voor seizoen 2026."
 draft: false
 ---
@@ -86,7 +86,7 @@ Als je hiermee wacht tot maart, heb je de belangrijkste groep "Vroegboekers" (di
 
 Het aantrekken van Duitse gasten via je eigen website heeft nog een groot voordeel: je betaalt geen commissie aan platforms zoals Booking.com of Airbnb. Elke directe boeking is 15% tot 20% extra marge in jouw zak.
 
-Bij Zee-zicht Media zijn we gespecialiseerd in het bouwen van websites voor de Zeeuwse toeristische sector die presteren over de grens. Wij zorgen voor:
+Bij Agensea zijn we gespecialiseerd in het bouwen van websites voor de Zeeuwse toeristische sector die presteren over de grens. Wij zorgen voor:
 
 - Een razendsnelle website (mobiel vriendelijk).
 - Integratie van een commissievrij boekingssysteem met Duitse betaalopties.

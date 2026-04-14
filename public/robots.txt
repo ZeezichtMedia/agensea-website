@@ -24,5 +24,5 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: Google-Extended
-Disallow: /
+# Google-Extended bewust toegestaan: als marketingbureau willen we
+# vindbaar zijn in Gemini / AI Overviews van Google.

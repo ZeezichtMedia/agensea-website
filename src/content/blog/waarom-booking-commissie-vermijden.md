@@ -16,7 +16,7 @@ tags:
   - "camping boekingen"
   - "b&b reserveringen"
 seo:
-  metaTitle: "Booking.com Commissie: 15-20% Kosten Vermijden | Zee-zicht Media"
+  metaTitle: "Booking.com Commissie: 15-20% Kosten Vermijden | Agensea"
   metaDescription: "Booking.com rekent 15-20% commissie. Ontdek hoe je met een eigen boekingssysteem €15.000+ per jaar kunt besparen. Gratis advies van experts."
 draft: false
 ---
@@ -268,4 +268,4 @@ Wil je weten hoeveel je kunt besparen met een eigen boekingssysteem?
 
 ---
 
-*Zee-zicht Media helpt accommodaties al 5+ jaar met commissievrije boekingssystemen. Van kleine B&B's tot grote campings - wij maken je onafhankelijk van Booking.com.*
+*Agensea helpt accommodaties al 5+ jaar met commissievrije boekingssystemen. Van kleine B&B's tot grote campings - wij maken je onafhankelijk van Booking.com.*

@@ -3,17 +3,21 @@
 
 <div
   id="case-modal"
-  class="fixed inset-0 z-[1000] flex items-center justify-center p-6 md:p-12 opacity-0 pointer-events-none transition-all duration-500 overscroll-none"
+  class="fixed inset-0 z-[1000] flex items-center justify-center p-6 md:p-12 pointer-events-none overscroll-none"
   role="dialog"
   aria-modal="true"
   aria-labelledby="case-title"
   aria-hidden="true"
 >
-  <!-- Backdrop -->
-  <div class="absolute inset-0 bg-dark/20 backdrop-blur-md" id="case-modal-close" aria-hidden="true"></div>
+  <!-- Backdrop — snelle fade (150ms) zodat blur direct beschikbaar is -->
+  <div
+    id="case-modal-close"
+    class="absolute inset-0 bg-dark/20 backdrop-blur-md opacity-0 transition-opacity duration-150"
+    aria-hidden="true"
+  ></div>
 
-  <!-- Modal Container -->
-  <div class="relative bg-white rounded-3xl w-full max-w-5xl max-h-[85vh] shadow-2xl translate-y-8 transition-all duration-500 flex flex-col md:flex-row overflow-hidden">
+  <!-- Modal Container — eigen slower slide+fade voor soepele entry -->
+  <div class="relative bg-white rounded-3xl w-full max-w-5xl max-h-[85vh] shadow-2xl opacity-0 translate-y-8 transition-all duration-500 flex flex-col md:flex-row overflow-hidden">
 
     <!-- Left: Image/Visual -->
     <div class="w-full md:w-1/2 h-48 sm:h-64 md:h-auto bg-warm-grey relative overflow-hidden shrink-0">
@@ -138,11 +142,15 @@
       linkContainer?.classList.add('hidden');
     }
 
-    // Show modal
-    modal.classList.remove('opacity-0', 'pointer-events-none');
+    // Show modal — backdrop en content animeren los van elkaar:
+    // backdrop flitst er in (150ms) zodat de blur direct "staat",
+    // content slide't met fade over 500ms.
+    modal.classList.remove('pointer-events-none');
     modal.setAttribute('aria-hidden', 'false');
-    const inner = modal.querySelector('.relative');
-    inner?.classList.remove('translate-y-8');
+    const backdrop = document.getElementById('case-modal-close');
+    backdrop?.classList.remove('opacity-0');
+    const inner = modal.querySelector('.relative') as HTMLElement | null;
+    inner?.classList.remove('opacity-0', 'translate-y-8');
     // Destroy Lenis completely so it doesn't intercept scroll events
     if (window.lenis) {
       window.lenis.destroy();
@@ -176,9 +184,11 @@
 
   function closeCase() {
     if (!modal) return;
-    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.add('pointer-events-none');
     modal.setAttribute('aria-hidden', 'true');
-    modal.querySelector('.relative')?.classList.add('translate-y-8');
+    document.getElementById('case-modal-close')?.classList.add('opacity-0');
+    const inner = modal.querySelector('.relative') as HTMLElement | null;
+    inner?.classList.add('opacity-0', 'translate-y-8');
     document.body.classList.remove('modal-open');
     document.removeEventListener('keydown', onKeyDown);
     // Recreate Lenis

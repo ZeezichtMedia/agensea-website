@@ -48,7 +48,9 @@
     { "source": "/marketingbureau-zeeland", "destination": "/diensten/marketing", "permanent": true },
 
     { "source": "/portfolio", "destination": "/over-ons", "permanent": true },
-    { "source": "/portfolio/:slug", "destination": "/over-ons", "permanent": true },
+    { "source": "/portfolio/assieraden-specialist", "destination": "/over-ons", "permanent": true },
+    { "source": "/portfolio/brasserie-pzem-41", "destination": "/over-ons", "permanent": true },
+    { "source": "/portfolio/minicamping-boogaard", "destination": "/over-ons", "permanent": true },
 
     { "source": "/demo-ontvangen", "destination": "/demo", "permanent": true },
     { "source": "/demo-success", "destination": "/demo", "permanent": true },

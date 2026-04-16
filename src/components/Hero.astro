@@ -41,7 +41,7 @@ const segments = [
 ];
 ---
 
-<section class="relative min-h-screen flex items-center justify-center pt-24 lg:pt-40 pb-20 lg:pb-32 overflow-hidden">
+<section class="relative min-h-screen flex items-center justify-center pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden">
   <!-- Gradient Mesh Background -->
   <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] left-[-10%]" style="animation-delay: 0s;"></div>
   <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[-10%] right-[-5%]" style="animation-delay: -5s;"></div>
@@ -146,9 +146,9 @@ const segments = [
           </div>
 
           <!-- Dynamic Results Area -->
-          <div class="relative transition-[height] duration-500 ease-out-expo" id="content-wrapper" style="height: 220px;">
+          <div class="relative transition-[height] duration-500 ease-out-expo" id="content-wrapper" style="height: 150px;">
             <!-- Empty State -->
-            <div id="content-empty" class="absolute top-0 left-0 right-0 w-full flex flex-col items-center justify-center opacity-100 transition-opacity duration-300 py-10 h-[220px]">
+            <div id="content-empty" class="absolute top-0 left-0 right-0 w-full flex flex-col items-center justify-center opacity-100 transition-opacity duration-300 py-6 sm:py-10 h-[150px] sm:h-[220px]">
               <div class="text-center">
                 <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-4 border border-warm-grey/50">
                    <svg class="w-8 h-8 text-indigo/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l5 5M10 18a8 8 0 100-16 8 8 0 000 16z"/></svg>
@@ -286,6 +286,12 @@ const segments = [
   });
 
   if(selectedLabel) selectedLabel.style.transition = 'opacity 0.2s ease-out';
+
+  // Set initial wrapper height based on screen size
+  const wrapper = document.getElementById('content-wrapper');
+  if (wrapper && !activeId) {
+    wrapper.style.height = window.innerWidth >= 640 ? '220px' : '150px';
+  }
   // Handle Case Logo Clicks
   document.querySelectorAll('[data-case]').forEach(el => {
     el.addEventListener('click', () => {

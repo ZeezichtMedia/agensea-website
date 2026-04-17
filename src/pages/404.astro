@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Pagina niet gevonden — Agensea" description="Deze pagina bestaat niet of is verplaatst." noindex>
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-32 md:pt-48 pb-20 overflow-hidden relative flex items-center">
+    <!-- Background Decor -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[400px] h-[400px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <section class="w-full max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- 404 Number -->
+        <div class="relative mb-8 reveal">
+          <span class="font-display text-[8rem] sm:text-[12rem] md:text-[16rem] font-bold leading-none text-indigo/[0.07] select-none">404</span>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/80 backdrop-blur-xl border border-white shadow-2xl flex items-center justify-center">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+                <path d="M8 11h6" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="reveal" style="transition-delay: 150ms;">
+          <h1 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-dark mb-4 leading-tight">
+            Pagina niet <span class="text-indigo">gevonden.</span>
+          </h1>
+          <p class="text-lg text-text-secondary leading-relaxed mb-10 max-w-md mx-auto">
+            De pagina die je zoekt bestaat niet meer of is verplaatst. Geen stress — hieronder vind je de juiste weg.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="reveal flex flex-col sm:flex-row gap-4 justify-center" style="transition-delay: 300ms;">
+          <a href="/" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark text-white rounded-xl font-medium hover:bg-indigo transition-colors duration-300">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Naar homepagina
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Neem contact op
+          </a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="reveal mt-16 pt-10 border-t border-warm-grey/30" style="transition-delay: 450ms;">
+          <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary/50 mb-6">Misschien zoek je</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            {[
+              { label: "Websites", href: "/diensten/websites" },
+              { label: "Marketing", href: "/diensten/marketing" },
+              { label: "Software", href: "/diensten/software" },
+              { label: "Over ons", href: "/over-ons" },
+              { label: "Cases", href: "/#cases" },
+              { label: "Kennisbank", href: "/kennisbank" }
+            ].map(link => (
+              <a href={link.href} class="px-5 py-2.5 rounded-full bg-white/60 border border-white text-sm font-medium text-dark hover:border-indigo hover:text-indigo transition-all duration-300">
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

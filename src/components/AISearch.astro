@@ -279,5 +279,33 @@
 
   // Global trigger for testing
   (window as any).triggerAI = openModal;
+
+  // Shrink FAB to avatar-only on mobile when scrolling
+  if (aiFab && window.innerWidth < 768) {
+    const fabLabel = aiFab.querySelector('.flex.flex-col') as HTMLElement;
+    const fabIndicator = aiFab.querySelector('.absolute.top-2') as HTMLElement;
+    let fabScrollTimeout: ReturnType<typeof setTimeout>;
+    let fabShrunk = false;
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100 && !fabShrunk) {
+        fabShrunk = true;
+        aiFab.classList.remove('pr-6');
+        aiFab.classList.add('pr-1');
+        if (fabLabel) fabLabel.style.display = 'none';
+        if (fabIndicator) fabIndicator.style.display = 'none';
+      }
+      clearTimeout(fabScrollTimeout);
+      fabScrollTimeout = setTimeout(() => {
+        if (window.pageYOffset <= 100) {
+          fabShrunk = false;
+          aiFab.classList.add('pr-6');
+          aiFab.classList.remove('pr-1');
+          if (fabLabel) fabLabel.style.display = '';
+          if (fabIndicator) fabIndicator.style.display = '';
+        }
+      }, 150);
+    }, { passive: true });
+  }
 </script>
 

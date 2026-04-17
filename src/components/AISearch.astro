@@ -113,13 +113,13 @@
   </div>
   
   <!-- Label -->
-  <div class="flex flex-col items-start pl-3">
-    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo leading-none mb-1">Agensea AI</span>
+  <div class="flex flex-col items-start pl-3 transition-all duration-500 overflow-hidden max-w-[120px] opacity-100" id="fab-label">
+    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo leading-none mb-1 whitespace-nowrap">Agensea AI</span>
     <span class="text-xs font-bold text-dark whitespace-nowrap">Hulp nodig?</span>
   </div>
 
   <!-- Active Indicator -->
-  <span class="absolute top-2 right-2 w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+  <span class="absolute top-2 right-2 w-2 h-2 bg-green-500 rounded-full animate-pulse transition-opacity duration-500" id="fab-indicator"></span>
 </button>
 
 <script>
@@ -282,29 +282,34 @@
 
   // Shrink FAB to avatar-only on mobile when scrolling
   if (aiFab && window.innerWidth < 768) {
-    const fabLabel = aiFab.querySelector('.flex.flex-col') as HTMLElement;
-    const fabIndicator = aiFab.querySelector('.absolute.top-2') as HTMLElement;
-    let fabScrollTimeout: ReturnType<typeof setTimeout>;
+    const fabLabel = document.getElementById('fab-label');
+    const fabIndicator = document.getElementById('fab-indicator');
     let fabShrunk = false;
+    let fabTicking = false;
 
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 100 && !fabShrunk) {
+    function updateFab() {
+      const shouldShrink = window.pageYOffset > 100;
+      if (shouldShrink && !fabShrunk) {
         fabShrunk = true;
         aiFab.classList.remove('pr-6');
         aiFab.classList.add('pr-1');
-        if (fabLabel) fabLabel.style.display = 'none';
-        if (fabIndicator) fabIndicator.style.display = 'none';
+        if (fabLabel) { fabLabel.style.maxWidth = '0'; fabLabel.style.opacity = '0'; fabLabel.style.paddingLeft = '0'; }
+        if (fabIndicator) fabIndicator.style.opacity = '0';
+      } else if (!shouldShrink && fabShrunk) {
+        fabShrunk = false;
+        aiFab.classList.add('pr-6');
+        aiFab.classList.remove('pr-1');
+        if (fabLabel) { fabLabel.style.maxWidth = '120px'; fabLabel.style.opacity = '1'; fabLabel.style.paddingLeft = ''; }
+        if (fabIndicator) fabIndicator.style.opacity = '1';
       }
-      clearTimeout(fabScrollTimeout);
-      fabScrollTimeout = setTimeout(() => {
-        if (window.pageYOffset <= 100) {
-          fabShrunk = false;
-          aiFab.classList.add('pr-6');
-          aiFab.classList.remove('pr-1');
-          if (fabLabel) fabLabel.style.display = '';
-          if (fabIndicator) fabIndicator.style.display = '';
-        }
-      }, 150);
+      fabTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!fabTicking) {
+        requestAnimationFrame(updateFab);
+        fabTicking = true;
+      }
     }, { passive: true });
   }
 </script>

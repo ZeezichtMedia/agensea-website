@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="ai-search-modal" role="dialog" aria-modal="true" aria-label="Agensea AI zoeken" aria-hidden="true" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none hidden transition-all duration-500 overflow-hidden">
+<div id="ai-search-modal" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Agensea AI zoeken" aria-hidden="true" class="fixed inset-0 z-[2000] opacity-0 pointer-events-none hidden transition-all duration-500 overflow-hidden">
   <!-- Backdrop -->
   <div class="absolute inset-0 bg-dark/40 backdrop-blur-xl" id="ai-modal-backdrop"></div>
   
@@ -256,6 +256,13 @@
     addMessage(val, true);
     input.value = '';
     fetchResponse(val);
+  }
+
+  // Force native scroll on chat by stopping event propagation to Lenis
+  if (chatHistory) {
+    chatHistory.addEventListener('wheel', (e) => e.stopPropagation(), { passive: false });
+    chatHistory.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    chatHistory.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
   }
 
   // Listeners

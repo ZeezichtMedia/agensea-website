@@ -10,25 +10,34 @@
     <div class="w-full max-w-4xl h-full max-h-[90vh] sm:max-h-[800px] bg-white rounded-[2rem] sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row translate-y-20 transition-all duration-700">
 
       <!-- Left: Sidebar / Personality -->
-      <div class="w-full md:w-80 bg-indigo p-6 md:p-10 flex flex-col justify-between text-white relative max-h-[35vh] md:max-h-none overflow-hidden">
-        <div class="relative z-10">
-          <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-8 border border-white/30">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="w-full md:w-80 bg-indigo px-5 py-4 md:p-10 flex flex-col justify-between text-white relative md:max-h-none overflow-hidden">
+        <!-- Mobile: compact header row -->
+        <div class="relative z-10 flex md:block items-center gap-4">
+          <div class="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center md:mb-8 border border-white/30 shrink-0">
+            <svg class="w-5 h-5 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
             </svg>
           </div>
-          <h3 class="font-display text-3xl font-bold leading-tight mb-4">Vraag het<br/>ons</h3>
-          <p class="text-white/60 text-sm leading-relaxed">
-            Benieuwd wat we voor je kunnen betekenen? Stel je vraag en we helpen je direct verder.
-          </p>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-display text-lg md:text-3xl font-bold leading-tight md:mb-4">Vraag het ons</h3>
+            <p class="hidden md:block text-white/60 text-sm leading-relaxed">
+              Benieuwd wat we voor je kunnen betekenen? Stel je vraag en we helpen je direct verder.
+            </p>
+          </div>
+          <!-- Close button integrated on mobile -->
+          <button id="close-ai-search" type="button" aria-label="Sluit AI zoeken" class="md:hidden w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all interactive shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-        
-        <div class="relative z-10 space-y-4">
-          <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Suggesties</div>
-          <div class="flex flex-wrap gap-2">
-            <button class="suggestion-btn px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs transition-colors interactive">Over Agensea</button>
-            <button class="suggestion-btn px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs transition-colors interactive">Bekijk ons werk</button>
-            <button class="suggestion-btn px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs transition-colors interactive">Onze diensten</button>
+
+        <div class="relative z-10 mt-3 md:mt-0 md:space-y-4">
+          <div class="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Suggesties</div>
+          <div class="flex flex-wrap gap-1.5 md:gap-2">
+            <button class="suggestion-btn px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] md:text-xs transition-colors interactive">Over Agensea</button>
+            <button class="suggestion-btn px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] md:text-xs transition-colors interactive">Bekijk ons werk</button>
+            <button class="suggestion-btn px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] md:text-xs transition-colors interactive">Onze diensten</button>
           </div>
         </div>
 
@@ -36,9 +45,9 @@
 
       <!-- Right: Search/Chat Area -->
       <div class="flex-1 flex flex-col bg-white min-h-0">
-        <!-- Close Button -->
-        <div class="flex justify-end p-6">
-          <button id="close-ai-search" type="button" aria-label="Sluit AI zoeken" class="w-12 h-12 rounded-full bg-cream hover:bg-warm-grey flex items-center justify-center transition-all interactive">
+        <!-- Close Button (desktop only) -->
+        <div class="hidden md:flex justify-end p-6">
+          <button id="close-ai-search-desktop" type="button" aria-label="Sluit AI zoeken" class="w-12 h-12 rounded-full bg-cream hover:bg-warm-grey flex items-center justify-center transition-all interactive">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
@@ -64,7 +73,7 @@
         </div>
 
         <!-- Input Area -->
-        <div class="p-8 md:p-12 border-t border-warm-grey bg-cream/30">
+        <div class="p-4 sm:p-8 md:p-12 border-t border-warm-grey bg-cream/30">
           <div class="relative group">
             <input 
               type="text" 
@@ -128,6 +137,7 @@
   const sendBtn = document.getElementById('ai-send-btn');
   const chatHistory = document.getElementById('ai-chat-history');
   const closeBtn = document.getElementById('close-ai-search');
+  const closeBtnDesktop = document.getElementById('close-ai-search-desktop');
   const backdrop = document.getElementById('ai-modal-backdrop');
   const suggestionBtns = document.querySelectorAll('.suggestion-btn');
   const aiFab = document.getElementById('ai-fab');
@@ -268,6 +278,7 @@
   // Listeners
   window.addEventListener('open-ai-search', openModal);
   closeBtn?.addEventListener('click', closeModal);
+  closeBtnDesktop?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
   aiFab?.addEventListener('click', openModal);
   

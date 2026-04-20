@@ -1,0 +1,482 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ReaderSidebar from '../../components/ReaderSidebar.astro';
+
+const lastUpdated = '20 april 2026';
+
+const tocItems: { slug: string; label: string; depth: 2 }[] = [
+  { slug: 'wat-is-ai-marketing', label: '1. Wat is AI-marketing?', depth: 2 },
+  { slug: 'vs-klassiek', label: '2. vs klassieke marketing', depth: 2 },
+  { slug: 'waar-waarde', label: '3. Waar AI écht waarde toevoegt', depth: 2 },
+  { slug: 'workflows', label: '4. 5 workflows die werken', depth: 2 },
+  { slug: 'stack', label: '5. Tech-stack voor AI-marketing', depth: 2 },
+  { slug: 'content', label: '6. Contentproductie met AI', depth: 2 },
+  { slug: 'advertising', label: '7. AI in Google Ads en social', depth: 2 },
+  { slug: 'meten', label: '8. Meten en attributie', depth: 2 },
+  { slug: 'roadmap', label: '9. 30-60-90 roadmap', depth: 2 },
+  { slug: 'faq', label: '10. Veelgestelde vragen', depth: 2 },
+];
+
+const faqs = [
+  {
+    q: 'Wat is AI-marketing eigenlijk?',
+    a: 'AI-marketing is het gebruik van kunstmatige intelligentie in marketing-processen — van content-productie en doelgroepsegmentatie tot bidding-algoritmes in advertenties en predictive analytics. Het gaat niet om AI als vervanger van marketeers, maar als krachtige assistent die repetitieve taken wegneemt en data-analyse versnelt.',
+  },
+  {
+    q: 'Vervangt AI mijn marketing-team?',
+    a: 'Nee. AI neemt repetitieve taken over (research, eerste drafts, data-analyse, bid-optimalisatie) maar strategische beslissingen, merk-positionering en creatieve concepten blijven mensenwerk. In de praktijk zien we teams die AI gebruiken 30-50% productiever worden — niet kleiner.',
+  },
+  {
+    q: 'Hoe voorkom ik dat mijn content-marketing naar "AI slop" gaat smaken?',
+    a: 'Drie regels: (1) AI doet nooit het laatste redactie-werk, alleen eerste drafts en research; (2) elke post wordt door iemand met domein-expertise gecheckt; (3) stem is consistent via gedetailleerde style-guides in je prompts. Slechte AI-content ontstaat door luie implementaties, niet door AI zelf.',
+  },
+  {
+    q: 'Welke AI-tools heb ik nodig voor marketing?',
+    a: 'Voor de meeste mkb: ChatGPT of Claude Pro (€20/mnd per gebruiker) voor content + research, een SEO-tool met AI-features (Ahrefs of SEMrush), eventueel een beeldgenerator (Midjourney) voor campagnes. Dat dekt 80% van de use-cases. Geavanceerdere stacks komen pas bij grotere teams.',
+  },
+  {
+    q: 'Hoe lang duurt het voor AI-marketing ROI oplevert?',
+    a: 'Content-productie-winst is direct zichtbaar (30-50% snellere output binnen weken). SEO-winst via AI-workflows duurt 3-6 maanden. Ads-optimalisatie via AI-bidding vaak binnen 60 dagen meetbaar. Strategische voordelen (betere targeting, persona-development) zijn harder te meten maar spelen op 6-12 maanden horizon.',
+  },
+  {
+    q: 'Is AI-content slecht voor SEO?',
+    a: 'AI-content is niet automatisch slecht. Google en AI-zoekmachines beoordelen content op kwaliteit en helpfulness, niet op productie-methode. Menselijke redactie + feitelijke toevoeging + duidelijke auteur (E-E-A-T) maakt het verschil. Ruwe AI-output zonder editing rankt slecht — geredigeerde AI-assisted content rankt prima.',
+  },
+];
+---
+
+<Layout
+  title="AI-marketing voor MKB: de complete gids [2026]"
+  description="AI verandert hoe marketing werkt. Welke workflows leveren écht ROI? Complete Nederlandse gids over AI-marketing voor mkb, van content tot ads."
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://agensea.nl/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Gidsen', 'item': 'https://agensea.nl/gids/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'AI-marketing', 'item': 'https://agensea.nl/gids/ai-marketing/' }
+    ]
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'AI-marketing voor MKB: de complete gids',
+    'description': 'Complete Nederlandse gids over AI-marketing voor mkb — workflows, tools en stack.',
+    'author': { '@type': 'Organization', 'name': 'Agensea' },
+    'publisher': { '@type': 'Organization', 'name': 'Agensea', 'url': 'https://agensea.nl/' },
+    'dateModified': '2026-04-20',
+    'mainEntityOfPage': 'https://agensea.nl/gids/ai-marketing/'
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+    }))
+  })} />
+
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-24">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-secondary">
+        <a href="/" class="hover:text-indigo transition-colors">Home</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <a href="/gids" class="hover:text-indigo transition-colors">Gidsen</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <span class="text-dark">AI-marketing</span>
+      </nav>
+
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+          <span class="w-8 h-[2px] bg-indigo"></span>
+          Gids · Marketing
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
+          AI-marketing voor MKB: <span class="text-indigo">de complete gids</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          AI is geen "trend" meer in marketing — het is infrastructuur. Van content-productie tot ad-bidding, van targeting tot attributie. Welke workflows leveren écht waarde? En welke zijn hype?
+        </p>
+        <p class="text-sm text-text-secondary/70 mb-10">
+          Laatst bijgewerkt: {lastUpdated} · Leestijd ±17 min
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte?dienst=online-marketing" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-dark transition-colors duration-300 inline-flex items-center gap-2">
+            Plan een marketing-audit
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#wat-is-ai-marketing" class="px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Direct naar de gids
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-16 xl:gap-24">
+        <article id="article-body" class="min-w-0 space-y-20 max-w-3xl">
+
+          <!-- §1 Wat is AI-marketing -->
+          <section class="scroll-mt-24">
+            <h2 id="wat-is-ai-marketing" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">1. Wat is AI-marketing?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              <strong class="text-dark">AI-marketing is het inzetten van kunstmatige intelligentie in marketing-processen — niet als gimmick, maar als kracht-multiplier die repetitieve taken wegneemt en data-analyse versnelt.</strong>
+            </p>
+            <div class="bg-white rounded-3xl border border-warm-grey/30 p-8 mb-6">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Kort gezegd</p>
+              <p class="text-dark text-lg leading-relaxed">
+                AI vervangt geen marketeers. Het maakt goede marketeers 2-3x productiever en slechte marketeers iets minder slecht. De kloof tussen beide groepen neemt toe.
+              </p>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Het landschap omvat vijf hoofdgebieden: content-productie, SEO/GEO-optimalisatie, betaald adverteren, e-mail &amp; automation, en analytics/attributie. AI speelt in elk een groeiende rol, met eigen ritmiek en adoptie-curve.
+            </p>
+          </section>
+
+          <!-- §2 vs klassiek -->
+          <section class="scroll-mt-24">
+            <h2 id="vs-klassiek" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">2. AI-marketing vs klassieke marketing</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De praktische verschillen:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4">Taak</th>
+                    <th class="px-6 py-4">Klassiek</th>
+                    <th class="px-6 py-4">AI-assisted</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Keyword research</td>
+                    <td class="px-6 py-4">Handmatig in Ahrefs/SEMrush</td>
+                    <td class="px-6 py-4">AI-clustering + intent-analyse</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Blog-post schrijven</td>
+                    <td class="px-6 py-4">6-10 uur per post</td>
+                    <td class="px-6 py-4">2-4 uur (research + redactie)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Ad copy testing</td>
+                    <td class="px-6 py-4">5-10 varianten handmatig</td>
+                    <td class="px-6 py-4">50+ varianten, AI-gegenereerd</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Doelgroepsegmentatie</td>
+                    <td class="px-6 py-4">Demografisch/gedrag</td>
+                    <td class="px-6 py-4">Predictive cohorts</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Reporting</td>
+                    <td class="px-6 py-4">Handmatig elke week</td>
+                    <td class="px-6 py-4">AI genereert, mens interpreteert</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- §3 Waar waarde -->
+          <section class="scroll-mt-24">
+            <h2 id="waar-waarde" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">3. Waar AI écht waarde toevoegt</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Niet alles hoort op de AI-stapel. Vier gebieden waar het consequent lukt, twee waar je beter handmatig blijft:
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 mb-8">
+              <div class="p-5 bg-white rounded-2xl border border-warm-grey/30">
+                <p class="text-xs font-bold text-green-600 uppercase tracking-[0.15em] mb-3">✓ AI wint</p>
+                <ul class="space-y-2 text-sm text-text-secondary">
+                  <li>· Research en briefing</li>
+                  <li>· Eerste drafts van content</li>
+                  <li>· Variant-testing (ad copy, subject lines)</li>
+                  <li>· Data-analyse en rapportage</li>
+                </ul>
+              </div>
+              <div class="p-5 bg-white rounded-2xl border border-warm-grey/30">
+                <p class="text-xs font-bold text-red-500 uppercase tracking-[0.15em] mb-3">✗ Mens blijft beter</p>
+                <ul class="space-y-2 text-sm text-text-secondary">
+                  <li>· Merk-strategie en positionering</li>
+                  <li>· Creatieve concepten</li>
+                  <li>· Relatie-management en community</li>
+                  <li>· Redactie en tone-of-voice afstemming</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Teams die AI op de eerste categorie inzetten en hun mensen op de tweede focussen, worden merkbaar productiever. Teams die beide aan AI overlaten, produceren slop.
+            </p>
+          </section>
+
+          <!-- §4 Workflows -->
+          <section class="scroll-mt-24">
+            <h2 id="workflows" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">4. 5 AI-marketing-workflows die werken</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Vijf workflows die wij in praktijk zien opleveren:
+            </p>
+            <ol class="space-y-5">
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">1</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Content-sprint met AI-research</h3>
+                  <p class="text-text-secondary text-sm">AI doet keyword + concurrentie-research, produceert outline, eerste draft. Marketeer redigeert, voegt eigen inzicht toe, publiceert. 30-50% snellere doorlooptijd zonder kwaliteitsverlies.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">2</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Ad copy variant-generator</h3>
+                  <p class="text-text-secondary text-sm">AI genereert 20-50 varianten op een bewezen succesvolle ad. Menselijk pre-screen en de best-scorende varianten gaan live. Vervolgens Google Ads automatische rotatie doet de rest.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">3</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Email-personalisatie op schaal</h3>
+                  <p class="text-text-secondary text-sm">Een basis-email wordt per segment (of per persona) aangepast door AI — tone, voorbeelden, CTA. Marketeer cureert, tool stuurt uit. Veel betere engagement dan one-size-fits-all.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">4</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Customer journey-analyse</h3>
+                  <p class="text-text-secondary text-sm">AI analyseert ticket-historie, sales-gesprekken en review-data om terugkerende pijnpunten en motivaties te identificeren. Input voor content-strategie en positionering.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">5</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Maandrapportage met AI-samenvatting</h3>
+                  <p class="text-text-secondary text-sm">Data uit GA4, Search Console, Ads-platform wordt door AI samengevat tot insight-rapport. Menselijke consultant valideert, voegt context toe, stuurt naar klant. Halveerde onze rapportage-tijd.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Uitgewerkt per workflow:
+              <a href="/kennisbank/ai-content-workflows/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI voor contentproductie</a>
+              en
+              <a href="/kennisbank/ai-in-google-ads/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI in Google Ads</a>.
+            </p>
+          </section>
+
+          <!-- §5 Stack -->
+          <section class="scroll-mt-24">
+            <h2 id="stack" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">5. Tech-stack voor AI-marketing</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Een realistische stack voor een mkb-marketing-team in 2026:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['LLM-tools', 'ChatGPT Pro of Claude Pro (€20-25/mnd per seat) voor 80% van tekstwerk. Vaak beide voor verschillende taken.'],
+                ['Research & SEO', 'Ahrefs of SEMrush met AI-addon voor keyword-clustering, SERP-analyse, content-briefings.'],
+                ['Contentgeneratie', 'Writer, Jasper of Claude Projects voor meer geavanceerde content-workflows. Optioneel.'],
+                ['Beeldgeneratie', 'Midjourney (€10-60/mnd) voor campagne-beelden. ChatGPT + DALL-E voor snelle grafische taken.'],
+                ['Ads-automatisering', 'Google Ads\' eigen AI (Performance Max, automated bidding). Voor grotere adverteerders: Smartly.io of equivalent.'],
+                ['Analytics & attributie', 'GA4 met AI-insights plus eventueel Piwik PRO, Plausible of zelfs Looker Studio met AI-layer.'],
+                ['Email-marketing', 'Platforms als Klaviyo, ActiveCampaign, Brevo hebben allemaal AI-features ingebouwd voor personalisatie en segmentatie.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Je hoeft niet alles te hebben. De 80%-set voor mkb: ChatGPT Pro + Ahrefs + Midjourney. Dat is €60-150/mnd per persoon en dekt de meeste use-cases.
+            </p>
+          </section>
+
+          <!-- §6 Content -->
+          <section class="scroll-mt-24">
+            <h2 id="content" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">6. Contentproductie met AI</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              De use-case waar AI het snelst waarde oplevert — mits je drie regels respecteert:
+            </p>
+            <ol class="space-y-3 bg-white rounded-2xl p-6 border border-warm-grey/30 mb-6">
+              <li class="text-text-secondary text-sm"><strong class="text-dark">1. AI doet research + eerste draft, mens doet redactie.</strong> Omgekeerd werkt niet.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">2. Elke post passeert een specialist.</strong> Iemand met domein-expertise haalt de feitelijke fouten eruit.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">3. Style-guide in je prompts.</strong> Tone-of-voice, woordkeuze, structuur expliciet beschreven voor consistentie.</li>
+            </ol>
+            <p class="text-text-secondary leading-relaxed">
+              Voor AI-first positionering is er een bijkomend aspect: je content moet niet alleen voor mensen, maar ook voor AI-zoekmachines citeerbaar zijn. Zie
+              <a href="/kennisbank/content-voor-ai-citaten/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Content schrijven die AI citeert</a>.
+            </p>
+          </section>
+
+          <!-- §7 Advertising -->
+          <section class="scroll-mt-24">
+            <h2 id="advertising" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">7. AI in Google Ads en social</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Google Ads' eigen AI (Smart Bidding, Performance Max, Responsive Search Ads) is veruit de meest volwassen AI in de marketing-stack. Voor de meeste mkb is zelf geavanceerde AI-tooling bouwen overkill.
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Wat Google Ads' AI uitstekend doet</h3>
+                <p class="text-sm text-text-secondary">Bid-optimalisatie (Smart Bidding), doelgroep-verbreding (PMax), variant-testing (RSA). Deze tools zijn getrainseerd op miljarden clicks en presteren consistent beter dan handmatig.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Waar je handmatig blijft</h3>
+                <p class="text-sm text-text-secondary">Keyword-lijsten cureren, audiences definiëren, creative-strategie, landing-page-optimalisatie. De input naar AI bepaalt nog steeds wat eruit komt.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Externe AI-tools als aanvulling</h3>
+                <p class="text-sm text-text-secondary">ChatGPT voor ad copy variatie, Midjourney voor creatives. Maar geen dure externe "AI bidders" als je Google Smart Bidding nog niet uit hebt geput.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Dieper:
+              <a href="/kennisbank/ai-in-google-ads/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI in Google Ads: wat echt automatiseren?</a>.
+            </p>
+          </section>
+
+          <!-- §8 Meten -->
+          <section class="scroll-mt-24">
+            <h2 id="meten" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">8. Meten en attributie in AI-tijdperk</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Klassieke attributie (last-click, first-click) is steeds minder betrouwbaar door cookie-beperkingen, privacy-wetgeving en verspreide touchpoints. AI helpt op drie manieren:
+            </p>
+            <ul class="space-y-3">
+              <li class="bg-white rounded-xl p-4 border border-warm-grey/30 text-sm text-text-secondary"><strong class="text-dark">Probabilistische attributie:</strong> AI-modellen schatten in welke kanalen bijdroegen aan conversie op basis van patronen, ook als cookies missen.</li>
+              <li class="bg-white rounded-xl p-4 border border-warm-grey/30 text-sm text-text-secondary"><strong class="text-dark">AI-visibility tracking:</strong> hoeveel van je "organic" traffic komt via AI-antwoorden (ChatGPT, Perplexity) ipv Google? Tools als Profound en Otterly meten dit.</li>
+              <li class="bg-white rounded-xl p-4 border border-warm-grey/30 text-sm text-text-secondary"><strong class="text-dark">Rapportage-automatisering:</strong> AI genereert maandelijkse narratieven uit je data. Menselijke consultant valideert en voegt strategie toe.</li>
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Zie ook
+              <a href="/kennisbank/geo-tracking-meten/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">GEO-tracking tools</a>
+              voor het AI-visibility stuk.
+            </p>
+          </section>
+
+          <!-- §9 Roadmap -->
+          <section class="scroll-mt-24">
+            <h2 id="roadmap" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">9. 30-60-90 roadmap</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Geen AI-marketing maturiteit van de ene op de andere dag. Gefaseerd:
+            </p>
+            <div class="space-y-5">
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 1</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 0–30 · Content + tooling</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Stel ChatGPT Pro/Claude Pro voor je marketing-team</li>
+                  <li>· Bouw style-guide + prompt-library voor je merk</li>
+                  <li>· Automate research + eerste drafts voor content</li>
+                  <li>· Meet: uren per post voor en na</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-violet/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 2</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 30–60 · Ads + email</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Activate Google Ads Smart Bidding + Performance Max</li>
+                  <li>· AI-gegenereerde ad copy-varianten testen</li>
+                  <li>· Email-segmentatie met AI (persona-based)</li>
+                  <li>· Track incrementele ROAS</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 3</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 60–90 · Strategisch</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· AI-visibility meten (ChatGPT, Perplexity) toevoegen aan KPI's</li>
+                  <li>· Customer journey-analyse met AI op klant-data</li>
+                  <li>· Rapportage-automatisering + team-dashboards</li>
+                  <li>· Roadmap: welke complexere AI-workflows voor komende 6 mnd?</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- §10 FAQ -->
+          <section class="scroll-mt-24">
+            <h2 id="faq" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">10. Veelgestelde vragen</h2>
+            <div class="space-y-3">
+              {faqs.map((f) => (
+                <details class="group bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                  <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-cream/50 transition-colors">
+                    <span class="font-bold text-dark pr-4">{f.q}</span>
+                    <svg class="w-5 h-5 text-indigo shrink-0 group-open:rotate-45 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-text-secondary leading-relaxed">
+                    {f.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </article>
+
+        <aside class="hidden lg:block">
+          <ReaderSidebar items={tocItems}>
+            <div slot="extra" class="mt-10 p-5 bg-white rounded-2xl border border-warm-grey/30">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Marketing-audit</p>
+              <p class="text-sm text-dark mb-4">Waar zitten quick wins in jouw marketing-stack?</p>
+              <a href="/offerte?dienst=online-marketing" class="text-sm font-bold text-indigo hover:text-dark transition-colors inline-flex items-center gap-1.5">
+                Gratis audit aanvragen
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </ReaderSidebar>
+        </aside>
+      </div>
+    </div>
+
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mt-24">
+      <div class="bg-dark text-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Volgende stap
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl leading-[1.05] mb-6">
+            Welke marketing-taak kan AI vanaf morgen uit jouw agenda halen?
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            We lopen samen jouw marketing-proces langs: waar is AI een boost, waar is het afleiding. Concreet, geen PowerPoint-futurologie.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/offerte?dienst=online-marketing" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-white hover:text-dark transition-colors duration-300 inline-flex items-center gap-2">
+              Marketing-audit aanvragen
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/diensten/marketing" class="px-8 py-4 border border-white/20 rounded-xl font-medium text-white hover:border-white transition-all duration-300">
+              Bekijk onze marketing-dienst
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

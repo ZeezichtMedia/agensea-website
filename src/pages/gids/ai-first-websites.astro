@@ -1,0 +1,505 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ReaderSidebar from '../../components/ReaderSidebar.astro';
+
+const lastUpdated = '20 april 2026';
+
+const tocItems: { slug: string; label: string; depth: 2 }[] = [
+  { slug: 'wat-is-ai-first', label: '1. Wat is een AI-first website?', depth: 2 },
+  { slug: 'vs-klassiek', label: '2. vs. klassieke website', depth: 2 },
+  { slug: 'bouwstenen', label: '3. De 5 bouwstenen', depth: 2 },
+  { slug: 'wanneer-nodig', label: '4. Wanneer is het nodig?', depth: 2 },
+  { slug: 'stack', label: '5. De tech-stack 2026', depth: 2 },
+  { slug: 'cms-keuze', label: '6. CMS: WordPress, headless of custom?', depth: 2 },
+  { slug: 'ai-features', label: '7. Welke AI-features écht werken', depth: 2 },
+  { slug: 'kosten', label: '8. Kosten en ROI', depth: 2 },
+  { slug: 'migratie', label: '9. Migratie-scenario', depth: 2 },
+  { slug: 'faq', label: '10. Veelgestelde vragen', depth: 2 },
+];
+
+const faqs = [
+  {
+    q: 'Wat is het verschil tussen een AI-first website en een gewone website?',
+    a: 'Een klassieke website toont iedereen dezelfde statische pagina. Een AI-first website past content, zoeken en flow aan op wie er binnenkomt — via real-time personalisatie, intelligente zoekfunctie of generatieve assistenten. De techniek eronder is bovendien AI-proof: schone HTML, snelle laadtijden, goede structured data.',
+  },
+  {
+    q: 'Kan ik mijn bestaande WordPress-site "AI-first" maken?',
+    a: 'Beperkt. Je kunt AI-features toevoegen (chatbot, smart search), maar de technische basis van veel WordPress-sites — traag, plugin-afhankelijk, gebrekkige structured data — beperkt wat haalbaar is. Voor een échte AI-first ervaring is vaak een migratie naar modern stack (Astro, Next.js) de betere investering.',
+  },
+  {
+    q: 'Is een AI-first website duurder dan een gewone website?',
+    a: 'Niet per se. De technische fundamenten (snelheid, structured data, moderne stack) kosten niet meer dan een kwaliteits-WordPress-build. AI-features als smart search of personalisatie voegen wel kosten toe, maar alleen als je ze daadwerkelijk bouwt — het is geen verplichting op dag één.',
+  },
+  {
+    q: 'Hoe meet ik of mijn website AI-first werkt?',
+    a: 'Drie metrics: PageSpeed score boven 95 (snelheid), volledige schema.org dekking (structured data), en aanwezigheid in ChatGPT- en Perplexity-antwoorden op relevante vragen. Die laatste is waar GEO-tracking (zie onze GEO-gids) om de hoek komt.',
+  },
+  {
+    q: 'Welke CMS is het meest geschikt voor een AI-first website?',
+    a: 'Voor de meeste mkb: een headless CMS (Sanity, Strapi, Payload, Contentful) gekoppeld aan een moderne frontend (Astro, Next.js). WordPress kan voor kleine sites nog werken, maar weegt steeds zwaarder op performance. Custom is alleen voor wie zeer specifieke eisen heeft.',
+  },
+  {
+    q: 'Hoe lang duurt een AI-first website-bouwen?',
+    a: 'Een standaard AI-first website (content-portal achtig) bouwt een goed team in 6-10 weken. Complexe sites met maatwerk AI-features duren 3-5 maanden. Migratie vanuit bestaand systeem voegt meestal 2-4 weken toe voor data-overzetting en URL-redirects.',
+  },
+];
+---
+
+<Layout
+  title="AI-first websites: de complete gids [2026]"
+  description="Wat is een AI-first website concreet? Van performance-basis tot generatieve features: de complete gids over websites bouwen voor het AI-tijdperk."
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://agensea.nl/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Gidsen', 'item': 'https://agensea.nl/gids/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'AI-first websites', 'item': 'https://agensea.nl/gids/ai-first-websites/' }
+    ]
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'AI-first websites: de complete gids',
+    'description': 'Complete gids over AI-first websites voor mkb — bouwstenen, stack, features en kosten.',
+    'author': { '@type': 'Organization', 'name': 'Agensea' },
+    'publisher': { '@type': 'Organization', 'name': 'Agensea', 'url': 'https://agensea.nl/' },
+    'dateModified': '2026-04-20',
+    'mainEntityOfPage': 'https://agensea.nl/gids/ai-first-websites/'
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+    }))
+  })} />
+
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-24">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-secondary">
+        <a href="/" class="hover:text-indigo transition-colors">Home</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <a href="/gids" class="hover:text-indigo transition-colors">Gidsen</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <span class="text-dark">AI-first websites</span>
+      </nav>
+
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+          <span class="w-8 h-[2px] bg-indigo"></span>
+          Gids · Websites
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
+          AI-first websites: <span class="text-indigo">de complete gids</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          "AI-first" is een term waar iedereen iets anders onder verstaat. Deze gids geeft concreet antwoord: wat betekent het technisch, welke features dragen bij, en wanneer is het voor jouw bedrijf de juiste investering?
+        </p>
+        <p class="text-sm text-text-secondary/70 mb-10">
+          Laatst bijgewerkt: {lastUpdated} · Leestijd ±16 min
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte?dienst=nieuwe-website" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-dark transition-colors duration-300 inline-flex items-center gap-2">
+            Plan een website-scan
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#wat-is-ai-first" class="px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Direct naar de gids
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-16 xl:gap-24">
+        <article id="article-body" class="min-w-0 space-y-20 max-w-3xl">
+
+          <!-- §1 Wat is AI-first? -->
+          <section class="scroll-mt-24">
+            <h2 id="wat-is-ai-first" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">1. Wat is een AI-first website?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              <strong class="text-dark">Een AI-first website is gebouwd met de aanname dat AI-modellen een grote rol spelen in hoe bezoekers je site vinden, gebruiken en doorzoeken — en dat de fundamenten van de site daarop zijn afgestemd.</strong>
+            </p>
+            <p class="text-text-secondary leading-relaxed mb-6">
+              Concreet vertaalt zich dat in vier lagen:
+            </p>
+            <div class="space-y-3">
+              <div class="bg-white rounded-2xl p-5 border border-warm-grey/30">
+                <p class="font-bold text-dark text-sm mb-1">1. Technisch fundament</p>
+                <p class="text-sm text-text-secondary">Razendsnelle laadtijden, perfect gerenderde HTML voor crawlers (ook AI-bots), schone structured data — zodat LLM's de site accuraat kunnen lezen en citeren.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-5 border border-warm-grey/30">
+                <p class="font-bold text-dark text-sm mb-1">2. Content-laag</p>
+                <p class="text-sm text-text-secondary">Content is niet alleen voor mensen geschreven, maar ook citeerbaar voor AI-zoekmachines (statement-first, FAQ-schema, vraag-koppen).</p>
+              </div>
+              <div class="bg-white rounded-2xl p-5 border border-warm-grey/30">
+                <p class="font-bold text-dark text-sm mb-1">3. AI-features op de site</p>
+                <p class="text-sm text-text-secondary">Smart search, chatbot, personalisatie, generatieve assistenten — waar ze écht waarde toevoegen, niet als gimmick.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-5 border border-warm-grey/30">
+                <p class="font-bold text-dark text-sm mb-1">4. Meetbaarheid</p>
+                <p class="text-sm text-text-secondary">Verschijnt de site in AI-antwoorden? Welke features worden gebruikt? Wat levert het op? Dashboards die dat meten, niet alleen Google Analytics.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Dieper ingaan op wat "AI-first" concreet betekent?
+              <a href="/kennisbank/wat-maakt-website-ai-first/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Wat maakt een website AI-first in 2026?</a>
+            </p>
+          </section>
+
+          <!-- §2 vs klassiek -->
+          <section class="scroll-mt-24">
+            <h2 id="vs-klassiek" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">2. AI-first vs klassieke website</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De belangrijkste verschillen:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4"></th>
+                    <th class="px-6 py-4">Klassieke website</th>
+                    <th class="px-6 py-4">AI-first website</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Target</td>
+                    <td class="px-6 py-4">Mensen via Google</td>
+                    <td class="px-6 py-4">Mensen + AI-zoekmachines</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Stack</td>
+                    <td class="px-6 py-4">WordPress + plugins</td>
+                    <td class="px-6 py-4">Astro / Next.js + headless CMS</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Snelheid</td>
+                    <td class="px-6 py-4">60-85 PageSpeed</td>
+                    <td class="px-6 py-4">95+ PageSpeed</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Structured data</td>
+                    <td class="px-6 py-4">Basis via plugin</td>
+                    <td class="px-6 py-4">Volledig, handmatig gecureerd</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">AI-features</td>
+                    <td class="px-6 py-4">Geen of plugin-chatbot</td>
+                    <td class="px-6 py-4">Smart search, RAG, personalisatie</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Content</td>
+                    <td class="px-6 py-4">Voor mensen geschreven</td>
+                    <td class="px-6 py-4">Voor mensen + citeerbaar voor AI</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- §3 Bouwstenen -->
+          <section class="scroll-mt-24">
+            <h2 id="bouwstenen" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">3. De 5 bouwstenen</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Elke AI-first website rust op dezelfde fundamenten. Zonder deze vijf wordt elk AI-feature een luxe-extra op een zwak fundament:
+            </p>
+            <ol class="space-y-4">
+              {[
+                ['Performance-first', 'PageSpeed 95+, LCP <1.5s, INP <200ms. Zowel voor UX als voor SEO/GEO-crawlers die content binnen seconden moeten kunnen renderen.'],
+                ['Volledig gerenderde HTML', 'Server-side rendering of static site generation. JavaScript-only sites (SPA\'s) worden door AI-crawlers half of niet gelezen.'],
+                ['Rijke structured data', 'Organization, Article, FAQPage, BreadcrumbList, Person schemas. Correct ingevuld, niet half-automatisch gegenereerd door plugins.'],
+                ['Moderne content-architectuur', 'Scan-vriendelijk, statement-first, vraag-koppen, FAQ-secties. Content die én voor mensen leest én voor LLM\'s citeerbaar is.'],
+                ['Meetbaarheid in AI-search', 'Tracking van waar je merk verschijnt in ChatGPT, Perplexity en Gemini — niet alleen Google-rankings.'],
+              ].map(([title, desc], i) => (
+                <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                  <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">{i + 1}</div>
+                  <div>
+                    <h3 class="font-display font-bold text-xl text-dark mb-1">{title}</h3>
+                    <p class="text-text-secondary text-sm">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              De diepere context voor elk van deze pijlers bespreken we in onze
+              <a href="/gids/geo/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">GEO-gids</a>
+              en in losse posts over
+              <a href="/kennisbank/core-web-vitals-2026/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Core Web Vitals</a>
+              en
+              <a href="/kennisbank/schema-org-voor-ai/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">schema.org voor AI</a>.
+            </p>
+          </section>
+
+          <!-- §4 Wanneer nodig? -->
+          <section class="scroll-mt-24">
+            <h2 id="wanneer-nodig" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">4. Wanneer is AI-first nodig?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Niet voor iedereen. Drie scenario's waarin het loont, en één waarin niet.
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Wél</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">B2B-bureau, SaaS, consultancy</h3>
+                <p class="text-sm text-text-secondary">Klanten doen research online, vergelijken bureaus, vragen AI-tools om advies. Vindbaarheid in AI-antwoorden is direct verkoop-kritiek.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Wél</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Kennis-rijk bedrijf (adviseurs, makelaars, specialists)</h3>
+                <p class="text-sm text-text-secondary">Je content is je positionering. Citeerbare content + AI-features (search, assistent) worden conversie-drivers.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Wél</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Webshop met breed assortiment</h3>
+                <p class="text-sm text-text-secondary">Smart search en AI-gedreven productaanbeveling verslaan platte filters in conversie.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30 opacity-70">
+                <p class="text-xs font-bold text-red-500 uppercase tracking-[0.15em] mb-2">Niet</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Pure portfolio-site van 1 pagina</h3>
+                <p class="text-sm text-text-secondary">Eén-pagina visitekaartjes hebben geen content-volume om van AI-search te profiteren. Focus dan op goed design en performance, geen AI-features.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- §5 Tech stack -->
+          <section class="scroll-mt-24">
+            <h2 id="stack" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">5. De tech-stack in 2026</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De modern-stack-discussie is niet meer "WordPress vs niet-WordPress" maar "welke frontend-stack past bij jouw team?":
+            </p>
+            <div class="grid md:grid-cols-3 gap-5">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Astro</h3>
+                <p class="text-xs text-text-secondary/80 mb-3"><strong class="text-dark">Beste voor:</strong> content-rijke sites, bureau-sites, kennisbanken</p>
+                <p class="text-sm text-text-secondary">Statische basis + islands voor interactiviteit. Minimale JS = snelste sites. Wat we zelf gebruiken.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Next.js</h3>
+                <p class="text-xs text-text-secondary/80 mb-3"><strong class="text-dark">Beste voor:</strong> apps, complexe interactie, webshops</p>
+                <p class="text-sm text-text-secondary">React-ecosysteem, server components, edge-functies. Flexibel, iets zwaarder dan Astro voor pure content.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">SvelteKit</h3>
+                <p class="text-xs text-text-secondary/80 mb-3"><strong class="text-dark">Beste voor:</strong> apps met soepele UX</p>
+                <p class="text-sm text-text-secondary">Compact, performant, moderne DX. Kleinere community dan React-ecosystem.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Uitgewerkt:
+              <a href="/kennisbank/astro-vs-nextjs-vs-sveltekit/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Astro vs Next.js vs SvelteKit: stack-keuze 2026</a>.
+            </p>
+          </section>
+
+          <!-- §6 CMS-keuze -->
+          <section class="scroll-mt-24">
+            <h2 id="cms-keuze" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">6. CMS: WordPress, headless of custom?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De CMS-beslissing raakt je content-team hard. De opties:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['Headless CMS (Sanity, Strapi, Payload, Contentful)', 'Backend voor content, frontend naar keuze. Beste balans tussen editor-vriendelijkheid en frontend-flexibiliteit. Default aanbeveling.'],
+                ['WordPress', 'Vertrouwd maar traag wordend. Voor simpele blog-sites kan het nog, maar performance en AI-readiness liggen per definitie achter.'],
+                ['Git-based (Markdown)', 'Content als markdown in je repo. Supersnel, maar vereist dat content-team met Git om kan gaan. Goed voor dev-heavy teams.'],
+                ['Volledig custom', 'Eigen CMS op maat. Alleen zinnig bij zeer specifieke eisen; bijna nooit first choice.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Dieper:
+              <a href="/kennisbank/headless-cms-vs-wordpress/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Headless CMS of WordPress: keuze voor je content-team</a>.
+            </p>
+          </section>
+
+          <!-- §7 AI-features -->
+          <section class="scroll-mt-24">
+            <h2 id="ai-features" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">7. Welke AI-features écht werken</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Niet elk AI-feature voegt waarde toe. Vier die consistent doen, en drie gimmicks om te vermijden:
+            </p>
+            <div class="space-y-5">
+              <div class="p-6 bg-white rounded-2xl border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Werken wél</p>
+                <ul class="space-y-2 text-sm text-text-secondary">
+                  <li>· <strong class="text-dark">Smart search</strong> (semantic + RAG): vervangt platte zoekfunctie. Bezoekers vinden relevanter materiaal, dwell time stijgt.</li>
+                  <li>· <strong class="text-dark">Content-assistent</strong>: een chatbot die je kennisbank kent en vragen beantwoordt met bronverwijzing.</li>
+                  <li>· <strong class="text-dark">Intake-formulieren met intelligence</strong>: auto-classificatie, slimme vervolgvragen, routing.</li>
+                  <li>· <strong class="text-dark">Personalisatie op intent, niet op identiteit</strong>: aanpassing aan wat iemand leest, zonder tracking van wie ze zijn.</li>
+                </ul>
+              </div>
+              <div class="p-6 bg-white rounded-2xl border border-warm-grey/30">
+                <p class="text-xs font-bold text-red-500 uppercase tracking-[0.15em] mb-3">Werken niet (of nauwelijks)</p>
+                <ul class="space-y-2 text-sm text-text-secondary">
+                  <li>· <strong class="text-dark">Pop-up chatbots</strong> die elke bezoeker aanvallen: irritatie-factor &gt; conversie-factor.</li>
+                  <li>· <strong class="text-dark">AI-gegenereerde hero-teksten</strong> die elke refresh veranderen: verwarrend, gemiste merkconsistentie.</li>
+                  <li>· <strong class="text-dark">Creepy personalisatie</strong> met naam-vermelding van bezoeker zonder context: voelt invasief.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Losse posts:
+              <a href="/kennisbank/ai-search-op-je-website/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI-search op je eigen website</a>,
+              <a href="/kennisbank/personalisatie-zonder-creepy/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Personalisatie zonder creepy factor</a>.
+            </p>
+          </section>
+
+          <!-- §8 Kosten -->
+          <section class="scroll-mt-24">
+            <h2 id="kosten" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">8. Kosten en ROI</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              Indicaties voor een serieuze AI-first website-implementatie:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden mb-6">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4">Type project</th>
+                    <th class="px-6 py-4">Eenmalig</th>
+                    <th class="px-6 py-4">Tijd</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Modern stack + basis AI-features</td>
+                    <td class="px-6 py-4">€8.000–€20.000</td>
+                    <td class="px-6 py-4">6-10 weken</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Met smart search + assistent</td>
+                    <td class="px-6 py-4">€15.000–€35.000</td>
+                    <td class="px-6 py-4">10-14 weken</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Met personalisatie + edge</td>
+                    <td class="px-6 py-4">€25.000–€60.000</td>
+                    <td class="px-6 py-4">14-20 weken</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Webshop AI-first</td>
+                    <td class="px-6 py-4">€30.000–€80.000+</td>
+                    <td class="px-6 py-4">16-24 weken</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Maandelijks komt daar LLM-cost bij (gemiddeld €50-300/mnd), plus hosting en onderhoud. De ROI komt doorgaans via drie kanalen: hogere conversie door betere UX, meer vindbaarheid in AI-zoekmachines, en minder tijd voor het interne team aan repetitieve vragen (content-assistent).
+            </p>
+          </section>
+
+          <!-- §9 Migratie -->
+          <section class="scroll-mt-24">
+            <h2 id="migratie" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">9. Migratie van bestaand systeem</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De meeste mkb-klanten komen van een oude WordPress-installatie. De migratie-volgorde:
+            </p>
+            <ol class="space-y-3 bg-white rounded-2xl p-6 border border-warm-grey/30">
+              <li class="text-text-secondary text-sm"><strong class="text-dark">1. Content-audit.</strong> Inventariseer bestaande pagina's, bepaal wat blijft, wat wordt herschreven, wat weg.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">2. URL-mapping.</strong> Oude URL's naar nieuwe — cruciaal voor SEO-behoud.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">3. Technische basis bouwen.</strong> Stack + CMS + hosting ingericht voordat content wordt gemigreerd.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">4. Content migreren.</strong> In batches, kritieke pagina's eerst.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">5. AI-features toevoegen.</strong> Pas nadat de basis solide staat.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">6. Soft-launch + redirects.</strong> Nieuwe site live, oude URL's redirecten, 14 dagen monitoring.</li>
+              <li class="text-text-secondary text-sm"><strong class="text-dark">7. AI-visibility tracken.</strong> Baseline en daarna maandelijkse reviews.</li>
+            </ol>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Stap-voor-stap uitgewerkt:
+              <a href="/kennisbank/wordpress-naar-astro-migreren/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">WordPress naar Astro migreren: 7-stappen plan</a>.
+            </p>
+          </section>
+
+          <!-- §10 FAQ -->
+          <section class="scroll-mt-24">
+            <h2 id="faq" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">10. Veelgestelde vragen</h2>
+            <div class="space-y-3">
+              {faqs.map((f) => (
+                <details class="group bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                  <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-cream/50 transition-colors">
+                    <span class="font-bold text-dark pr-4">{f.q}</span>
+                    <svg class="w-5 h-5 text-indigo shrink-0 group-open:rotate-45 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-text-secondary leading-relaxed">
+                    {f.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </article>
+
+        <aside class="hidden lg:block">
+          <ReaderSidebar items={tocItems}>
+            <div slot="extra" class="mt-10 p-5 bg-white rounded-2xl border border-warm-grey/30">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Website-scan</p>
+              <p class="text-sm text-dark mb-4">Hoe scoort jouw huidige site op AI-first criteria?</p>
+              <a href="/offerte?dienst=nieuwe-website" class="text-sm font-bold text-indigo hover:text-dark transition-colors inline-flex items-center gap-1.5">
+                Gratis scan aanvragen
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </ReaderSidebar>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mt-24">
+      <div class="bg-dark text-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Volgende stap
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl leading-[1.05] mb-6">
+            Hoe AI-first is jouw huidige website?
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            Een website-scan meet performance, structured data, content-citeerbaarheid en AI-visibility. Je krijgt een concreet rapport met prioriteiten.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/offerte?dienst=nieuwe-website" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-white hover:text-dark transition-colors duration-300 inline-flex items-center gap-2">
+              Website-scan aanvragen
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/diensten/websites" class="px-8 py-4 border border-white/20 rounded-xl font-medium text-white hover:border-white transition-all duration-300">
+              Bekijk onze website-dienst
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

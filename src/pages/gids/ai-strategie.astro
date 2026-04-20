@@ -1,0 +1,489 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ReaderSidebar from '../../components/ReaderSidebar.astro';
+
+const lastUpdated = '20 april 2026';
+
+const tocItems: { slug: string; label: string; depth: 2 }[] = [
+  { slug: 'wat-is-ai-strategie', label: '1. Wat is AI-strategie?', depth: 2 },
+  { slug: 'waarom-nu', label: '2. Waarom nú een strategie?', depth: 2 },
+  { slug: 'readiness', label: '3. AI-readiness meten', depth: 2 },
+  { slug: 'pijlers', label: '4. De 5 strategische pijlers', depth: 2 },
+  { slug: 'eerste-project', label: '5. Het eerste project kiezen', depth: 2 },
+  { slug: 'team', label: '6. Team en change management', depth: 2 },
+  { slug: 'governance', label: '7. Governance en compliance', depth: 2 },
+  { slug: 'budget-roi', label: '8. Budget en ROI', depth: 2 },
+  { slug: 'roadmap', label: '9. 6-12 maand roadmap', depth: 2 },
+  { slug: 'faq', label: '10. Veelgestelde vragen', depth: 2 },
+];
+
+const faqs = [
+  {
+    q: 'Heeft een mkb van 10-50 mensen eigenlijk een AI-strategie nodig?',
+    a: 'Ja, maar geen 40-pagina PowerPoint. Een mkb-AI-strategie is meestal 2-3 pagina\'s: welke 3-5 processen automatiseren we, wie is eigenaar, welk budget en welke compliance-eisen. Zonder deze afspraak krijgt elke afdeling een losse AI-proef — rommelig en duur.',
+  },
+  {
+    q: 'Wie in onze organisatie moet AI-strategie eigenaar zijn?',
+    a: 'Niet IT per se. Voor de meeste mkb is de directeur of COO beter — die kijkt cross-functioneel. IT levert tools en infrastructuur, maar strategische keuzes over welke processen wel/niet automatiseren horen op directie-niveau.',
+  },
+  {
+    q: 'Hoe voorkom ik dat we tien losse AI-pilots doen zonder samenhang?',
+    a: 'Drie regels: (1) één AI-eigenaar in de organisatie, (2) elk pilot vraagt vooraf goedkeuring tegen je strategie, (3) kwartaalreview waarin pilots gestopt of opgeschaald worden. Zonder deze structuur krijg je "AI-theater" — veel beweging, weinig resultaat.',
+  },
+  {
+    q: 'Wat is een realistisch AI-budget voor een mkb?',
+    a: 'Voor een bedrijf van 20-100 FTE in eerste jaar: €30.000-100.000 is een redelijke range voor tools, consultants en eerste custom-implementaties. Dat bevat pilot-budget, externe expertise en tooling. Het is geen kostenpost maar een investering met typisch 12-18 maanden terugverdientijd.',
+  },
+  {
+    q: 'Hoe overtuig ik medewerkers dat AI hun baan niet overneemt?',
+    a: 'Met eerlijkheid: AI neemt taken over, geen banen. Het gebruikelijke effect: medewerkers krijgen minder repetitieve werk en meer complexere taken. Expliciet communiceren, trainen, en mensen mee laten denken welke taken ze graag zouden wegdelegeren werkt beter dan algemene geruststelling.',
+  },
+  {
+    q: 'Is AI al volwassen genoeg voor kritieke bedrijfsprocessen?',
+    a: 'Dat hangt af van de tolerantie. Voor 95-98% accuracy is AI prima: klantenservice-triage, content-productie, research. Voor 100% vereist (juridisch, medisch, financieel) blijft mens-in-de-loop noodzakelijk. De vraag is niet "kan AI dit?" maar "wat is mijn acceptabele foutmarge hier?"',
+  },
+];
+---
+
+<Layout
+  title="AI-strategie voor MKB: de complete gids [2026]"
+  description="Geen tactisch AI-avontuur meer. Deze gids helpt mkb-directies hun AI-strategie vormgeven: van readiness-meting tot roadmap, governance en ROI."
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://agensea.nl/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Gidsen', 'item': 'https://agensea.nl/gids/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'AI-strategie', 'item': 'https://agensea.nl/gids/ai-strategie/' }
+    ]
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'AI-strategie voor MKB: de complete gids',
+    'description': 'Complete gids voor mkb-directies over AI-strategie, readiness en governance.',
+    'author': { '@type': 'Organization', 'name': 'Agensea' },
+    'publisher': { '@type': 'Organization', 'name': 'Agensea', 'url': 'https://agensea.nl/' },
+    'dateModified': '2026-04-20',
+    'mainEntityOfPage': 'https://agensea.nl/gids/ai-strategie/'
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+    }))
+  })} />
+
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-24">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-secondary">
+        <a href="/" class="hover:text-indigo transition-colors">Home</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <a href="/gids" class="hover:text-indigo transition-colors">Gidsen</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <span class="text-dark">AI-strategie</span>
+      </nav>
+
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+          <span class="w-8 h-[2px] bg-indigo"></span>
+          Gids · Strategie
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
+          AI-strategie voor MKB: <span class="text-indigo">de complete gids</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          Niet "welke tool moeten we kopen?" Wél "hoe maken we als organisatie de juiste keuzes rond AI?" Deze gids is voor mkb-directies die AI niet willen tactisch doen, maar strategisch.
+        </p>
+        <p class="text-sm text-text-secondary/70 mb-10">
+          Laatst bijgewerkt: {lastUpdated} · Leestijd ±19 min
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte?dienst=software" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-dark transition-colors duration-300 inline-flex items-center gap-2">
+            Plan een AI-strategie-gesprek
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#wat-is-ai-strategie" class="px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Direct naar de gids
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-16 xl:gap-24">
+        <article id="article-body" class="min-w-0 space-y-20 max-w-3xl">
+
+          <!-- §1 Wat is AI-strategie? -->
+          <section class="scroll-mt-24">
+            <h2 id="wat-is-ai-strategie" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">1. Wat is AI-strategie?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              <strong class="text-dark">AI-strategie is een gedeeld kader dat bepaalt welke plaats AI in je organisatie inneemt: welke processen wel en niet, welke governance en budgetten, welke risicobereidheid en welke snelheid.</strong>
+            </p>
+            <div class="bg-white rounded-3xl border border-warm-grey/30 p-8 mb-6">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Kort gezegd</p>
+              <p class="text-dark text-lg leading-relaxed">
+                AI-tactiek is kiezen tussen ChatGPT en Claude. AI-strategie is kiezen wat je er mee doet — en vooral: wat niet.
+              </p>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Voor een mkb is AI-strategie geen 40-pagina document. Het is 2-3 pagina's met heldere keuzes: welke 3-5 processen, wie is eigenaar, welk budget, welke compliance. Maar zonder deze afspraak krijg je wat wij "AI-theater" noemen — losse pilots, onbeheerd, zonder samenhang.
+            </p>
+          </section>
+
+          <!-- §2 Waarom nu -->
+          <section class="scroll-mt-24">
+            <h2 id="waarom-nu" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">2. Waarom nú een strategie?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Drie krachten maken 2026 het kantelpunt waarop "losse experimenten" niet meer volstaan:
+            </p>
+            <div class="grid md:grid-cols-3 gap-5">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">3x</p>
+                <p class="text-sm text-dark font-bold mb-2">meer AI-tools per organisatie</p>
+                <p class="text-sm text-text-secondary">Medewerkers adopten zelf AI-tools. Zonder strategie ontstaat shadow-AI met data-privacy- en consistentie-risico's.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">EU AI Act</p>
+                <p class="text-sm text-dark font-bold mb-2">volledig van kracht</p>
+                <p class="text-sm text-text-secondary">Compliance-eisen gelden vanaf augustus 2026. Zonder strategie kom je in reactieve modus.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">Concurrent</p>
+                <p class="text-sm text-dark font-bold mb-2">differentiatie neemt toe</p>
+                <p class="text-sm text-text-secondary">Bedrijven die AI strategisch benutten versnellen meetbaar. Achterblijven = concurrentieverlies binnen 18 maanden.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- §3 Readiness -->
+          <section class="scroll-mt-24">
+            <h2 id="readiness" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">3. AI-readiness meten</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Voordat je AI-strategie schrijft, moet je weten waar je staat. Onze korte readiness-scan bestrijkt 5 dimensies:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['Data-readiness', 'Is je bedrijfsdata op orde (gestructureerd, toegankelijk, gedocumenteerd)? Zonder data-basis is AI-automation leeg.'],
+                ['Procesduidelijkheid', 'Zijn je kernprocessen beschreven? AI kan alleen automatiseren wat je kunt benoemen.'],
+                ['Tech-stack modernheid', 'Werkt je team op moderne SaaS (API-gedreven), of zitten kernprocessen vast in legacy-systemen?'],
+                ['Team-volwassenheid', 'Hoeveel medewerkers zijn AI-comfortabel? Onder 30% wordt elk uitrol-project zwaar.'],
+                ['Leiderschap-commitment', 'Is directie bereid te investeren én te experimenteren? Half-hearted AI-projecten falen consistent.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Uitgewerkt: <a href="/kennisbank/ai-readiness-scan/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI-readiness scan: 10 vragen voor je mkb-directie</a>.
+            </p>
+          </section>
+
+          <!-- §4 Pijlers -->
+          <section class="scroll-mt-24">
+            <h2 id="pijlers" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">4. De 5 strategische pijlers</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Elke AI-strategie rust op dezelfde 5 pijlers. Als één ontbreekt, stokt de uitvoering:
+            </p>
+            <ol class="space-y-5">
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">1</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Visie</h3>
+                  <p class="text-text-secondary text-sm">Waar wil je als organisatie zijn over 2-3 jaar met AI? Welk proberen we te worden — en wat doen we bewust niet?</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">2</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Governance</h3>
+                  <p class="text-text-secondary text-sm">Wie beslist wat? Welke AI-tools zijn toegestaan, welke niet? Hoe gaan we om met data en privacy? Wie is eindverantwoordelijk?</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">3</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Mensen</h3>
+                  <p class="text-text-secondary text-sm">Welke rollen, welke training, welke cultuur? Een AI-strategie zonder mensenplan is onuitvoerbaar.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">4</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Data</h3>
+                  <p class="text-text-secondary text-sm">Welke data is voor AI beschikbaar? Wat moet eerst op orde komen voordat AI er succesvol op kan werken?</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">5</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Technologie</h3>
+                  <p class="text-text-secondary text-sm">Build-of-buy-keuzes, welke leveranciers, welke infrastructuur. Meest tactisch pijler — maar zonder basis geen uitvoering.</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- §5 Eerste project -->
+          <section class="scroll-mt-24">
+            <h2 id="eerste-project" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">5. Het eerste project kiezen</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Het eerste AI-project zet de toon voor alle volgende. Onze drie criteria voor het eerste pilot:
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">1. Snelle terugverdientijd (<6 maanden)</h3>
+                <p class="text-sm text-text-secondary">Kies iets dat binnen 6 maanden meetbaar oplevert. Langere pilots lopen vast in politiek en komen zelden af.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">2. Duidelijke succes-metrics</h3>
+                <p class="text-sm text-text-secondary">Kies een proces waar je "slagen" kunt definiëren. Zonder baseline kan je niet leren.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">3. Laag risico bij falen</h3>
+                <p class="text-sm text-text-secondary">Niet starten met je kritischste bedrijfsproces. Kies iets waar een mislukking een leermoment is, geen crisis.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Uitgewerkt met beslisboom: <a href="/kennisbank/eerste-ai-project-kiezen/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Eerste AI-project kiezen voor directies</a>.
+            </p>
+          </section>
+
+          <!-- §6 Team -->
+          <section class="scroll-mt-24">
+            <h2 id="team" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">6. Team en change management</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De techniek is het makkelijke deel. Mensen meenemen is de echte werk. Onze aanpak:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['Eerlijke communicatie vooraf', 'AI-strategie delen met team zodra ze er is. Niet als surprise. Angst gedijt in informatie-vacuüm.'],
+                ['AI-champion per afdeling', 'Identificeer per team 1-2 mensen die enthousiast zijn en maak hen eerst expert. Zij worden je internal multipliers.'],
+                ['Training op actuele workflow', 'Abstract "AI-training" werkt niet. Training op specifieke dagelijkse workflow wél.'],
+                ['Expliciet benoemen wat NIET verandert', 'Mensen vrezen vooral ongekende verandering. Wat blijft hetzelfde is belangrijker dan wat verandert.'],
+                ['Early wins zichtbaar maken', 'Zodra pilot resultaat laat zien: delen met hele organisatie. Bouwt momentum en vertrouwen.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Diepgaander: <a href="/kennisbank/ai-change-management/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI-change management: adoptie in je team</a>.
+            </p>
+          </section>
+
+          <!-- §7 Governance -->
+          <section class="scroll-mt-24">
+            <h2 id="governance" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">7. Governance en compliance</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Drie domeinen die je expliciet moet afdekken:
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">EU AI Act</h3>
+                <p class="text-sm text-text-secondary">Voor meeste mkb minimaal-risico categorie. Wel transparantie-eisen bij chatbots en gegeneerde content. Zie <a href="/kennisbank/eu-ai-act-mkb-2026/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">EU AI Act voor mkb</a>.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">AVG / data-privacy</h3>
+                <p class="text-sm text-text-secondary">Geen persoonsdata in publieke LLM's zonder DPA. Zakelijke tiers van OpenAI/Anthropic + Azure/AWS Bedrock voor EU-conformiteit.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Interne AI-policy</h3>
+                <p class="text-sm text-text-secondary">Schrijf 1-pagina policy: welke tools toegestaan, welke data-types mogen erin, welke checks voor output, wie te contacten bij twijfel.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Rollen en verantwoordelijkheden: <a href="/kennisbank/ai-governance-mkb/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AI-governance voor mkb</a>.
+            </p>
+          </section>
+
+          <!-- §8 Budget ROI -->
+          <section class="scroll-mt-24">
+            <h2 id="budget-roi" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">8. Budget en ROI</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              Realistisch eerste-jaar-budget voor een 20-100 FTE mkb:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden mb-6">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4">Categorie</th>
+                    <th class="px-6 py-4">Eerste jaar</th>
+                    <th class="px-6 py-4">Daarna per jaar</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Tools en licenties</td>
+                    <td class="px-6 py-4">€5.000–€15.000</td>
+                    <td class="px-6 py-4">€10.000–€25.000</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Externe expertise</td>
+                    <td class="px-6 py-4">€10.000–€30.000</td>
+                    <td class="px-6 py-4">€5.000–€15.000</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Custom implementaties (1-2)</td>
+                    <td class="px-6 py-4">€15.000–€50.000</td>
+                    <td class="px-6 py-4">€10.000–€30.000</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Training en change</td>
+                    <td class="px-6 py-4">€3.000–€10.000</td>
+                    <td class="px-6 py-4">€2.000–€5.000</td>
+                  </tr>
+                  <tr class="bg-cream/30">
+                    <td class="px-6 py-4 font-bold text-dark">Totaal indicatie</td>
+                    <td class="px-6 py-4 font-bold text-dark">€33.000–€105.000</td>
+                    <td class="px-6 py-4 font-bold text-dark">€27.000–€75.000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Terugverdientijd voor goed gekozen projecten: 12-18 maanden. Niet elke euro komt terug in directe besparing — sommige AI-investeringen verdienen zich terug via snelheid-naar-markt, betere beslissingen of concurrent-differentiatie.
+            </p>
+          </section>
+
+          <!-- §9 Roadmap -->
+          <section class="scroll-mt-24">
+            <h2 id="roadmap" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">9. 6-12 maand roadmap</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              AI-strategie is een 12-maand project, geen sprint. Pragmatische fasering:
+            </p>
+            <div class="space-y-5">
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 1</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Maand 1-2 · Readiness en strategie</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· AI-readiness scan afnemen (intern of extern)</li>
+                  <li>· Directie-workshop: visie, doelen, niet-doelen</li>
+                  <li>· 2-3 pagina strategie-document opstellen</li>
+                  <li>· Eigenaar benoemen + governance-rollen</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 2</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Maand 3-6 · Pilots</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Eerste 2 pilots selecteren (quick wins, lage risk)</li>
+                  <li>· Pilots uitvoeren met duidelijke success-metrics</li>
+                  <li>· AI-champions per afdeling identificeren + trainen</li>
+                  <li>· Interne policy schrijven en communiceren</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 3</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Maand 7-12 · Opschaling en borging</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Succesvolle pilots opschalen, falende stoppen</li>
+                  <li>· Breder AI-portfolio: 3-5 productieve workflows</li>
+                  <li>· Jaarlijkse strategie-review en update</li>
+                  <li>· Benchmarking tegen concurrentie</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Van pilot naar productie: <a href="/kennisbank/ai-pilot-naar-productie/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Van AI-pilot naar productie: de sprong maken</a>.
+            </p>
+          </section>
+
+          <!-- §10 FAQ -->
+          <section class="scroll-mt-24">
+            <h2 id="faq" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">10. Veelgestelde vragen</h2>
+            <div class="space-y-3">
+              {faqs.map((f) => (
+                <details class="group bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                  <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-cream/50 transition-colors">
+                    <span class="font-bold text-dark pr-4">{f.q}</span>
+                    <svg class="w-5 h-5 text-indigo shrink-0 group-open:rotate-45 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-text-secondary leading-relaxed">
+                    {f.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </article>
+
+        <aside class="hidden lg:block">
+          <ReaderSidebar items={tocItems}>
+            <div slot="extra" class="mt-10 p-5 bg-white rounded-2xl border border-warm-grey/30">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Directie-gesprek</p>
+              <p class="text-sm text-dark mb-4">Een strategisch sparring-moment over AI in jouw organisatie?</p>
+              <a href="/contact" class="text-sm font-bold text-indigo hover:text-dark transition-colors inline-flex items-center gap-1.5">
+                Plan een gesprek
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </ReaderSidebar>
+        </aside>
+      </div>
+    </div>
+
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mt-24">
+      <div class="bg-dark text-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Volgende stap
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl leading-[1.05] mb-6">
+            Liever eerst strategisch denken dan tactisch doen?
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            We denken graag mee over welke richting AI in jouw organisatie moet uitgaan. Zonder commercieel trucje — gewoon een serieus gesprek.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/contact" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-white hover:text-dark transition-colors duration-300 inline-flex items-center gap-2">
+              Plan een gesprek
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/gids" class="px-8 py-4 border border-white/20 rounded-xl font-medium text-white hover:border-white transition-all duration-300">
+              Bekijk onze andere gidsen
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

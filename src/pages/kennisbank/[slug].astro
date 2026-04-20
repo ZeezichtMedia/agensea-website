@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import CTA from "../../components/CTA.astro";
 import AuthorBox from "../../components/blog/AuthorBox.astro";
+import ReaderSidebar from "../../components/ReaderSidebar.astro";
 import { authorsById } from "../../data/authors";
 
 export async function getStaticPaths() {
@@ -30,6 +31,15 @@ const author = entry.data.author ? authorsById[entry.data.author] : undefined;
 // Reading time
 const wordCount = entry.body ? entry.body.split(/\s+/).length : 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// TOC items for ReaderSidebar (h1-h3 only)
+const tocItems = headings
+    .filter((h: { depth: number }) => h.depth <= 3)
+    .map((h: { slug: string; text: string; depth: number }) => ({
+        slug: h.slug,
+        label: h.text,
+        depth: h.depth as 1 | 2 | 3,
+    }));
 
 // Schema.org BlogPosting JSON-LD — bevat author + image als beschikbaar.
 const schema = {
@@ -97,18 +107,6 @@ const breadcrumbSchema = {
     />
 
     <Navbar />
-
-    <!-- Reading Progress Bar -->
-    <div
-        id="progress-bar-container"
-        class="fixed top-0 left-0 right-0 z-[950] h-[3px] bg-transparent"
-    >
-        <div
-            id="progress-bar"
-            class="h-full bg-gradient-to-r from-indigo to-violet w-0 transition-none"
-        >
-        </div>
-    </div>
 
     <main id="main-content" class="min-h-screen pt-36 md:pt-44 pb-20">
         <!-- Hero Header -->
@@ -238,88 +236,9 @@ const breadcrumbSchema = {
                     }
                 </article>
 
-                <!-- Sticky Sidebar -->
+                <!-- Sticky Sidebar (shared component) -->
                 <aside class="hidden lg:block">
-                    <div class="sticky top-32">
-                        <!-- Reading Progress Circle -->
-                        <div class="flex items-center gap-3 mb-8">
-                            <div class="relative w-10 h-10">
-                                <svg
-                                    class="w-10 h-10 -rotate-90"
-                                    viewBox="0 0 36 36"
-                                >
-                                    <circle
-                                        cx="18"
-                                        cy="18"
-                                        r="15.5"
-                                        fill="none"
-                                        stroke-width="2"
-                                        class="stroke-warm-grey"></circle>
-                                    <circle
-                                        id="progress-circle"
-                                        cx="18"
-                                        cy="18"
-                                        r="15.5"
-                                        fill="none"
-                                        stroke-width="2.5"
-                                        stroke-linecap="round"
-                                        class="stroke-indigo"
-                                        stroke-dasharray="97.4"
-                                        stroke-dashoffset="97.4"
-                                        style="transition: stroke-dashoffset 0.15s ease-out;"
-                                    ></circle>
-                                </svg>
-                                <span
-                                    id="progress-pct"
-                                    class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-dark/70 tabular-nums"
-                                    >0%</span
-                                >
-                            </div>
-                            <span
-                                class="text-[10px] font-bold text-dark/40 uppercase tracking-[0.25em]"
-                                >Gelezen</span
-                            >
-                        </div>
-
-                        <!-- TOC -->
-                        {
-                            headings && headings.length > 0 && (
-                                <nav aria-label="Inhoudsopgave">
-                                    <p class="text-[10px] font-bold text-dark/40 uppercase tracking-[0.3em] mb-4">
-                                        Inhoudsopgave
-                                    </p>
-                                    <ul class="space-y-1 border-l border-warm-grey">
-                                        {headings
-                                            .filter((h) => h.depth <= 3)
-                                            .map((heading) => (
-                                                <li>
-                                                    <a
-                                                        href={`#${heading.slug}`}
-                                                        class:list={[
-                                                            "toc-link block py-1.5 text-sm text-dark/40 hover:text-indigo transition-all duration-300 border-l-2 border-transparent hover:border-indigo -ml-px",
-                                                            heading.depth ===
-                                                                1 &&
-                                                                "pl-4 font-bold",
-                                                            heading.depth ===
-                                                                2 &&
-                                                                "pl-4 font-medium",
-                                                            heading.depth ===
-                                                                3 &&
-                                                                "pl-8 text-xs",
-                                                        ]}
-                                                        data-heading-slug={
-                                                            heading.slug
-                                                        }
-                                                    >
-                                                        {heading.text}
-                                                    </a>
-                                                </li>
-                                            ))}
-                                    </ul>
-                                </nav>
-                            )
-                        }
-                    </div>
+                    <ReaderSidebar items={tocItems} />
                 </aside>
             </div>
         </div>
@@ -331,98 +250,24 @@ const breadcrumbSchema = {
     <Footer />
 </Layout>
 
-<!-- Reading Progress + Active TOC Script -->
 <script>
-    function initBlogReader() {
-        const article = document.getElementById("article-body");
-        const progressBar = document.getElementById("progress-bar");
-        const progressCircle = document.getElementById("progress-circle");
-        const progressPct = document.getElementById("progress-pct");
-        const tocLinks = document.querySelectorAll(".toc-link");
-
-        if (!article) return;
-        const articleEl = article as HTMLElement;
-
-        const circumference = 97.4;
-
-        function updateProgress() {
-            const articleRect = articleEl.getBoundingClientRect();
-            const articleTop = articleRect.top + window.scrollY;
-            const articleHeight = articleRect.height;
-            const windowHeight = window.innerHeight;
-            const scrolled = window.scrollY - articleTop + windowHeight * 0.3;
-            const total = articleHeight;
-
-            let pct = Math.min(Math.max(scrolled / total, 0), 1);
-            const pctRound = Math.round(pct * 100);
-
-            if (progressBar) {
-                progressBar.style.width = `${pctRound}%`;
-            }
-            if (progressCircle) {
-                const offset = circumference - pct * circumference;
-                progressCircle.style.strokeDashoffset = String(offset);
-            }
-            if (progressPct) {
-                progressPct.textContent = `${pctRound}%`;
-            }
-        }
-
-        function updateActiveTOC() {
-            if (tocLinks.length === 0) return;
-            const headingEls = articleEl.querySelectorAll(
-                "h1[id], h2[id], h3[id]",
-            );
-            let activeId = "";
-
-            headingEls.forEach((heading) => {
-                const rect = heading.getBoundingClientRect();
-                if (rect.top <= 150) {
-                    activeId = heading.id;
-                }
-            });
-
-            tocLinks.forEach((link) => {
-                const a = link as HTMLAnchorElement;
-                const slug = a.dataset.headingSlug;
-                if (slug === activeId) {
-                    a.classList.add(
-                        "text-indigo",
-                        "border-indigo",
-                        "font-semibold",
-                    );
-                    a.classList.remove("text-dark/40", "border-transparent");
-                } else {
-                    a.classList.remove(
-                        "text-indigo",
-                        "border-indigo",
-                        "font-semibold",
-                    );
-                    a.classList.add("text-dark/40", "border-transparent");
-                }
-            });
-        }
-
-        let ticking = false;
-        window.addEventListener("scroll", () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    updateProgress();
-                    updateActiveTOC();
-                    ticking = false;
-                });
-                ticking = true;
-            }
+    // Wrap alle markdown-tables in een horizontaal scrollbare container,
+    // zodat ze op smalle viewports niet uit de layout drukken.
+    function wrapTables() {
+        const tables = document.querySelectorAll(".markdown-body table");
+        tables.forEach((table) => {
+            const parent = table.parentElement;
+            if (!parent || parent.classList.contains("table-scroll-wrapper")) return;
+            const wrapper = document.createElement("div");
+            wrapper.className = "table-scroll-wrapper";
+            parent.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
         });
-
-        updateProgress();
-        updateActiveTOC();
     }
-
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initBlogReader);
+        document.addEventListener("DOMContentLoaded", wrapTables);
     } else {
-        initBlogReader();
+        wrapTables();
     }
 </script>
 
@@ -491,13 +336,38 @@ const breadcrumbSchema = {
     .markdown-body img {
         @apply rounded-2xl my-8 shadow-lg;
     }
+    /* Tables — responsive: wrap in overflow container via JS, smaller type on mobile */
+    .markdown-body .table-scroll-wrapper {
+        @apply w-full mb-8 overflow-x-auto rounded-xl border border-warm-grey;
+        -webkit-overflow-scrolling: touch;
+    }
+    .markdown-body .table-scroll-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+    .markdown-body .table-scroll-wrapper::-webkit-scrollbar-thumb {
+        @apply bg-warm-grey rounded-full;
+    }
     .markdown-body table {
-        @apply w-full mb-8 text-lg;
+        @apply w-full text-sm md:text-base mb-0;
+        min-width: 100%;
+    }
+    .markdown-body .table-scroll-wrapper table {
+        @apply mb-0;
+    }
+    /* Fallback voor tables die (nog) niet gewrapt zijn */
+    .markdown-body > table {
+        @apply mb-8;
+        display: block;
+        overflow-x: auto;
     }
     .markdown-body th {
-        @apply text-left font-bold text-dark pb-3 border-b-2 border-indigo/20;
+        @apply text-left font-bold text-dark py-3 px-4 border-b-2 border-indigo/20 whitespace-nowrap;
     }
     .markdown-body td {
-        @apply py-3 border-b border-warm-grey text-dark/75;
+        @apply py-3 px-4 border-b border-warm-grey text-dark/75 align-top;
+    }
+    .markdown-body th:first-child,
+    .markdown-body td:first-child {
+        @apply pl-4;
     }
 </style>

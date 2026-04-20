@@ -4,25 +4,50 @@ Disallow: /api/
 
 Sitemap: https://agensea.nl/sitemap-index.xml
 
-# Crawl-delay voor beleefde bots (niet gerespecteerd door Google, wel door Bing/Yandex)
+# Crawl-delay voor beleefde bots
 User-agent: Bingbot
 Crawl-delay: 2
 
 User-agent: Yandex
 Crawl-delay: 5
 
-# AI scrapers blokkeren — beschermt content tegen training datasets
+# AI-crawlers — als AI-first agency kiezen we bewust voor zichtbaarheid
+# boven content-bescherming. We willen geciteerd worden in antwoorden.
+# Achtergrond: /gids/geo en /kennisbank/ai-crawlers-robots-txt
+#
+# Trainings-bots (Allow): GPTBot, ClaudeBot, CCBot, anthropic-ai, Google-Extended, Applebot-Extended
+# Indexerings-bots (Allow): OAI-SearchBot, PerplexityBot, Perplexity-User, ChatGPT-User, Claude-Web
+
+# Expliciet toegestaan (documenteert onze keuze)
 User-agent: GPTBot
-Disallow: /
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
-User-agent: CCBot
-Disallow: /
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
-# Google-Extended bewust toegestaan: als marketingbureau willen we
-# vindbaar zijn in Gemini / AI Overviews van Google.
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

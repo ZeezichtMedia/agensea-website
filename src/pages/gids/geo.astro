@@ -1,0 +1,498 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ReaderSidebar from '../../components/ReaderSidebar.astro';
+
+const lastUpdated = '20 april 2026';
+
+const tocItems: { slug: string; label: string; depth: 2 }[] = [
+  { slug: 'wat-is-geo', label: '1. Wat is GEO?', depth: 2 },
+  { slug: 'geo-vs-seo', label: '2. GEO vs SEO vs AEO', depth: 2 },
+  { slug: 'waarom-nu', label: '3. Waarom GEO nú ertoe doet', depth: 2 },
+  { slug: 'hoe-llms-kiezen', label: '4. Hoe LLM’s content kiezen', depth: 2 },
+  { slug: 'technische-basis', label: '5. Technische fundamenten', depth: 2 },
+  { slug: 'content-citaten', label: '6. Content die AI citeert', depth: 2 },
+  { slug: 'per-engine', label: '7. Per AI-engine', depth: 2 },
+  { slug: 'meten', label: '8. Meten & tracken', depth: 2 },
+  { slug: 'roadmap', label: '9. 30-60-90 dagen roadmap', depth: 2 },
+  { slug: 'faq', label: '10. Veelgestelde vragen', depth: 2 },
+];
+
+const faqs = [
+  {
+    q: 'Vervangt GEO de klassieke SEO?',
+    a: 'Nee. GEO bouwt verder op SEO — je hebt nog steeds een technisch gezonde site, goede content en autoriteit nodig. Het verschil zit in hoe je content gestructureerd en geformuleerd wordt, zodat LLM’s het als citeerbaar antwoord herkennen in plaats van als één van tien resultaten.',
+  },
+  {
+    q: 'Hoe weet ik of mijn site al in ChatGPT of Perplexity verschijnt?',
+    a: 'Stel je merk- en dienstvragen zelf aan de AI-engines (“welke AI-first digital agencies in Nederland zijn er?”). Noteer of je genoemd wordt en welke bronnen de AI citeert. Voor systematische tracking gebruik je tools als Profound, Otterly of Peec AI.',
+  },
+  {
+    q: 'Moet ik een llms.txt bestand op mijn site hebben?',
+    a: 'De llms.txt-standaard is nog jong en wordt nog niet door alle LLM’s gelezen. Het kost weinig om te implementeren en signaleert duidelijk welke pagina’s prioriteit hebben voor AI-crawlers. Zie onze losse post over implementatie.',
+  },
+  {
+    q: 'Moet ik GPTBot en ClaudeBot blokkeren?',
+    a: 'Dat hangt af van je doel. Blokkeren beschermt je content tegen training, maar sluit je ook uit van indexering voor live AI-search. Voor bedrijven die op zichtbaarheid mikken (wat de meeste willen) zijn ze beter toegelaten.',
+  },
+  {
+    q: 'Hoelang duurt het voor GEO-optimalisatie effect heeft?',
+    a: 'AI-modellen indexeren sneller dan traditionele zoekmachines — Perplexity toont nieuwe content binnen dagen. Voor brede autoriteitsopbouw (E-E-A-T, brand mentions) reken je op drie tot zes maanden.',
+  },
+  {
+    q: 'Welke content werkt het beste voor AI-citaten?',
+    a: 'Structuur-rijke content met duidelijke vraag-antwoord koppels, data/statistieken met bronvermelding, en scan-vriendelijke lijstjes. AI-modellen pakken graag korte, feitelijke passages die direct antwoord geven.',
+  },
+];
+---
+
+<Layout
+  title="GEO: de complete gids voor Generative Engine Optimization"
+  description="Zo wordt jouw bedrijf gevonden in ChatGPT, Perplexity, Gemini en Claude. De complete Nederlandse gids over Generative Engine Optimization — wat het is, wat werkt, en hoe je begint."
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://agensea.nl/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Gidsen', 'item': 'https://agensea.nl/gids/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'GEO', 'item': 'https://agensea.nl/gids/geo/' }
+    ]
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'GEO: de complete gids voor Generative Engine Optimization',
+    'description': 'Complete Nederlandse gids over Generative Engine Optimization voor ChatGPT, Perplexity, Gemini en Claude.',
+    'author': { '@type': 'Organization', 'name': 'Agensea' },
+    'publisher': { '@type': 'Organization', 'name': 'Agensea', 'url': 'https://agensea.nl/' },
+    'dateModified': '2026-04-20',
+    'mainEntityOfPage': 'https://agensea.nl/gids/geo/'
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+    }))
+  })} />
+
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+    <!-- Background Decor -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-24">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-secondary">
+        <a href="/" class="hover:text-indigo transition-colors">Home</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <a href="/gids" class="hover:text-indigo transition-colors">Gidsen</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <span class="text-dark">GEO</span>
+      </nav>
+
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+          <span class="w-8 h-[2px] bg-indigo"></span>
+          Gids · AI-zoekmachines
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
+          GEO: de complete gids voor <span class="text-indigo">Generative Engine Optimization</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          In 2026 beantwoorden ChatGPT, Perplexity, Gemini en Claude dagelijks miljoenen Nederlandse zoekopdrachten. Niet met tien blauwe linkjes, maar met één gegenereerd antwoord. Wie staat daar tussen de bronnen? En wie niet? Deze gids legt het uit.
+        </p>
+        <p class="text-sm text-text-secondary/70 mb-10">
+          Laatst bijgewerkt: {lastUpdated} · Leestijd ±15 min
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte?dienst=geo-scan" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-dark transition-colors duration-300 inline-flex items-center gap-2">
+            Krijg een GEO-audit
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#wat-is-geo" class="px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Direct naar de gids
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content grid — zelfde patroon als blog [slug].astro -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-16 xl:gap-24">
+        <article id="article-body" class="min-w-0 space-y-20 max-w-3xl">
+
+          <!-- §1 Wat is GEO -->
+          <section class="scroll-mt-24">
+            <h2 id="wat-is-geo" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">1. Wat is GEO?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              <strong class="text-dark">Generative Engine Optimization</strong> (GEO) is het optimaliseren van je website, content en merk voor generatieve AI-zoekmachines — platforms die antwoorden produceren in plaats van alleen lijsten met links. De bekendste zijn ChatGPT Search, Perplexity, Google Gemini, Microsoft Copilot en Claude.
+            </p>
+            <div class="bg-white rounded-3xl border border-warm-grey/30 p-8 mb-6">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Kort gezegd</p>
+              <p class="text-dark text-lg leading-relaxed">
+                SEO zorgt dat je op nummer 1 staat. GEO zorgt dat je <em>genoemd wordt in het antwoord zelf</em>. Dat is een ander spel — met andere regels.
+              </p>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Een gebruiker vraagt Perplexity: “Welke AI-first digital agencies in Nederland zijn er?” Het model scant het web, leest een paar bronnen, en genereert een antwoord dat vijf bureaus noemt, met citaten. Sta je daartussen? Dat is GEO.
+            </p>
+          </section>
+
+          <!-- §2 GEO vs SEO vs AEO -->
+          <section class="scroll-mt-24">
+            <h2 id="geo-vs-seo" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">2. GEO vs SEO vs AEO</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Drie termen die door elkaar gebruikt worden, maar niet hetzelfde zijn:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4"></th>
+                    <th class="px-6 py-4">SEO</th>
+                    <th class="px-6 py-4">AEO</th>
+                    <th class="px-6 py-4">GEO</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Doel</td>
+                    <td class="px-6 py-4">Hoge ranking in zoekresultaten</td>
+                    <td class="px-6 py-4">Het directe antwoord worden</td>
+                    <td class="px-6 py-4">Geciteerd worden door AI-modellen</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Platform</td>
+                    <td class="px-6 py-4">Google, Bing</td>
+                    <td class="px-6 py-4">Featured snippets, voice assistants</td>
+                    <td class="px-6 py-4">ChatGPT, Perplexity, Gemini, Claude</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Signaal</td>
+                    <td class="px-6 py-4">Backlinks, content, tech</td>
+                    <td class="px-6 py-4">Structured data, vraag-antwoord</td>
+                    <td class="px-6 py-4">Citeerbaarheid, brand mentions, entity-autoriteit</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Meten</td>
+                    <td class="px-6 py-4">Rankings, CTR, traffic</td>
+                    <td class="px-6 py-4">Snippet-share, antwoord-impressies</td>
+                    <td class="px-6 py-4">Vermeldingen en citaties in AI-antwoorden</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              In de praktijk overlappen ze. Een goede GEO-strategie bouwt op een gezonde SEO- en AEO-basis. Dieper op AEO ingaan? Lees
+              <a href="/kennisbank/aeo-uitgelegd/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">AEO uitgelegd: hoe je het antwoord wordt</a>.
+            </p>
+          </section>
+
+          <!-- §3 Waarom nu -->
+          <section class="scroll-mt-24">
+            <h2 id="waarom-nu" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">3. Waarom GEO nú ertoe doet</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Drie verschuivingen maken dit het kantelpunt:
+            </p>
+            <div class="grid md:grid-cols-3 gap-5">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">~30%</p>
+                <p class="text-sm text-dark font-bold mb-2">van zoekopdrachten eindigt zonder klik</p>
+                <p class="text-sm text-text-secondary">Zero-click searches groeien al jaren, maar AI-antwoorden versnellen dat drastisch.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">4 engines</p>
+                <p class="text-sm text-dark font-bold mb-2">domineren AI-search in 2026</p>
+                <p class="text-sm text-text-secondary">ChatGPT, Perplexity, Gemini en Claude — elk met hun eigen ranking-logica.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="font-display font-bold text-4xl text-indigo mb-2">Sneller</p>
+                <p class="text-sm text-dark font-bold mb-2">indexering dan Google</p>
+                <p class="text-sm text-text-secondary">Perplexity toont vaak content binnen dagen. Traditional SEO duurt maanden.</p>
+              </div>
+            </div>
+            <div class="mt-8 p-6 bg-indigo/5 rounded-2xl border border-indigo/20">
+              <p class="text-dark leading-relaxed">
+                <strong>Concreet:</strong> als een potentiële klant nu aan ChatGPT vraagt wie de beste [jouw dienst] in Nederland is, wie wordt er genoemd? Dat antwoord bepaalt voor een groeiend deel van je doelgroep wie er in hun shortlist komt — zonder dat ze ooit je website openen.
+              </p>
+            </div>
+          </section>
+
+          <!-- §4 Hoe LLMs kiezen -->
+          <section class="scroll-mt-24">
+            <h2 id="hoe-llms-kiezen" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">4. Hoe LLM’s content kiezen</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Generatieve engines werken ruwweg in vier stappen. Begrijp je dit proces, dan zie je waar je kunt optimaliseren:
+            </p>
+            <ol class="space-y-5">
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">1</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Query interpretatie</h3>
+                  <p class="text-text-secondary text-sm">Het model herformuleert de vraag naar deelvragen die het kan beantwoorden.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">2</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Bronselectie (retrieval)</h3>
+                  <p class="text-text-secondary text-sm">Via web-search API’s of interne indexen worden kandidaat-pagina’s opgehaald. Hier is SEO-autoriteit nog steeds belangrijk.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">3</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Chunk-extractie</h3>
+                  <p class="text-text-secondary text-sm">Per bron wordt alleen het relevante stuk (enkele paragrafen) gelezen. Duidelijke structuur en scan-vriendelijke opmaak maken het verschil.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">4</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Synthese + citaten</h3>
+                  <p class="text-text-secondary text-sm">Het model schrijft een antwoord en beslist welke bronnen het citeert. Autoriteit, consensus en citeerbare formulering wegen zwaar.</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- §5 Technische basis -->
+          <section class="scroll-mt-24">
+            <h2 id="technische-basis" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">5. Technische fundamenten</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Drie technische stukken leggen het fundament. We hebben per onderwerp een losse diepgaande post:
+            </p>
+            <div class="grid md:grid-cols-3 gap-5">
+              <a href="/kennisbank/llms-txt-implementeren/" class="group block bg-white rounded-2xl p-6 border border-warm-grey/30 hover:border-indigo/50 transition-all">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Fundament 1</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2 group-hover:text-indigo transition-colors">llms.txt</h3>
+                <p class="text-sm text-text-secondary mb-4">De nieuwe robots.txt voor AI-crawlers. Signaleert prioriteitspagina’s aan LLM’s.</p>
+                <span class="text-sm font-bold text-indigo inline-flex items-center gap-1.5">Lees post <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </a>
+              <a href="/kennisbank/ai-crawlers-robots-txt/" class="group block bg-white rounded-2xl p-6 border border-warm-grey/30 hover:border-indigo/50 transition-all">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Fundament 2</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2 group-hover:text-indigo transition-colors">AI-crawlers beheren</h3>
+                <p class="text-sm text-text-secondary mb-4">GPTBot, ClaudeBot, PerplexityBot, Google-Extended: toelaten of blokkeren?</p>
+                <span class="text-sm font-bold text-indigo inline-flex items-center gap-1.5">Lees post <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </a>
+              <a href="/kennisbank/schema-org-voor-ai/" class="group block bg-white rounded-2xl p-6 border border-warm-grey/30 hover:border-indigo/50 transition-all">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Fundament 3</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2 group-hover:text-indigo transition-colors">Schema.org voor AI</h3>
+                <p class="text-sm text-text-secondary mb-4">Welke structured-data markup LLM’s daadwerkelijk gebruiken — en welke genegeerd wordt.</p>
+                <span class="text-sm font-bold text-indigo inline-flex items-center gap-1.5">Lees post <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <!-- §6 Content die citaten wint -->
+          <section class="scroll-mt-24">
+            <h2 id="content-citaten" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">6. Content die AI citeert</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Technische basis alleen is niet genoeg. De inhoudelijke kant — hoe je het schrijft — is minstens zo belangrijk. Zeven principes die consistent terugkeren in geciteerde content:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['Statement-first', 'Open elke sectie met een kernzin die alleen al een antwoord vormt. LLM’s pakken liever de eerste definiërende zin dan een paragraaf omhaal.'],
+                ['Expliciete data met bron', 'Noem getallen, percentages en jaartallen, en koppel ze aan een verifieerbare bron. Modellen wegen feitelijkheid zwaar mee.'],
+                ['Vraag-antwoord koppels', 'Structureer sub-secties als expliciete vragen met directe antwoorden. Matcht hoe gebruikers queries formuleren.'],
+                ['Korte paragrafen', 'Maximaal 3–4 zinnen per blokje. LLM’s knippen content in chunks — kleinere chunks worden sneller geselecteerd.'],
+                ['Vergelijkings-tabellen', 'Tabellen met duidelijke kolommen worden hoog gescoord voor “X vs Y” queries.'],
+                ['Entiteit-benoemingen', 'Noem merken, tools en personen consequent met volledige naam. Versterkt entity-herkenning.'],
+                ['E-E-A-T signalen', 'Auteur, bio, publicatiedatum, updates, schema — laat zien wie je bent en waarom je gekwalificeerd bent.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Diepgaander: zie
+              <a href="/kennisbank/content-voor-ai-citaten/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Content schrijven die AI-modellen citeren</a>
+              en
+              <a href="/kennisbank/eeat-geo-brand-mentions/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">E-E-A-T in de GEO-era: brand mentions vs backlinks</a>.
+            </p>
+          </section>
+
+          <!-- §7 Per engine -->
+          <section class="scroll-mt-24">
+            <h2 id="per-engine" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">7. Per AI-engine</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Geen twee engines werken hetzelfde. Een beknopte vergelijking per platform:
+            </p>
+            <div class="grid md:grid-cols-2 gap-5">
+              {[
+                { name: 'ChatGPT Search', focus: 'Bing-index + OpenAI web-tooling. Toont inline citaten. Blue-link-achtige footer met bronnen.', optimize: 'Technische SEO voor Bing blijft relevant. Duidelijke autoriteit helpt.' },
+                { name: 'Perplexity', focus: 'Eigen web-crawl + realtime search. Citeert prominent in antwoord zelf.', optimize: 'Indexeert snel. Nummer-1 engine om mee te starten voor GEO-tests.' },
+                { name: 'Google Gemini / AI Overviews', focus: 'Leunt volledig op Google-index + Knowledge Graph.', optimize: 'Klassieke SEO-signalen tellen hier dubbel. Strong E-E-A-T is cruciaal.' },
+                { name: 'Claude (web search)', focus: 'Webzoekfunctie via externe providers. Citeert bronnen per claim.', optimize: 'Voorkeur voor heldere, feitelijke content zonder sales-taal.' },
+              ].map((e) => (
+                <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                  <h3 class="font-display font-bold text-xl text-dark mb-3">{e.name}</h3>
+                  <p class="text-sm text-text-secondary mb-3"><strong class="text-dark">Hoe:</strong> {e.focus}</p>
+                  <p class="text-sm text-text-secondary"><strong class="text-dark">Optimaliseren:</strong> {e.optimize}</p>
+                </div>
+              ))}
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Dieper vergelijken?
+              <a href="/kennisbank/chatgpt-vs-perplexity-vs-gemini/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">ChatGPT vs Perplexity vs Gemini vs Claude: waar verschijn je waar?</a>
+            </p>
+          </section>
+
+          <!-- §8 Meten -->
+          <section class="scroll-mt-24">
+            <h2 id="meten" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">8. Meten & tracken</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              GEO-tracking staat nog in de kinderschoenen, maar drie aanpakken zijn nu al bruikbaar:
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Handmatige prompt-checks</h3>
+                <p class="text-sm text-text-secondary">Stel wekelijks dezelfde 10-20 prompts aan elke engine en noteer of je genoemd wordt. Gratis en geeft nuchter gevoel voor positie.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Gespecialiseerde tools</h3>
+                <p class="text-sm text-text-secondary">Profound, Otterly.AI, Peec AI en vergelijkbare tracken automatisch over honderden prompts. Vanaf ±€99 per maand.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Server-logs analyseren</h3>
+                <p class="text-sm text-text-secondary">Filter op user-agents als <code class="text-xs bg-cream px-1.5 py-0.5 rounded">GPTBot</code>, <code class="text-xs bg-cream px-1.5 py-0.5 rounded">PerplexityBot</code>, <code class="text-xs bg-cream px-1.5 py-0.5 rounded">ClaudeBot</code> om te zien welke pagina’s AI-crawlers bezoeken.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Volledige tool-review:
+              <a href="/kennisbank/geo-tracking-meten/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Hoe weet je of je in ChatGPT en Perplexity verschijnt?</a>
+            </p>
+          </section>
+
+          <!-- §9 Roadmap -->
+          <section class="scroll-mt-24">
+            <h2 id="roadmap" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">9. 30-60-90 dagen roadmap</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Van nul beginnen? Een pragmatische fasering:
+            </p>
+            <div class="space-y-5">
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 1</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 0–30 · Fundament</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Baseline meten: 20 prompts per engine, huidige vermeldingen noteren</li>
+                  <li>· Robots.txt audit: welke AI-bots zijn toegestaan?</li>
+                  <li>· Schema.org basisset (Organization, WebSite, Article, FAQ)</li>
+                  <li>· llms.txt opstellen en publiceren</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-violet/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 2</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 30–60 · Content herstructureren</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Top-10 pagina’s herstructureren volgens de 7 principes uit §6</li>
+                  <li>· FAQ-sectie per kernpagina toevoegen met FAQPage schema</li>
+                  <li>· Pillar-gidsen opbouwen met interne linking-cluster</li>
+                  <li>· Brand-mentions campagne starten (gastposts, podcasts, directories)</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 3</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 60–90 · Schaal & meet</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Tracking tool activeren (Profound / Otterly / Peec AI)</li>
+                  <li>· Server-log pipeline voor AI-crawler bezoeken</li>
+                  <li>· Iteratie: welke content genereert citaties, welke niet?</li>
+                  <li>· Rapportage-cadans vaststellen (maandelijks overzicht)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- §10 FAQ -->
+          <section class="scroll-mt-24">
+            <h2 id="faq" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">10. Veelgestelde vragen</h2>
+            <div class="space-y-3">
+              {faqs.map((f) => (
+                <details class="group bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                  <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-cream/50 transition-colors">
+                    <span class="font-bold text-dark pr-4">{f.q}</span>
+                    <svg class="w-5 h-5 text-indigo shrink-0 group-open:rotate-45 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-text-secondary leading-relaxed">
+                    {f.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </article>
+
+        <!-- Sticky Sidebar (gedeelde component) -->
+        <aside class="hidden lg:block">
+          <ReaderSidebar items={tocItems}>
+            <div slot="extra" class="mt-10 p-5 bg-white rounded-2xl border border-warm-grey/30">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Snelle check</p>
+              <p class="text-sm text-dark mb-4">Verschijnt jouw bedrijf al in ChatGPT en Perplexity?</p>
+              <a href="/offerte?dienst=geo-scan" class="text-sm font-bold text-indigo hover:text-dark transition-colors inline-flex items-center gap-1.5">
+                Gratis GEO-audit aanvragen
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </ReaderSidebar>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mt-24">
+      <div class="bg-dark text-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Volgende stap
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl leading-[1.05] mb-6">
+            Wil je weten hoe jouw bedrijf er nu in AI-search voorstaat?
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            Een GEO-audit meet waar je genoemd wordt, door welke engines, en welke concurrenten het antwoord domineren. Je krijgt een concreet 30-60-90 plan terug.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/offerte?dienst=geo-scan" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-white hover:text-dark transition-colors duration-300 inline-flex items-center gap-2">
+              Vraag een GEO-audit aan
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/content-portal" class="px-8 py-4 border border-white/20 rounded-xl font-medium text-white hover:border-white transition-all duration-300">
+              Bekijk ons Content Portal
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

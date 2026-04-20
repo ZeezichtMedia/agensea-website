@@ -1,0 +1,528 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ReaderSidebar from '../../components/ReaderSidebar.astro';
+
+const lastUpdated = '20 april 2026';
+
+const tocItems: { slug: string; label: string; depth: 2 }[] = [
+  { slug: 'wat-is-ai-automation', label: '1. Wat is AI-automation?', depth: 2 },
+  { slug: 'vs-klassieke-automation', label: '2. vs. Zapier en Make', depth: 2 },
+  { slug: 'types', label: '3. 5 types AI-automation', depth: 2 },
+  { slug: 'wanneer-waardevol', label: '4. Wanneer voegt AI waarde toe?', depth: 2 },
+  { slug: 'build-vs-buy', label: '5. Zelf bouwen of inkopen?', depth: 2 },
+  { slug: 'tech-stack', label: '6. De tech-stack in 2026', depth: 2 },
+  { slug: 'kosten-roi', label: '7. Kosten, ROI en terugverdientijd', depth: 2 },
+  { slug: 'compliance', label: '8. Security, privacy, EU AI Act', depth: 2 },
+  { slug: 'roadmap', label: '9. 30-60-90 roadmap', depth: 2 },
+  { slug: 'faq', label: '10. Veelgestelde vragen', depth: 2 },
+];
+
+const faqs = [
+  {
+    q: 'Wat is het verschil tussen AI-automation en gewone automation?',
+    a: 'Klassieke automation (Zapier, Make, Power Automate) voert vaste regels uit: "als X, dan Y". AI-automation voegt redeneren toe — het systeem kan interpreteren, samenvatten, beslissen op basis van context. Klassieke automation is een stroomdiagram. AI-automation heeft een brein.',
+  },
+  {
+    q: 'Heb ik een developer nodig voor AI-automation?',
+    a: 'Voor eenvoudige workflows met bestaande tools (Zapier + LLM-stap, Make + OpenAI module) niet. Voor custom agents, RAG-chatbots of proces-integratie met je eigen systemen wel. Tussen deze twee zit een grote grijze zone waar no-code platforms zoals Relevance AI of Make steeds verder ingroeien.',
+  },
+  {
+    q: 'Wat kost een AI-chatbot voor mijn klantenservice?',
+    a: 'Een standaard RAG-chatbot (met kennis uit je eigen documenten) kost €5.000 tot €15.000 eenmalig plus €100 tot €500 per maand aan LLM-API, afhankelijk van volume. Enterprise-oplossingen met integratie in bestaande systemen starten rond €25.000.',
+  },
+  {
+    q: 'Is mijn bedrijf klaar voor AI-automation?',
+    a: 'Drie signalen van AI-automation-rijpheid: (1) je hebt processen waar mensen elke dag dezelfde soort data-interpretatie doen; (2) die processen kosten meer tijd dan €5.000 per maand aan arbeid; (3) de input is te gevarieerd voor een simpele if-then regel. Als drie kloppen, loont een serieuze assessment.',
+  },
+  {
+    q: 'Moet ik mijn data delen met OpenAI of Anthropic?',
+    a: 'Niet per se. Zowel OpenAI als Anthropic bieden zakelijke tiers waarbij je data niet voor training wordt gebruikt en onder een DPA valt. Voor extra controle kun je draaien via Azure OpenAI of AWS Bedrock. Voor hoogvertrouwelijke data kun je zelfs open-source modellen op eigen infrastructuur draaien.',
+  },
+  {
+    q: 'Valt mijn AI-gebruik onder de EU AI Act?',
+    a: 'Dat hangt af van het gebruik. De meeste mkb-toepassingen (interne workflows, klantenservice, content-ondersteuning) vallen onder minimaal-risico categorie en vereisen alleen algemene transparantie. Risk-based categorieën als HR-screening, credit-scoring of biometrie zijn strenger gereguleerd. Zie onze losse post.',
+  },
+];
+---
+
+<Layout
+  title="AI-automation voor MKB: de complete gids"
+  description="Van chatbots tot custom agents: hoe zet je AI-automation in voor je mkb? Complete Nederlandse gids met use-cases, kosten, tools en een 30-60-90 roadmap."
+  ogType="article"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://agensea.nl/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Gidsen', 'item': 'https://agensea.nl/gids/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'AI-automation', 'item': 'https://agensea.nl/gids/ai-automation/' }
+    ]
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': 'AI-automation voor MKB: de complete gids',
+    'description': 'Complete Nederlandse gids over AI-automation voor mkb — van workflows tot custom agents.',
+    'author': { '@type': 'Organization', 'name': 'Agensea' },
+    'publisher': { '@type': 'Organization', 'name': 'Agensea', 'url': 'https://agensea.nl/' },
+    'dateModified': '2026-04-20',
+    'mainEntityOfPage': 'https://agensea.nl/gids/ai-automation/'
+  })} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+    }))
+  })} />
+
+  <Navbar />
+
+  <main id="main-content" class="bg-cream min-h-screen pt-28 md:pt-36 pb-20 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+      <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[10%] left-[-10%] blur-[100px]"></div>
+    </div>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-16 md:mb-24">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-secondary">
+        <a href="/" class="hover:text-indigo transition-colors">Home</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <a href="/gids" class="hover:text-indigo transition-colors">Gidsen</a>
+        <span class="mx-2 text-warm-grey">/</span>
+        <span class="text-dark">AI-automation</span>
+      </nav>
+
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+          <span class="w-8 h-[2px] bg-indigo"></span>
+          Gids · AI-automation
+        </span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
+          AI-automation voor MKB: <span class="text-indigo">de complete gids</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          Chatbots, agents, RAG, workflows. AI-automation is een buzzword geworden waar een flinke kluwen onder zit. Deze gids trekt hem uit elkaar: wat is het, waar levert het geld op, en hoe begin je zonder half miljoen te verbranden.
+        </p>
+        <p class="text-sm text-text-secondary/70 mb-10">
+          Laatst bijgewerkt: {lastUpdated} · Leestijd ±18 min
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte?dienst=software" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-dark transition-colors duration-300 inline-flex items-center gap-2">
+            Plan een automation-scan
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#wat-is-ai-automation" class="px-8 py-4 border border-warm-grey/50 rounded-xl font-medium text-dark hover:border-indigo transition-all duration-300">
+            Direct naar de gids
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-16 xl:gap-24">
+        <article id="article-body" class="min-w-0 space-y-20 max-w-3xl">
+
+          <!-- §1 Wat is AI-automation? -->
+          <section class="scroll-mt-24">
+            <h2 id="wat-is-ai-automation" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">1. Wat is AI-automation?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              <strong class="text-dark">AI-automation is het automatiseren van bedrijfsprocessen waarbij een taal- of AI-model beslissingen neemt, content genereert, of interpretaties maakt die eerder een mens moest doen.</strong> Het onderscheidt zich van klassieke automation (Zapier, Make, Power Automate) doordat er een redenerend element in zit: context lezen, samenvatten, classificeren, beslissen.
+            </p>
+            <div class="bg-white rounded-3xl border border-warm-grey/30 p-8 mb-6">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Kort gezegd</p>
+              <p class="text-dark text-lg leading-relaxed">
+                Klassieke automation is een stroomdiagram. AI-automation heeft een brein dat op input kan reageren.
+              </p>
+            </div>
+            <p class="text-text-secondary leading-relaxed">
+              Voorbeeld: een binnenkomende klantvraag wordt bij klassieke automation doorgestuurd naar "support" als de mail een trefwoord bevat. Bij AI-automation wordt de mail gelezen, geclassificeerd op urgentie, gekoppeld aan eerdere tickets van dezelfde klant, en eventueel direct beantwoord — zonder menselijke tussenkomst.
+            </p>
+          </section>
+
+          <!-- §2 vs klassieke automation -->
+          <section class="scroll-mt-24">
+            <h2 id="vs-klassieke-automation" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">2. AI-automation vs Zapier en Make</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Zapier en Make zijn fantastische tools en vaak voldoende. Het grootste misverstand is dat elk automation-vraagstuk "AI nodig heeft". Dat is zelden waar. Een helder onderscheid:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4"></th>
+                    <th class="px-6 py-4">Zapier / Make</th>
+                    <th class="px-6 py-4">AI-automation</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Sterkte</td>
+                    <td class="px-6 py-4">Vaste regels tussen apps</td>
+                    <td class="px-6 py-4">Context begrijpen en beslissen</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Voorbeeld</td>
+                    <td class="px-6 py-4">Nieuwe aanvraag → Slack + CRM</td>
+                    <td class="px-6 py-4">Mail classificeren op intentie, samenvatten, routeren</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Kosten per actie</td>
+                    <td class="px-6 py-4">±€0,001</td>
+                    <td class="px-6 py-4">€0,01–€0,10 (LLM-cost)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Voorspelbaarheid</td>
+                    <td class="px-6 py-4">100% (regel is regel)</td>
+                    <td class="px-6 py-4">95-98% (AI kan hallucineren)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Onderhoud</td>
+                    <td class="px-6 py-4">Bij nieuwe regel: aanpassen</td>
+                    <td class="px-6 py-4">Bij verandering: prompt of model updaten</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              De sweet spot is vaak hybride: gebruik Zapier voor flow-control en integratie, en roep daar waar nodig een LLM-stap aan voor de "slimme" beslissing. Dieper?
+              <a href="/kennisbank/zapier-vs-custom-ai-agent/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Zapier/Make vs custom AI-agent: wanneer trek je de grens?</a>
+            </p>
+          </section>
+
+          <!-- §3 Types -->
+          <section class="scroll-mt-24">
+            <h2 id="types" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">3. 5 types AI-automation</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Het landschap is groot maar valt uiteen in vijf archetypes:
+            </p>
+            <div class="space-y-5">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Type 1</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2">AI-verrijkte workflows</h3>
+                <p class="text-text-secondary text-sm mb-2">Bestaande Zapier/Make-flow met één of meerdere LLM-stappen erin. Laagste complexiteit, hoogste ROI voor simpele cases.</p>
+                <p class="text-xs text-text-secondary/70"><strong class="text-dark">Use case:</strong> inkomende email classificeren en routeren.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Type 2</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2">RAG-chatbots</h3>
+                <p class="text-text-secondary text-sm mb-2">Chatbots die vragen beantwoorden op basis van je eigen documenten. "Retrieval-Augmented Generation" koppelt een LLM aan je kennisbank.</p>
+                <p class="text-xs text-text-secondary/70"><strong class="text-dark">Use case:</strong> interne helpdesk, productdocumentatie-bot, klantenservice-assistent.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Type 3</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2">Custom GPTs en assistants</h3>
+                <p class="text-text-secondary text-sm mb-2">Off-the-shelf LLM-platforms (ChatGPT, Claude, Gemini) met custom prompts en eventueel eigen bronnen. Snel te implementeren, beperkt qua integratie.</p>
+                <p class="text-xs text-text-secondary/70"><strong class="text-dark">Use case:</strong> interne tool voor marketing-teksten, juridische check-bot.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Type 4</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2">AI-agents</h3>
+                <p class="text-text-secondary text-sm mb-2">Autonome systemen die meerdere tools kunnen bedienen om een taak af te ronden. Denk: "plan deze vergadering in, reserveer een zaal, stuur uitnodigingen."</p>
+                <p class="text-xs text-text-secondary/70"><strong class="text-dark">Use case:</strong> geautomatiseerde research-taken, complexe proces-orkestratie.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Type 5</p>
+                <h3 class="font-display font-bold text-xl text-dark mb-2">Embedded AI in maatwerk software</h3>
+                <p class="text-text-secondary text-sm mb-2">AI als feature in een custom SaaS. Hier ben je helemaal vrij: model, data, prompts, integraties. Hoogste complexiteit, maar ook hoogste differentiatie.</p>
+                <p class="text-xs text-text-secondary/70"><strong class="text-dark">Use case:</strong> jouw eigen SaaS met slimme functionaliteit voor een specifieke markt.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Wat is een agent eigenlijk precies?
+              <a href="/kennisbank/wat-is-ai-agent/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Wat is een AI-agent? Non-tech uitleg</a>
+              en
+              <a href="/kennisbank/custom-gpt-vs-eigen-agent/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Custom GPT vs eigen agent</a>.
+            </p>
+          </section>
+
+          <!-- §4 Wanneer waardevol -->
+          <section class="scroll-mt-24">
+            <h2 id="wanneer-waardevol" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">4. Wanneer voegt AI waarde toe?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              AI is een <em>dure hamer</em>. Niet elk probleem is een spijker. Drie criteria waar een proces aan moet voldoen om AI-automation te rechtvaardigen:
+            </p>
+            <ol class="space-y-5">
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">1</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Volume</h3>
+                  <p class="text-text-secondary text-sm">Het proces moet vaak genoeg voorkomen om de setup-kosten terug te verdienen. Minder dan 100 keer per maand? Dan is handmatig vaak goedkoper.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">2</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Variatie</h3>
+                  <p class="text-text-secondary text-sm">De input is te gevarieerd voor een simpele if-then regel. Als alle input vergelijkbaar is, pakt Zapier het beter en goedkoper.</p>
+                </div>
+              </li>
+              <li class="flex gap-5 bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-display font-bold">3</div>
+                <div>
+                  <h3 class="font-display font-bold text-xl text-dark mb-1">Kost nu echte tijd</h3>
+                  <p class="text-text-secondary text-sm">Het proces kost in totaal minimaal 1 FTE-equivalent aan handmatig werk per jaar. Onder die grens verdient automation zich zelden terug.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Een concrete checklist om je eigen processen langs te lopen?
+              <a href="/kennisbank/proces-automatisering-checklist/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">Proces-automatisering checklist voor mkb</a>.
+            </p>
+          </section>
+
+          <!-- §5 Build vs buy -->
+          <section class="scroll-mt-24">
+            <h2 id="build-vs-buy" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">5. Zelf bouwen of inkopen?</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De derde grote vraag. Drie scenarios:
+            </p>
+            <div class="grid md:grid-cols-3 gap-5">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Buy</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">SaaS-product kopen</h3>
+                <p class="text-sm text-text-secondary">Voor standaard use-cases: Intercom Fin, Zendesk AI, Hubspot Breeze. Snel live, maar je betaalt maandelijks en past je proces aan de tool aan.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Build-on-top</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Custom op platform</h3>
+                <p class="text-sm text-text-secondary">Op OpenAI Assistants, Anthropic Projects, Azure AI Foundry. Flexibeler dan SaaS, sneller dan volledig custom. Meeste mkb-cases passen hier.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-3">Build</p>
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Volledig custom</h3>
+                <p class="text-sm text-text-secondary">Eigen stack: LLM naar keuze, vector-db, orchestratie-laag, deployment. Voor wie kerntechnologie wil bezitten of zeer specifieke eisen heeft.</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              De meeste mkb-cases horen in de middelste categorie. Zowel budget als complexiteit zit daar op het juiste niveau.
+            </p>
+          </section>
+
+          <!-- §6 Tech stack -->
+          <section class="scroll-mt-24">
+            <h2 id="tech-stack" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">6. De tech-stack in 2026</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              De AI-automation-stack heeft zich verder gelaagd dan in 2024. Op hoofdlijnen:
+            </p>
+            <ul class="space-y-4">
+              {[
+                ['Foundation models', 'OpenAI GPT-4/5, Anthropic Claude, Google Gemini, Meta Llama, DeepSeek. Keuze hangt af van kosten, snelheid en datacompliance.'],
+                ['Orchestratie-frameworks', 'LangGraph, CrewAI, Mastra, Vercel AI SDK. Hiermee bouw je multi-step flows en agents.'],
+                ['Vector databases', 'Pinecone, Weaviate, Qdrant, Postgres-pgvector. Voor RAG-toepassingen die eigen data doorzoekbaar maken.'],
+                ['Integratie-laag', 'MCP (Model Context Protocol) voor het koppelen van agents aan je bestaande tools. Zapier/Make voor no-code flow-control.'],
+                ['Observability', 'Langfuse, Helicone, Braintrust. Zonder logging is AI-debugging een hel.'],
+                ['Deployment', 'Vercel, Railway, AWS Bedrock, Azure OpenAI. Keuze bepaalt latency, compliance en kosten.'],
+              ].map(([title, desc]) => (
+                <li class="flex gap-4 bg-white rounded-2xl p-5 border border-warm-grey/30">
+                  <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-dark mb-1">{title}</p>
+                    <p class="text-sm text-text-secondary leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              MCP is de verbindende standaard die je waarschijnlijk vaak gaat horen.
+              <a href="/kennisbank/mcp-uitgelegd-mkb/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">MCP uitgelegd voor mkb</a>.
+            </p>
+          </section>
+
+          <!-- §7 Kosten en ROI -->
+          <section class="scroll-mt-24">
+            <h2 id="kosten-roi" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">7. Kosten, ROI en terugverdientijd</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              Realistische range voor een serieus AI-automation-project in het mkb:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-2xl border border-warm-grey/30 overflow-hidden mb-6">
+                <thead class="bg-cream">
+                  <tr class="text-left text-xs font-bold text-dark uppercase tracking-wider">
+                    <th class="px-6 py-4">Type project</th>
+                    <th class="px-6 py-4">Eenmalig</th>
+                    <th class="px-6 py-4">Per maand (run)</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-text-secondary divide-y divide-warm-grey/30">
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Zapier + LLM workflow</td>
+                    <td class="px-6 py-4">€1.500–€5.000</td>
+                    <td class="px-6 py-4">€50–€200</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">RAG-chatbot klantenservice</td>
+                    <td class="px-6 py-4">€5.000–€15.000</td>
+                    <td class="px-6 py-4">€100–€500</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Custom agent (single-domain)</td>
+                    <td class="px-6 py-4">€10.000–€25.000</td>
+                    <td class="px-6 py-4">€200–€1.000</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-bold text-dark">Embedded AI in SaaS</td>
+                    <td class="px-6 py-4">€25.000–€100.000+</td>
+                    <td class="px-6 py-4">Afhankelijk van volume</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-text-secondary leading-relaxed mb-6">
+              Terugverdientijd bij een standaard RAG-chatbot voor een mkb met 500 supportvragen per maand: ongeveer 6-9 maanden bij €25-40 arbeidskosten per handmatig verwerkte vraag. Bij hogere volumes zakt de terugverdientijd snel richting 3-4 maanden.
+            </p>
+            <div class="p-6 bg-indigo/5 rounded-2xl border border-indigo/20">
+              <p class="text-dark leading-relaxed">
+                <strong>Concreet geval:</strong> een bouwbedrijf dat 40 offerteaanvragen per week kreeg waarvan 70% niet-gekwalificeerd, automatiseerde de eerste-screening en bespaarde 15 uur per week aan handmatig filterwerk. Zie onze case over <a href="/kennisbank/bouwbedrijf-leads-filteren/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">lead-filtering bij bouwbedrijven</a>.
+              </p>
+            </div>
+          </section>
+
+          <!-- §8 Compliance -->
+          <section class="scroll-mt-24">
+            <h2 id="compliance" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">8. Security, privacy en EU AI Act</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-6">
+              De drie grote compliance-vragen:
+            </p>
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Privacy &amp; AVG</h3>
+                <p class="text-sm text-text-secondary">Zakelijke tiers van OpenAI en Anthropic bieden data-processing agreements (DPA) en garanderen geen training op jouw data. Voor extra controle: Azure OpenAI of AWS Bedrock in EU-regio.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">Security</h3>
+                <p class="text-sm text-text-secondary">Zorg voor audit-logging, rate-limiting, prompt-injection bescherming en vertrouwelijke-data redaction voordat input naar een LLM gaat.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-warm-grey/30">
+                <h3 class="font-display font-bold text-lg text-dark mb-2">EU AI Act</h3>
+                <p class="text-sm text-text-secondary">Gefaseerd van kracht sinds 2025-2026. Meeste mkb-toepassingen vallen onder "minimaal risico". Transparantie-eisen gelden voor chatbots (moet duidelijk zijn dat je met AI praat).</p>
+              </div>
+            </div>
+            <p class="text-text-secondary leading-relaxed mt-6">
+              Diepgaande uitleg:
+              <a href="/kennisbank/eu-ai-act-mkb-2026/" class="text-indigo hover:text-dark font-medium underline-offset-4 hover:underline">EU AI Act praktisch: wat moet je mkb regelen in 2026?</a>
+            </p>
+          </section>
+
+          <!-- §9 Roadmap -->
+          <section class="scroll-mt-24">
+            <h2 id="roadmap" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">9. 30-60-90 dagen roadmap</h2>
+            <p class="text-lg text-text-secondary leading-relaxed mb-8">
+              Niet starten met je meest complexe proces. Drie fasen om waarde op te bouwen:
+            </p>
+            <div class="space-y-5">
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 1</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 0–30 · Quick win</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Inventariseer 10 processen die je team structureel tijd kosten</li>
+                  <li>· Kies <strong class="text-dark">één</strong> proces dat voldoet aan volume/variatie/tijd-criteria</li>
+                  <li>· Bouw een Zapier/Make-flow met LLM-stap eromheen — binnen 2 weken live</li>
+                  <li>· Meet: tijdsbesparing, kwaliteit, foutmarge</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-violet/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 2</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 30–60 · Verdieping</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· Evalueer fase-1 resultaten — schaal wat werkt, stop wat niet</li>
+                  <li>· Pak één proces dat méér integratie vereist (bv. CRM-synchronisatie)</li>
+                  <li>· Overweeg een RAG-chatbot als je veel klant-vragen krijgt</li>
+                  <li>· Zet observability op (Langfuse of vergelijkbaar) — zonder meten geen verbetering</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-3xl p-8 border border-warm-grey/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo/5 rounded-full blur-2xl"></div>
+                <p class="text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-2">Fase 3</p>
+                <h3 class="font-display font-bold text-2xl text-dark mb-4">Dag 60–90 · Strategisch</h3>
+                <ul class="space-y-2 text-text-secondary text-sm">
+                  <li>· AI-strategie vastleggen: welke processen over een jaar, welke niet?</li>
+                  <li>· Team-training: mensen moeten snappen wat AI wel/niet doet</li>
+                  <li>· EU AI Act compliance-review met externe expert</li>
+                  <li>· Overweeg embedded AI in je eigen product als je SaaS hebt</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- §10 FAQ -->
+          <section class="scroll-mt-24">
+            <h2 id="faq" class="font-display font-bold text-3xl md:text-4xl text-dark mb-6">10. Veelgestelde vragen</h2>
+            <div class="space-y-3">
+              {faqs.map((f) => (
+                <details class="group bg-white rounded-2xl border border-warm-grey/30 overflow-hidden">
+                  <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-cream/50 transition-colors">
+                    <span class="font-bold text-dark pr-4">{f.q}</span>
+                    <svg class="w-5 h-5 text-indigo shrink-0 group-open:rotate-45 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-text-secondary leading-relaxed">
+                    {f.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </article>
+
+        <aside class="hidden lg:block">
+          <ReaderSidebar items={tocItems}>
+            <div slot="extra" class="mt-10 p-5 bg-white rounded-2xl border border-warm-grey/30">
+              <p class="text-xs font-bold text-indigo uppercase tracking-[0.15em] mb-2">Automation-scan</p>
+              <p class="text-sm text-dark mb-4">We kijken mee welke processen zich voor jou lenen.</p>
+              <a href="/offerte?dienst=software" class="text-sm font-bold text-indigo hover:text-dark transition-colors inline-flex items-center gap-1.5">
+                Gratis scan aanvragen
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </ReaderSidebar>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mt-24">
+      <div class="bg-dark text-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/20 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+            <span class="w-8 h-[2px] bg-indigo"></span>
+            Volgende stap
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl leading-[1.05] mb-6">
+            Welk proces zou jij als eerste willen automatiseren?
+          </h2>
+          <p class="text-lg text-white/70 leading-relaxed mb-10">
+            Wij kijken mee: een scan van 3-5 processen uit jouw bedrijf, inschatting van haalbaarheid, kosten en ROI. Vrijblijvend.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/offerte?dienst=software" class="px-8 py-4 bg-indigo text-white rounded-xl font-medium hover:bg-white hover:text-dark transition-colors duration-300 inline-flex items-center gap-2">
+              Automation-scan aanvragen
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/diensten/software" class="px-8 py-4 border border-white/20 rounded-xl font-medium text-white hover:border-white transition-all duration-300">
+              Bekijk onze software-dienst
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

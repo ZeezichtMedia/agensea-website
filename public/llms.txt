@@ -1,0 +1,46 @@
+# Agensea
+
+> AI-first digital agency uit Nederland. We bouwen moderne websites, zetten online-marketing op en ontwikkelen custom software — met AI als kernprincipe, niet als gimmick. Onze specialiteit: bedrijven laten vinden én geciteerd worden in het AI-zoekmachinelandschap van 2026 en verder.
+
+## Over
+
+- [Over Agensea](https://agensea.nl/over-ons): wie we zijn en hoe we werken
+- [Cases](https://agensea.nl/#cases): voorbeelden van onze projecten
+- [Contact](https://agensea.nl/contact): direct contact opnemen
+
+## Diensten
+
+- [Websites op maat](https://agensea.nl/diensten/websites): snelle, conversiegerichte websites en webshops met technische SEO-basis
+- [Online marketing](https://agensea.nl/diensten/marketing): Google Ads, SEO/SEA, branding en content voor groei
+- [Software op maat](https://agensea.nl/diensten/software): custom SaaS, proces-automatisering en AI-agents
+
+## Gidsen
+
+- [GEO: de complete gids voor Generative Engine Optimization](https://agensea.nl/gids/geo): pillar-gids over optimaliseren voor ChatGPT, Perplexity, Gemini en Claude. Met 30-60-90 dagen roadmap.
+
+## Kennisbank — GEO en AI-zoekmachines
+
+- [AEO uitgelegd](https://agensea.nl/kennisbank/aeo-uitgelegd): Answer Engine Optimization — hoe je het directe antwoord wordt
+- [llms.txt implementeren](https://agensea.nl/kennisbank/llms-txt-implementeren): de nieuwe robots.txt voor AI-crawlers
+- [AI-crawlers beheren](https://agensea.nl/kennisbank/ai-crawlers-robots-txt): GPTBot, ClaudeBot, PerplexityBot toelaten of blokkeren
+- [Schema.org voor AI](https://agensea.nl/kennisbank/schema-org-voor-ai): welke structured-data markup LLM's daadwerkelijk gebruiken
+- [Content schrijven die AI citeert](https://agensea.nl/kennisbank/content-voor-ai-citaten): 7 technieken voor citeerbare content
+- [E-E-A-T in de GEO-era](https://agensea.nl/kennisbank/eeat-geo-brand-mentions): waarom brand mentions zwaarder wegen dan backlinks
+- [ChatGPT vs Perplexity vs Gemini vs Claude](https://agensea.nl/kennisbank/chatgpt-vs-perplexity-vs-gemini): vergelijking van de vier dominante AI-zoekmachines
+- [GEO-tracking: tools voor AI-visibility](https://agensea.nl/kennisbank/geo-tracking-meten): Profound, Otterly, Peec AI en DIY-methodes
+
+## Kennisbank — SEO en websites
+
+- [Waarom AI-websites slecht zijn voor SEO](https://agensea.nl/kennisbank/waarom-ai-websites-slecht-zijn-voor-seo): tools als Lovable en Bolt en hun Google-problemen
+- [SEO begint bij je website](https://agensea.nl/kennisbank/seo-begint-bij-je-website-technische-basis): technische fundamenten voor vindbaarheid
+- [Waarom een snelle website essentieel is](https://agensea.nl/kennisbank/waarom-een-snelle-website-essentieel-is): Core Web Vitals en conversie
+- [Effectieve call-to-actions](https://agensea.nl/kennisbank/effectieve-call-to-actions): psychologie van CTA-knoppen die converteren
+- [Wel bezoekers, geen klanten](https://agensea.nl/kennisbank/wel-bezoekers-geen-klanten): 5 conversie-killers op je website
+
+## Optional
+
+- [Offerte aanvragen](https://agensea.nl/offerte): vraag een offerte aan voor website, marketing of software
+- [GEO-scan aanvragen](https://agensea.nl/offerte?dienst=geo-scan): laat meten waar jouw bedrijf verschijnt in AI-zoekmachines
+- [Content Portal](https://agensea.nl/content-portal): ons Content Portal product voor klanten
+- [Privacy](https://agensea.nl/privacy): privacyverklaring
+- [Algemene voorwaarden](https://agensea.nl/algemene-voorwaarden): algemene voorwaarden

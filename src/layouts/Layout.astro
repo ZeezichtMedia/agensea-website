@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 import AISearch from "../components/AISearch.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 
@@ -127,7 +128,8 @@ const websiteJsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/brand/Agensea_favicon.png" />
+    <link rel="apple-touch-icon" href="/brand/Agensea_favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{finalTitle}</title>
     <meta name="description" content={finalDescription} />
@@ -184,6 +186,7 @@ const websiteJsonLd = {
     <slot />
     <AISearch />
     <CookieBanner />
+    <Analytics />
 
     <!-- Custom Cursor -->
     <div id="cursor-dot" aria-hidden="true"></div>
@@ -318,50 +321,6 @@ const websiteJsonLd = {
       document
         .querySelectorAll(".counter")
         .forEach((el) => counterObserver.observe(el));
-      // ── Flickering "a" Favicon ──────
-      (function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = 32;
-        canvas.height = 32;
-        const ctx = canvas.getContext("2d");
-        const favicon = document.querySelector('link[rel="icon"]');
-        if (!ctx || !favicon) return;
-
-        function draw(time: number) {
-          ctx.clearRect(0, 0, 32, 32);
-
-          // Background — indigo
-          ctx.fillStyle = "#2D3FE0";
-          ctx.beginPath();
-          ctx.roundRect(0, 0, 32, 32, 7);
-          ctx.fill();
-
-          // "a" letter — static
-          ctx.fillStyle = "#FFFFFF";
-          ctx.font = 'bold 22px "Space Grotesk", "Inter", sans-serif';
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText("a", 15, 17);
-
-          // The dot — pulses (breathes)
-          const cycle = 2500;
-          const t = (time % cycle) / cycle;
-          const scale = 1.5 + Math.sin(t * Math.PI * 2) * 1;
-          const alpha = 0.6 + Math.sin(t * Math.PI * 2) * 0.4;
-
-          ctx.globalAlpha = alpha;
-          ctx.fillStyle = "#FFFFFF";
-          ctx.beginPath();
-          ctx.arc(27, 24, scale, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-
-          favicon.setAttribute("href", canvas.toDataURL("image/png"));
-          requestAnimationFrame(draw);
-        }
-
-        requestAnimationFrame(draw);
-      })();
 
       // ── Custom Cursor (subtle dot) ──────────
       (function () {

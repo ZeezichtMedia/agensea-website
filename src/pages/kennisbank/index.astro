@@ -45,6 +45,60 @@ const categories = [
                 </p>
             </div>
 
+            <!-- Featured guides -->
+            <div class="mb-16">
+                <div class="flex items-baseline justify-between mb-6">
+                    <h2 class="font-display font-bold text-2xl md:text-3xl text-dark">Gidsen</h2>
+                    <span class="text-xs text-dark/40 uppercase tracking-widest font-bold">Pillar-content</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <a href="/gids/geo" class="group block bg-dark text-white rounded-[2rem] p-8 md:p-10 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
+                        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo/30 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-indigo/20 border border-indigo/40 rounded-full text-[10px] font-bold text-indigo uppercase tracking-[0.2em]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo animate-pulse"></span>
+                                    AI-zoekmachines
+                                </span>
+                                <span class="text-xs text-white/40 font-medium">±15 min</span>
+                            </div>
+                            <h3 class="font-display font-bold text-2xl md:text-3xl leading-[1.1] mb-4">
+                                GEO: Generative Engine <span class="text-indigo">Optimization</span>
+                            </h3>
+                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
+                                Zo word je gevonden in ChatGPT, Perplexity, Gemini en Claude. Van fundament tot 30-60-90 roadmap.
+                            </p>
+                            <span class="inline-flex items-center gap-2 text-sm font-bold text-indigo group-hover:text-white transition-colors">
+                                Lees gids
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                    <a href="/gids/ai-automation" class="group block bg-dark text-white rounded-[2rem] p-8 md:p-10 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
+                        <div class="absolute top-0 right-0 w-80 h-80 bg-violet/30 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-violet/20 border border-violet/40 rounded-full text-[10px] font-bold text-violet uppercase tracking-[0.2em]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-violet animate-pulse"></span>
+                                    Nieuwe gids
+                                </span>
+                                <span class="text-xs text-white/40 font-medium">±18 min</span>
+                            </div>
+                            <h3 class="font-display font-bold text-2xl md:text-3xl leading-[1.1] mb-4">
+                                AI-automation voor <span class="text-violet">MKB</span>
+                            </h3>
+                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
+                                Van Zapier + LLM tot custom agents. Welk type past wanneer, wat kost het, en hoe begin je.
+                            </p>
+                            <span class="inline-flex items-center gap-2 text-sm font-bold text-violet group-hover:text-white transition-colors">
+                                Lees gids
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <!-- Category Filter -->
             {
                 categories.length > 0 && (

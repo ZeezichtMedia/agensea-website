@@ -15,7 +15,10 @@
     "@astrojs/sitemap": "^3.7.1",
     "@astrojs/vercel": "^10.0.3",
     "@tailwindcss/vite": "^4.2.1",
+    "@types/nodemailer": "^8.0.0",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.0.4",
+    "nodemailer": "^8.0.5",
     "tailwindcss": "^4.2.1"
   }
 }

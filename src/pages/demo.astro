@@ -87,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
               <h2 class="font-display text-3xl font-bold text-dark mb-2">Claim je gratis demo</h2>
               <p class="text-text-secondary text-sm mb-8">Laat je gegevens achter en we plannen direct een moment in.</p>
 
-              <form action="#" method="POST" class="space-y-5" onsubmit="event.preventDefault(); alert('Demo aanvragen formulier wordt later gekoppeld aan de database.');">
+              <form id="demo-form" method="POST" class="space-y-5">
                 
                 <div class="grid md:grid-cols-2 gap-5">
                   <div class="space-y-2">
@@ -126,15 +126,27 @@ import Layout from '../layouts/Layout.astro';
                   <textarea id="message" name="message" rows="3" required class="w-full bg-white/80 border border-dark/10 rounded-xl px-4 py-3 text-dark focus:border-indigo focus:ring-1 focus:ring-indigo outline-none transition-all placeholder:text-dark/20 resize-none text-sm font-medium" placeholder="Vertel in 2 zinnen wat je zoekt. Bijv. 'We starten in Q3 een nieuwe marketingcampagne en hebben een strakke LP nodig.'"></textarea>
                 </div>
 
-                <button type="submit" class="w-full group relative inline-flex items-center justify-center gap-3 bg-indigo text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-[1.02] shadow-[0_10px_30px_-10px_rgba(67,83,255,0.5)] mt-4">
+                <input type="text" name="hp_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+
+                <p id="demo-error" class="hidden text-sm text-red-600 font-medium"></p>
+
+                <button type="submit" id="demo-submit" class="w-full group relative inline-flex items-center justify-center gap-3 bg-indigo text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-[1.02] shadow-[0_10px_30px_-10px_rgba(67,83,255,0.5)] mt-4 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
                   <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                   <span class="relative z-10 flex items-center gap-2">
-                    Vraag gratis demo aan
+                    <span id="demo-submit-label">Vraag gratis demo aan</span>
                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </span>
                 </button>
                 <p class="text-center text-[10px] text-text-secondary/50 font-bold uppercase tracking-widest mt-4">Wij beschermen je privacy strikt en spammen niet.</p>
               </form>
+
+              <div id="demo-success" class="hidden text-center py-8">
+                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <h3 class="font-display text-2xl font-bold text-dark mb-2">Aanvraag ontvangen!</h3>
+                <p class="text-text-secondary">We nemen binnen twee werkdagen contact op om een moment in te plannen.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -145,6 +157,50 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-  // Simple intersection observer to animate the steps drawing line (if needed)
-  // For now, it relies on global .reveal class behavior from layout.
+  const demoForm = document.getElementById('demo-form') as HTMLFormElement | null;
+  const demoSubmit = document.getElementById('demo-submit') as HTMLButtonElement | null;
+  const demoSubmitLabel = document.getElementById('demo-submit-label');
+  const demoError = document.getElementById('demo-error');
+  const demoSuccess = document.getElementById('demo-success');
+
+  demoForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!demoForm || !demoSubmit) return;
+    demoError?.classList.add('hidden');
+
+    const data = new FormData(demoForm);
+    const payload = {
+      formType: 'demo',
+      hp_url: String(data.get('hp_url') ?? ''),
+      fields: {
+        firstName: String(data.get('firstName') ?? ''),
+        company: String(data.get('company') ?? ''),
+        email: String(data.get('email') ?? ''),
+        website: String(data.get('website') ?? ''),
+        goal: String(data.get('goal') ?? ''),
+        message: String(data.get('message') ?? ''),
+      },
+    };
+
+    demoSubmit.disabled = true;
+    if (demoSubmitLabel) demoSubmitLabel.textContent = 'Versturen...';
+
+    try {
+      const res = await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('send failed');
+      demoForm.classList.add('hidden');
+      demoSuccess?.classList.remove('hidden');
+    } catch (err) {
+      demoSubmit.disabled = false;
+      if (demoSubmitLabel) demoSubmitLabel.textContent = 'Vraag gratis demo aan';
+      if (demoError) {
+        demoError.textContent = 'Er ging iets mis. Probeer opnieuw of mail direct naar info@agensea.nl.';
+        demoError.classList.remove('hidden');
+      }
+    }
+  });
 </script>

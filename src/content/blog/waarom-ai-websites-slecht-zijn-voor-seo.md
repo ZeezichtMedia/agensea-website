@@ -89,6 +89,14 @@ Dat betekent keuzes op technisch niveau die bepalen hoe snel een pagina laadt, h
 
 Dat is niet iets wat je er achteraf bij doet. Dat bouw je in vanaf het begin.
 
+## En hoe zit het met ChatGPT, Perplexity en Gemini?
+
+SEO gaat over Google. Maar zoekgedrag verschuift snel: steeds meer mensen stellen hun vraag direct aan ChatGPT, Perplexity of Gemini in plaats van aan Google. Die AI-zoekmachines hebben hun eigen spelregels — **Generative Engine Optimization** (GEO) — en een AI-gebouwde website scoort daar vaak net zo slecht als in Google, om vergelijkbare redenen.
+
+Wil je weten hoe je wél in die AI-antwoorden terechtkomt? We hebben er een complete gids over geschreven:
+
+👉 [**GEO: de complete gids voor Generative Engine Optimization**](/gids/geo/) — wat het is, hoe LLM's content selecteren, en een 30-60-90 roadmap om te beginnen.
+
 ## Klaar om gevonden te worden?
 
 Bij Agensea bouwen we websites die standaard scoren boven de 95 op Google PageSpeed. Niet als uitzondering, maar als norm. De technische basis klopt van dag één, zodat jouw website niet alleen mooi is, maar ook gevonden wordt door de mensen die jij zoekt.

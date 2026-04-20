@@ -67,6 +67,8 @@ import Footer from '../components/Footer.astro';
           <div class="reveal delay-200">
             <form id="offerte-form" class="bg-white rounded-3xl border border-warm-grey/20 shadow-xl p-8 md:p-10 space-y-6">
 
+              <input type="text" name="hp_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+
               <!-- Stap indicator -->
               <div class="flex items-center gap-3 mb-2">
                 <div id="step-1-dot" class="w-8 h-8 rounded-full bg-indigo text-white flex items-center justify-center text-xs font-bold">1</div>
@@ -79,8 +81,8 @@ import Footer from '../components/Footer.astro';
               <!-- Step 1: Wat heb je nodig -->
               <div id="step-1" class="space-y-5">
                 <div>
-                  <p class="font-display font-bold text-xl text-dark mb-1">Wat heb je nodig?</p>
-                  <p class="text-sm text-text-secondary">Selecteer alles wat van toepassing is.</p>
+                  <p id="step-1-title" class="font-display font-bold text-xl text-dark mb-1">Wat heb je nodig?</p>
+                  <p id="step-1-subtitle" class="text-sm text-text-secondary">Selecteer alles wat van toepassing is.</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3" id="service-options">
@@ -120,6 +122,14 @@ import Footer from '../components/Footer.astro';
                     </div>
                   </label>
                   <label class="service-option group cursor-pointer">
+                    <input type="checkbox" name="dienst" value="geo-scan" class="hidden" />
+                    <div class="p-4 rounded-xl border-2 border-warm-grey/30 bg-cream/50 hover:border-indigo/50 transition-all text-center group-has-[:checked]:border-indigo group-has-[:checked]:bg-indigo/5 relative">
+                      <span class="absolute top-1.5 right-1.5 text-[8px] font-bold text-indigo bg-indigo/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">AI</span>
+                      <svg class="w-6 h-6 mx-auto mb-1.5 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+                      <span class="text-sm font-bold text-dark">GEO-scan</span>
+                    </div>
+                  </label>
+                  <label class="service-option group cursor-pointer col-span-2">
                     <input type="checkbox" name="dienst" value="software" class="hidden" />
                     <div class="p-4 rounded-xl border-2 border-warm-grey/30 bg-cream/50 hover:border-indigo/50 transition-all text-center group-has-[:checked]:border-indigo group-has-[:checked]:bg-indigo/5">
                       <svg class="w-6 h-6 mx-auto mb-1.5 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -232,6 +242,9 @@ import Footer from '../components/Footer.astro';
                 </div>
               </div>
 
+              <!-- Error -->
+              <p id="offerte-error" class="hidden text-sm text-red-600 font-medium"></p>
+
               <!-- Success -->
               <div id="step-success" class="hidden text-center py-8">
                 <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -270,6 +283,24 @@ import Footer from '../components/Footer.astro';
   if (presetDoel) {
     const select = document.querySelector('select[name="doel"]') as HTMLSelectElement;
     if (select) select.value = presetDoel;
+  }
+
+  // ── Context-aware headline voor GEO-scan intake ──
+  // Wanneer bezoeker vanaf de GEO-gids komt (?dienst=geo-scan), passen we
+  // de intake-copy aan zodat het niet voelt als generieke offerte-aanvraag.
+  if (presetDienst?.split(',').includes('geo-scan')) {
+    const title = document.getElementById('step-1-title');
+    const subtitle = document.getElementById('step-1-subtitle');
+    if (title) title.textContent = 'GEO-audit aanvragen';
+    if (subtitle) {
+      subtitle.textContent =
+        'We controleren waar jouw bedrijf nu genoemd wordt in ChatGPT, Perplexity, Gemini en Claude. Je krijgt binnen twee werkdagen een concreet rapport.';
+    }
+    // Pre-select doel ook als hij niet via URL meekomt
+    if (!presetDoel) {
+      const select = document.querySelector('select[name="doel"]') as HTMLSelectElement;
+      if (select) select.value = 'online-zichtbaar';
+    }
   }
 
   // ── Step navigation ──
@@ -325,29 +356,49 @@ import Footer from '../components/Footer.astro';
   document.getElementById('back-to-2')?.addEventListener('click', () => showStep(2));
 
   // ── Form submit ──
+  const offerteErrorEl = document.getElementById('offerte-error');
   document.getElementById('offerte-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    const data = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    offerteErrorEl?.classList.add('hidden');
 
-    // Collect services
-    const diensten = Array.from(data.getAll('dienst'));
+    const data = new FormData(form);
+    const diensten = Array.from(data.getAll('dienst')).map(String);
 
     const payload = {
-      diensten,
-      doel: data.get('doel'),
-      budget: data.get('budget'),
-      omschrijving: data.get('omschrijving'),
-      naam: data.get('naam'),
-      bedrijf: data.get('bedrijf'),
-      email: data.get('email'),
-      telefoon: data.get('telefoon'),
-      website: data.get('website'),
+      formType: 'offerte' as const,
+      hp_url: String(data.get('hp_url') ?? ''),
+      fields: {
+        diensten,
+        doel: String(data.get('doel') ?? ''),
+        budget: String(data.get('budget') ?? ''),
+        omschrijving: String(data.get('omschrijving') ?? ''),
+        naam: String(data.get('naam') ?? ''),
+        bedrijf: String(data.get('bedrijf') ?? ''),
+        email: String(data.get('email') ?? ''),
+        telefoon: String(data.get('telefoon') ?? ''),
+        website: String(data.get('website') ?? ''),
+      },
     };
 
-    // For now just show success (can be connected to API later)
-    console.log('Offerte aanvraag:', payload);
-    showStep(4);
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('send failed');
+      showStep(4);
+    } catch (err) {
+      if (submitBtn) submitBtn.disabled = false;
+      if (offerteErrorEl) {
+        offerteErrorEl.textContent = 'Er ging iets mis bij het versturen. Probeer opnieuw of mail direct naar info@agensea.nl.';
+        offerteErrorEl.classList.remove('hidden');
+      }
+    }
   });
 </script>
 

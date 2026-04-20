@@ -15,8 +15,9 @@ tags:
   - "tijdsbesparing"
   - "website filter"
 relatedPosts:
+  - "zapier-vs-custom-ai-agent"
+  - "proces-automatisering-checklist"
   - "wel-bezoekers-geen-klanten"
-  - "effectieve-call-to-actions"
 seo:
   metaTitle: "Website voor Bouwbedrijf: Stop met nutteloze offertes | Agensea"
   metaDescription: "Krijg je wel aanvragen, maar de verkeerde? Zet je website in als filter. Bespaar tijd en trek alleen luxe projecten aan. Lees de strategie."

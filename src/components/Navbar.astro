@@ -26,9 +26,14 @@
     <a
       href="/"
       aria-label="Agensea — naar homepagina"
-      class="interactive pointer-events-auto inline-flex items-center py-2.5 md:py-3 transition-all duration-500"
+      class="interactive pointer-events-auto inline-flex items-center py-2.5 md:py-3 transition-all duration-500 relative"
       id="logo-main"
-    ><img src="/brand/Agensea%20logo.svg" alt="Agensea" width="400" height="400" class="h-8 md:h-10 w-auto transition-all duration-300" id="logo-img" /></a>
+    >
+      <!-- Soft radial backdrop: blurt content achter logo zodat tekst niet doorheen schijnt.
+           Geen pill-rand (radial mask fades uit). Alleen zichtbaar bij scroll. -->
+      <span class="logo-backdrop" aria-hidden="true"></span>
+      <img src="/brand/Agensea%20logo.svg" alt="Agensea" width="400" height="400" class="h-8 md:h-10 w-auto transition-all duration-300 relative z-10" id="logo-img" />
+    </a>
 
     <!-- Logo Download Popup -->
     <div id="logo-download-popup" class="fixed z-[2000] hidden pointer-events-none">
@@ -368,10 +373,43 @@
     if (currentScroll < SHRINK_THRESHOLD) {
       mainNav?.classList.remove("bg-white/65");
       mainNav?.classList.add("bg-white/50");
+      logoPill?.classList.remove("scrolled");
     } else {
       mainNav?.classList.add("bg-white/65");
       mainNav?.classList.remove("bg-white/50");
+      logoPill?.classList.add("scrolled");
     }
+  }
+
+  // ── Logo theme-aware: detect donkere secties achter het logo ────────────
+  // Aanpak uit commit 50d6436 ("feat: make nav sticky and add dynamic color
+  // inversion for logo over dark sections"). Gebruikt het daadwerkelijke
+  // logo-rect ipv hardcoded Y-waarde, zodat het accuraat blijft bij andere
+  // schermgroottes / logo-hoogtes. Filtert kleine `bg-dark` knoppen eruit
+  // via een minimum-breedte check.
+  function updateLogoTheme() {
+    if (!logoPill) return;
+    const logoRect = logoPill.getBoundingClientRect();
+    const logoCenterY = logoRect.top + logoRect.height / 2;
+    const darkSections = document.querySelectorAll(
+      '.bg-dark, .bg-indigo, [data-theme="dark"]'
+    );
+    let onDark = false;
+    for (const section of darkSections) {
+      const rect = section.getBoundingClientRect();
+      // Sectie moet breed genoeg zijn om een "achtergrond" te heten
+      // (niet een kleine button of icon-container) EN moet het verticale
+      // midden van het logo overlappen.
+      if (
+        rect.width >= 300 &&
+        logoCenterY >= rect.top &&
+        logoCenterY <= rect.bottom
+      ) {
+        onDark = true;
+        break;
+      }
+    }
+    logoPill.classList.toggle("on-dark", onDark);
   }
 
   let scrollTicking = false;
@@ -379,11 +417,16 @@
     if (!scrollTicking) {
       requestAnimationFrame(() => {
         applyScroll();
+        updateLogoTheme();
         scrollTicking = false;
       });
       scrollTicking = true;
     }
   }, { passive: true });
+
+  // Initial check bij page-load (belangrijk bij anchor-links of back-button)
+  updateLogoTheme();
+  window.addEventListener("resize", updateLogoTheme, { passive: true });
 
   // ── Logo Download Popup ──────────────────
   const logoEl = document.getElementById('logo-main');
@@ -429,4 +472,44 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  /* ── Logo adaptive behavior ────────────────────────────────────
+     Twee gedragingen samen:
+     1. Soft backdrop bij scroll — radial blur die tekst achter het logo
+        verzacht, zonder een zichtbare pill-rand (mask fades uit).
+     2. Kleur-inversie boven donkere secties — IntersectionObserver in
+        script toggelt `.on-dark` zodat logo naar wit schakelt.
+     ────────────────────────────────────────────────────────────── */
+  .logo-backdrop {
+    position: absolute;
+    inset: -4px -14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
+    mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Bij scroll: backdrop vervaagt rustig in */
+  #logo-main.scrolled .logo-backdrop {
+    opacity: 1;
+  }
+
+  /* Boven donkere secties: logo wordt wit, backdrop wordt subtiel donker */
+  #logo-main.on-dark #logo-img {
+    filter: brightness(0) invert(1);
+    transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #logo-main.on-dark .logo-backdrop {
+    -webkit-mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
+    mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
+    background: rgba(13, 13, 13, 0.12);
+  }
+
+  /* Subtiele smooth-overgang voor logo-img zelf */
+  #logo-img {
+    transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 </style>

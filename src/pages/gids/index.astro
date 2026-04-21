@@ -119,24 +119,14 @@ const guides = [
       <div>
         <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
           <span class="w-8 h-[2px] bg-indigo"></span>
-          Pillar-content
+          Gidsen
         </span>
         <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-dark mb-6">
-          Onze <span class="text-indigo">gidsen</span>
+          Complete overzichten voor <span class="text-indigo">AI-first</span> ondernemers
         </h1>
-        <p class="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mb-8">
-          Complete diepgaande overzichten voor elk van onze kerngebieden. Waar losse artikelen één onderwerp behandelen, bundelen onze gidsen de hele context — voor wie in één keer het hele plaatje wil snappen.
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl">
+          Diepgaande gidsen per kerngebied — AI-automation, websites, marketing, strategie en GEO. Elk met een 30-60-90 dagen roadmap en bijbehorende <a href="/kennisbank" class="text-indigo hover:text-dark underline underline-offset-4 decoration-indigo/30 hover:decoration-indigo">verdiepende artikelen</a>.
         </p>
-
-        <!-- Uitleg pillar vs blog voor gebruikers -->
-        <div class="inline-flex items-center gap-3 p-4 bg-white rounded-2xl border border-warm-grey/30 text-sm text-text-secondary">
-          <div class="shrink-0 w-8 h-8 rounded-lg bg-indigo/10 flex items-center justify-center">
-            <svg class="w-4 h-4 text-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          </div>
-          <p>
-            <strong class="text-dark">Gids</strong> = breed overzicht + 30-60-90 roadmap. <strong class="text-dark">Artikel</strong> in <a href="/kennisbank" class="text-indigo hover:text-dark underline underline-offset-4">kennisbank</a> = diepgaand op één aspect.
-          </p>
-        </div>
       </div>
     </section>
 
@@ -146,9 +136,9 @@ const guides = [
         {guides.map((g) => (
           <a
             href={g.href}
-            class="group block bg-white rounded-[2rem] p-8 md:p-10 border border-warm-grey/30 hover:border-indigo/40 transition-all duration-300 relative overflow-hidden"
+            class="group block bg-white rounded-[2rem] p-8 md:p-10 border border-dark/[0.08] shadow-[0_2px_12px_rgba(13,13,13,0.04)] hover:border-indigo/25 hover:shadow-[0_20px_40px_-12px_rgba(67,83,255,0.12)] hover:-translate-y-1 transition-all duration-500 relative overflow-hidden"
           >
-            <div class={`absolute top-0 right-0 w-64 h-64 ${g.badgeColor === 'indigo' ? 'bg-indigo/10' : 'bg-violet/10'} rounded-full blur-3xl pointer-events-none`}></div>
+            <div class={`absolute -top-16 -right-16 w-56 h-56 ${g.badgeColor === 'indigo' ? 'bg-indigo/20' : 'bg-violet/20'} rounded-full blur-3xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity duration-700`}></div>
 
             <div class="relative z-10">
               <div class="flex items-center justify-between gap-4 mb-5">
@@ -191,45 +181,6 @@ const guides = [
             </div>
           </a>
         ))}
-      </div>
-    </section>
-
-    <!-- Relationship explanation -->
-    <section class="max-w-5xl mx-auto px-6 lg:px-10 relative z-10 mb-24">
-      <div class="bg-white rounded-[2rem] p-8 md:p-12 border border-warm-grey/30">
-        <h2 class="font-display font-bold text-2xl md:text-3xl text-dark mb-4">Gidsen vs artikelen</h2>
-        <p class="text-text-secondary leading-relaxed mb-8">
-          Voor elk onderwerp hebben we twee niveaus van content: de brede gids voor wie het hele plaatje wil, en diepgaande artikelen voor specifieke vragen. De gids linkt naar de bijbehorende artikelen en omgekeerd.
-        </p>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-indigo/10 border border-indigo/30 rounded-full text-[10px] font-bold text-indigo uppercase tracking-[0.2em]">Gids</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-dark mb-2">Voor het complete plaatje</h3>
-            <ul class="space-y-1.5 text-sm text-text-secondary">
-              <li>· 3.000-4.000 woorden, 10 secties</li>
-              <li>· Laatst bijgewerkt-datum (evergreen)</li>
-              <li>· 30-60-90 dagen roadmap</li>
-              <li>· Veelgestelde vragen met FAQ-schema</li>
-              <li>· Start-punt voor een onderwerp</li>
-            </ul>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-warm-grey/50 border border-warm-grey rounded-full text-[10px] font-bold text-dark/70 uppercase tracking-[0.2em]">Artikel</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-dark mb-2">Voor een specifieke vraag</h3>
-            <ul class="space-y-1.5 text-sm text-text-secondary">
-              <li>· 1.000-1.500 woorden, focus op één onderwerp</li>
-              <li>· Met publicatiedatum en auteur</li>
-              <li>· Diepgaand op één aspect uit een gids</li>
-              <li>· Bekijk alle artikelen in de <a href="/kennisbank" class="text-indigo hover:text-dark underline underline-offset-4">kennisbank</a></li>
-              <li>· Longtail zoekvragen beantwoorden</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
 

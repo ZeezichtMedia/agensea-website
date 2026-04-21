@@ -481,15 +481,32 @@
      ────────────────────────────────────────────────────────────── */
   .logo-backdrop {
     position: absolute;
-    inset: -4px -14px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    -webkit-mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
-    mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
+    /* Ruimere zone dan logo zelf, zodat de glow kan uitwaaieren */
+    inset: -24px -44px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    /* Gaussian-achtige falloff met meerdere stops — geen zichtbare rand,
+       wel duidelijk donkerder in het midden waar het logo staat. */
+    -webkit-mask: radial-gradient(
+      ellipse 55% 60% at center,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0.3) 65%,
+      rgba(0, 0, 0, 0.08) 85%,
+      transparent 100%
+    );
+    mask: radial-gradient(
+      ellipse 55% 60% at center,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0.3) 65%,
+      rgba(0, 0, 0, 0.08) 85%,
+      transparent 100%
+    );
     pointer-events: none;
     z-index: 0;
     opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Bij scroll: backdrop vervaagt rustig in */
@@ -503,9 +520,7 @@
     transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   #logo-main.on-dark .logo-backdrop {
-    -webkit-mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
-    mask: radial-gradient(ellipse 80% 85% at center, black 25%, transparent 80%);
-    background: rgba(13, 13, 13, 0.12);
+    background: rgba(13, 13, 13, 0.08);
   }
 
   /* Subtiele smooth-overgang voor logo-img zelf */

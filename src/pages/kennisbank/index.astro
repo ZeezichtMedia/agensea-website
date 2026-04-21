@@ -12,10 +12,72 @@ const sortedPosts = posts.sort(
         b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 ) as CollectionEntry<"blog">[];
 
-// Get unique categories
-const categories = [
-    ...new Set(sortedPosts.map((p) => p.data.category).filter(Boolean)),
-] as string[];
+// Pillar-gidsen data (single source, makkelijk te onderhouden).
+const guides = [
+    {
+        href: "/gids/geo",
+        badge: "Marketing · SEO",
+        accent: "indigo",
+        title: "GEO",
+        titleAccent: "Generative Engine Optimization",
+        description:
+            "Zo word je gevonden in ChatGPT, Perplexity en Gemini.",
+        readingTime: "±15 min",
+    },
+    {
+        href: "/gids/ai-automation",
+        badge: "Software · Automation",
+        accent: "violet",
+        title: "AI-automation",
+        titleAccent: "voor MKB",
+        description:
+            "Van Zapier + LLM tot custom agents. Welk type past wanneer.",
+        readingTime: "±18 min",
+    },
+    {
+        href: "/gids/ai-first-websites",
+        badge: "Websites",
+        accent: "indigo",
+        title: "AI-first",
+        titleAccent: "websites",
+        description:
+            "Bouwstenen, stack-keuzes en AI-features in modern web.",
+        readingTime: "±16 min",
+    },
+    {
+        href: "/gids/ai-marketing",
+        badge: "Marketing",
+        accent: "violet",
+        title: "AI-marketing",
+        titleAccent: "voor MKB",
+        description:
+            "Content, ads en personalisatie. Welke workflows leveren ROI?",
+        readingTime: "±17 min",
+    },
+    {
+        href: "/gids/ai-strategie",
+        badge: "Directie",
+        accent: "indigo",
+        title: "AI-strategie",
+        titleAccent: "voor MKB",
+        description:
+            "Readiness, governance, budget en roadmap voor directies.",
+        readingTime: "±19 min",
+    },
+];
+
+// Tel posts per categorie om top-5 te bepalen.
+const categoryCounts = sortedPosts.reduce<Record<string, number>>((acc, p) => {
+    const cat = p.data.category;
+    if (cat) acc[cat] = (acc[cat] || 0) + 1;
+    return acc;
+}, {});
+
+// Toon alleen de 5 meest-gebruikte categorieën — rest wordt bereikbaar via "Alles".
+const topCategories = Object.entries(categoryCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([cat]) => cat);
 ---
 
 <Layout
@@ -31,166 +93,146 @@ const categories = [
       ]
     })} />
     <Navbar />
-    <main id="main-content" class="min-h-screen pt-40 pb-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <h1
-                    class="text-5xl md:text-7xl font-display font-bold text-dark tracking-tight mb-4"
-                >
-                    Onze <span class="text-indigo">Inzichten</span>.
+
+    <main id="main-content" class="bg-cream min-h-screen pt-32 md:pt-40 pb-20 overflow-hidden relative">
+        <!-- Subtle background decor matching site-style -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="mesh-blob w-[600px] h-[600px] bg-indigo/10 top-[-10%] right-[-10%] blur-[120px]"></div>
+            <div class="mesh-blob w-[500px] h-[500px] bg-violet/10 bottom-[30%] left-[-10%] blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+            <!-- Hero -->
+            <div class="mb-20 md:mb-24 max-w-3xl">
+                <span class="inline-flex items-center gap-2 text-xs font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+                    <span class="w-8 h-[2px] bg-indigo"></span>
+                    Kennisbank
+                </span>
+                <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-dark tracking-tight leading-[1.05] mb-6">
+                    Onze <span class="text-indigo">inzichten</span>.
                 </h1>
-                <p class="text-xl text-dark/70 max-w-2xl font-sans">
-                    Ontdek de laatste trends, tips en verhalen over webdesign,
-                    AI en online marketing.
+                <p class="text-lg md:text-xl text-text-secondary leading-relaxed">
+                    Gidsen en artikelen over AI, websites, marketing en strategie.
+                    Gebouwd voor mkb-ondernemers die verder willen dan de hype.
                 </p>
             </div>
 
-            <!-- Featured guides -->
-            <div class="mb-16">
-                <div class="flex items-baseline justify-between mb-6">
-                    <h2 class="font-display font-bold text-2xl md:text-3xl text-dark">Gidsen</h2>
-                    <span class="text-xs text-dark/40 uppercase tracking-widest font-bold">Pillar-content</span>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <a href="/gids/geo" class="group block bg-dark text-white rounded-[2rem] p-8 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-                        <div class="absolute top-0 right-0 w-72 h-72 bg-indigo/30 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-indigo/20 border border-indigo/40 rounded-full text-[10px] font-bold text-indigo uppercase tracking-[0.2em]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo animate-pulse"></span>
-                                    Marketing · SEO
-                                </span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl md:text-2xl leading-[1.15] mb-3">
-                                GEO: <span class="text-indigo">Generative Engine Optimization</span>
-                            </h3>
-                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
-                                Zo word je gevonden in ChatGPT, Perplexity en Gemini.
-                            </p>
-                            <span class="inline-flex items-center gap-2 text-sm font-bold text-indigo group-hover:text-white transition-colors">
-                                Lees gids
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </a>
-                    <a href="/gids/ai-automation" class="group block bg-dark text-white rounded-[2rem] p-8 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-                        <div class="absolute top-0 right-0 w-72 h-72 bg-violet/30 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-violet/20 border border-violet/40 rounded-full text-[10px] font-bold text-violet uppercase tracking-[0.2em]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-violet animate-pulse"></span>
-                                    Software · Automation
-                                </span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl md:text-2xl leading-[1.15] mb-3">
-                                AI-automation voor <span class="text-violet">MKB</span>
-                            </h3>
-                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
-                                Van Zapier + LLM tot custom agents. Welk type past wanneer, wat kost het.
-                            </p>
-                            <span class="inline-flex items-center gap-2 text-sm font-bold text-violet group-hover:text-white transition-colors">
-                                Lees gids
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </a>
-                    <a href="/gids/ai-first-websites" class="group block bg-dark text-white rounded-[2rem] p-8 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-                        <div class="absolute top-0 right-0 w-72 h-72 bg-indigo/20 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="absolute bottom-0 left-0 w-56 h-56 bg-violet/20 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-indigo/20 border border-indigo/40 rounded-full text-[10px] font-bold text-indigo uppercase tracking-[0.2em]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo animate-pulse"></span>
-                                    Websites
-                                </span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl md:text-2xl leading-[1.15] mb-3">
-                                AI-first <span class="text-indigo">websites</span>
-                            </h3>
-                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
-                                Bouwstenen, stack-keuzes, AI-features en kosten van AI-first websites.
-                            </p>
-                            <span class="inline-flex items-center gap-2 text-sm font-bold text-indigo group-hover:text-white transition-colors">
-                                Lees gids
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </a>
-                    <a href="/gids/ai-marketing" class="group block bg-dark text-white rounded-[2rem] p-8 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-                        <div class="absolute top-0 right-0 w-72 h-72 bg-violet/25 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="absolute bottom-0 right-0 w-56 h-56 bg-indigo/20 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-violet/20 border border-violet/40 rounded-full text-[10px] font-bold text-violet uppercase tracking-[0.2em]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-violet animate-pulse"></span>
-                                    Marketing
-                                </span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl md:text-2xl leading-[1.15] mb-3">
-                                AI-marketing voor <span class="text-violet">MKB</span>
-                            </h3>
-                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
-                                Content, ads, personalisatie. Welke AI-workflows leveren echt ROI?
-                            </p>
-                            <span class="inline-flex items-center gap-2 text-sm font-bold text-violet group-hover:text-white transition-colors">
-                                Lees gids
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </a>
-                    <a href="/gids/ai-strategie" class="group block bg-dark text-white rounded-[2rem] p-8 relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-                        <div class="absolute top-0 right-0 w-72 h-72 bg-indigo/25 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="absolute bottom-0 left-0 w-56 h-56 bg-violet/15 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center gap-2 px-2.5 py-1 bg-indigo/20 border border-indigo/40 rounded-full text-[10px] font-bold text-indigo uppercase tracking-[0.2em]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo animate-pulse"></span>
-                                    Directie · Strategie
-                                </span>
-                            </div>
-                            <h3 class="font-display font-bold text-xl md:text-2xl leading-[1.15] mb-3">
-                                AI-strategie voor <span class="text-indigo">MKB</span>
-                            </h3>
-                            <p class="text-white/70 leading-relaxed mb-6 text-sm">
-                                Readiness, governance, budget en roadmap — voor mkb-directies.
-                            </p>
-                            <span class="inline-flex items-center gap-2 text-sm font-bold text-indigo group-hover:text-white transition-colors">
-                                Lees gids
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </span>
-                        </div>
+            <!-- Featured pillar-gidsen — light huisstijl cards -->
+            <section class="mb-20 md:mb-28">
+                <div class="flex items-end justify-between mb-8 flex-wrap gap-3">
+                    <div>
+                        <span class="inline-flex items-center gap-2 text-[10px] font-bold text-indigo uppercase tracking-[0.25em] mb-2">
+                            <span class="w-6 h-[1px] bg-indigo"></span>
+                            Complete overzichten
+                        </span>
+                        <h2 class="font-display font-bold text-2xl md:text-3xl text-dark">
+                            Gidsen
+                        </h2>
+                    </div>
+                    <a href="/gids" class="text-xs font-bold text-dark/50 hover:text-indigo uppercase tracking-widest transition-colors inline-flex items-center gap-1.5">
+                        Alle gidsen
+                        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
                 </div>
-            </div>
 
-            <!-- Category Filter -->
-            {
-                categories.length > 0 && (
-                    <div class="flex flex-wrap gap-2 mb-12">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    {guides.map((g) => (
+                        <a
+                            href={g.href}
+                            class="group relative block bg-white/50 backdrop-blur-sm border border-white rounded-3xl p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo/5 overflow-hidden"
+                        >
+                            {/* Hover-revealing blob in accent color */}
+                            <div class:list={[
+                                "absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none",
+                                g.accent === "indigo" ? "bg-indigo/30" : "bg-violet/30",
+                            ]}></div>
+
+                            <div class="relative z-10 flex flex-col h-full">
+                                {/* Meta row: badge + reading time */}
+                                <div class="flex items-center justify-between gap-2 mb-5">
+                                    <span class:list={[
+                                        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]",
+                                        g.accent === "indigo"
+                                            ? "bg-indigo/10 text-indigo"
+                                            : "bg-violet/10 text-violet",
+                                    ]}>
+                                        {g.badge}
+                                    </span>
+                                    <span class="text-[10px] text-dark/40 font-medium">
+                                        {g.readingTime}
+                                    </span>
+                                </div>
+
+                                {/* Title */}
+                                <h3 class="font-display font-bold text-2xl md:text-[1.65rem] text-dark leading-[1.1] mb-3 group-hover:text-indigo transition-colors duration-300">
+                                    {g.title}{" "}
+                                    <span class:list={[
+                                        g.accent === "indigo" ? "text-indigo" : "text-violet",
+                                    ]}>{g.titleAccent}</span>
+                                </h3>
+
+                                {/* Description */}
+                                <p class="text-dark/60 text-sm leading-relaxed mb-8">
+                                    {g.description}
+                                </p>
+
+                                {/* Footer */}
+                                <div class="flex items-center justify-between pt-5 mt-auto border-t border-dark/5">
+                                    <span class="text-[10px] font-bold text-dark/40 uppercase tracking-widest">
+                                        Lees gids
+                                    </span>
+                                    <svg class="w-4 h-4 text-dark/30 group-hover:text-indigo group-hover:translate-x-1 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </section>
+
+            <!-- Artikelen header + categorieën -->
+            <section>
+                <div class="flex items-end justify-between mb-8 flex-wrap gap-3">
+                    <div>
+                        <span class="inline-flex items-center gap-2 text-[10px] font-bold text-indigo uppercase tracking-[0.25em] mb-2">
+                            <span class="w-6 h-[1px] bg-indigo"></span>
+                            Verdiepende stukken
+                        </span>
+                        <h2 class="font-display font-bold text-2xl md:text-3xl text-dark">
+                            Alle artikelen
+                        </h2>
+                    </div>
+                    <span class="text-xs text-dark/40 font-medium">
+                        {sortedPosts.length} artikelen
+                    </span>
+                </div>
+
+                <!-- Category filter — cleaner, top-5 + "alles" -->
+                {topCategories.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-10" id="filter-row">
                         <button
                             data-filter="all"
-                            class="filter-btn active px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full border border-indigo bg-indigo text-white transition-all"
+                            class="filter-btn filter-btn--active"
                         >
                             Alles
                         </button>
-                        {categories.map((cat) => (
+                        {topCategories.map((cat) => (
                             <button
                                 data-filter={cat}
-                                class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full border border-dark/10 text-dark/50 hover:border-indigo hover:text-indigo transition-all"
+                                class="filter-btn"
                             >
                                 {cat}
                             </button>
                         ))}
                     </div>
-                )
-            }
+                )}
 
-            <div
-                class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-                id="posts-grid"
-            >
-                {sortedPosts.map((post) => <BlogCard post={post} />)}
-            </div>
+                <div
+                    class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                    id="posts-grid"
+                >
+                    {sortedPosts.map((post) => <BlogCard post={post} />)}
+                </div>
+            </section>
         </div>
     </main>
     <Footer />
@@ -198,43 +240,61 @@ const categories = [
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const buttons = document.querySelectorAll(".filter-btn");
-        const cards = document.querySelectorAll(".blog-card");
+        const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+        const cards = document.querySelectorAll<HTMLElement>(".blog-card");
 
         buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
-                const filter = (btn as HTMLElement).dataset.filter;
+                const filter = btn.dataset.filter;
 
-                // Update active state
-                buttons.forEach((b) => {
-                    b.classList.remove(
-                        "active",
-                        "bg-indigo",
-                        "text-white",
-                        "border-indigo",
-                    );
-                    b.classList.add("border-dark/10", "text-dark/50");
-                });
-                btn.classList.add(
-                    "active",
-                    "bg-indigo",
-                    "text-white",
-                    "border-indigo",
-                );
-                btn.classList.remove("border-dark/10", "text-dark/50");
+                buttons.forEach((b) => b.classList.remove("filter-btn--active"));
+                btn.classList.add("filter-btn--active");
 
-                // Filter cards
                 cards.forEach((card) => {
-                    const cardEl = card as HTMLElement;
-                    const cat = cardEl.dataset.category;
+                    const cat = card.dataset.category;
                     if (filter === "all" || cat === filter) {
-                        cardEl.style.display = "";
-                        cardEl.style.opacity = "1";
+                        card.style.display = "";
                     } else {
-                        cardEl.style.display = "none";
+                        card.style.display = "none";
                     }
                 });
             });
         });
     });
 </script>
+
+<style>
+    /* ── Category filter — clean & geen blauw-op-blauw ──
+       Niet-actieve chips: subtiel grijs, bij hover een zachte bg-tint
+       (geen kleurverandering in tekst). Actieve chip: indigo bg + witte
+       tekst, blijft zo ook tijdens hover. */
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        border-radius: 9999px;
+        border: 1px solid rgba(13, 13, 13, 0.08);
+        background: transparent;
+        color: rgba(13, 13, 13, 0.55);
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .filter-btn:hover {
+        background: rgba(13, 13, 13, 0.04);
+        border-color: rgba(13, 13, 13, 0.15);
+        color: rgba(13, 13, 13, 0.9);
+    }
+
+    .filter-btn--active,
+    .filter-btn--active:hover {
+        background: rgb(67, 83, 255);
+        color: #fff;
+        border-color: rgb(67, 83, 255);
+    }
+</style>

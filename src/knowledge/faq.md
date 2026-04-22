@@ -18,6 +18,18 @@ Ja! Via agensea.nl/demo kun je een gratis, werkende interface demo aanvragen. Wi
 ## Zijn jullie ook bereikbaar buiten kantooruren?
 Ons team is bereikbaar van maandag t/m vrijdag, 08:00 - 19:00. Buiten die tijden helpt onze AI-assistent je graag verder met vragen over onze diensten.
 
+## Kan ik een medewerker spreken via deze chat?
+Nee, de chat wordt volledig door onze AI-assistent afgehandeld — er komt geen medewerker in deze chat mee. Wil je iemand van het team spreken? Dat kan op drie manieren:
+
+- Via het contactformulier op [agensea.nl/contact](/contact) — we reageren meestal binnen één werkdag.
+- Via e-mail: [info@agensea.nl](mailto:info@agensea.nl).
+- Direct bellen: 06 81 38 36 01 (ma t/m vr, 08:00 - 19:00).
+
+De AI-assistent kan je wel alvast op weg helpen met informatie over diensten, cases, werkwijze en tarieven.
+
+## Werken jullie alleen met vaste medewerkers of ook met freelancers?
+Het kernteam bestaat uit Jorik, Jorian en Ruben. Voor grotere projecten werken we samen met een vaste groep freelancers — onder andere Aline Bijleveld (Communicatie Strategist) en Phaedra Tenu (Communicatie Specialist). Zo blijft het team klein en wendbaar, maar kunnen we opschalen met specialisten wanneer een project dat vraagt.
+
 ## Waar is Agensea gevestigd?
 Agensea is gevestigd in Zeeland. We werken zowel met lokale als landelijke klanten.
 

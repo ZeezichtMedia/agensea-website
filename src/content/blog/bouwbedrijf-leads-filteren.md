@@ -108,4 +108,4 @@ Is jouw huidige website een open deur voor iedereen? Of een poort naar betere pr
 **Speciaal voor de Bouw & Techniek sector:**
 Wij snappen hoe jullie wereld werkt. Geen marketingpraatjes, maar tools die tijd besparen.
 
-[**Bekijk onze oplossingen voor de bouwsector**](/sectoren/bouwsector) en ontdek hoe wij jouw sales-proces automatiseren.
+[**Bekijk onze software-oplossingen**](/diensten/software) en ontdek hoe wij jouw sales-proces automatiseren met maatwerk AI-workflows.

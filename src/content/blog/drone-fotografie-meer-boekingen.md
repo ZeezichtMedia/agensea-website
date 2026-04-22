@@ -96,4 +96,4 @@ Het is een eenmalige investering in 'evergreen' content die je jarenlang kunt ge
 **Klaar om jouw locatie vanuit een hoger perspectief te laten zien?**
 Bij Agensea combineren we webdesign met EASA-gecertificeerde drone fotografie. Wij weten precies hoe we de Zeeuwse kustlijn en jouw accommodatie in één adembenemend beeld vangen.
 
-Zullen we eens kijken wat de mogelijkheden zijn voor jouw locatie? [Bekijk onze Drone Fotografie pakketten](/diensten/drone-fotografie/) of neem direct [contact](/contact) op.
+Zullen we eens kijken wat de mogelijkheden zijn voor jouw locatie? [Neem direct contact op](/contact) voor een vrijblijvend gesprek over beeld-productie bij jouw accommodatie.

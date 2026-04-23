@@ -128,8 +128,11 @@ const websiteJsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/brand/Agensea_favicon.png" />
-    <link rel="apple-touch-icon" href="/brand/Agensea_favicon.png" />
+    <!-- Favicon set — Google SERP pakt /favicon.ico, moderne browsers de PNG -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/brand/Agensea_favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/Agensea_favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{finalTitle}</title>
     <meta name="description" content={finalDescription} />

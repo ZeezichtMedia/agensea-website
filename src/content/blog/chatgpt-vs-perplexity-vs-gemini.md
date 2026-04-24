@@ -19,7 +19,7 @@ relatedPosts:
   - "aeo-uitgelegd"
   - "geo-tracking-meten"
 seo:
-  metaTitle: "ChatGPT, Perplexity, Gemini, Claude vergeleken | Agensea"
+  metaTitle: "ChatGPT, Perplexity, Gemini, Claude vergeleken · Agensea"
   metaDescription: "Complete vergelijking van de vier dominante AI-zoekmachines: hoe ze werken, waar je verschijnt, en hoe je per engine optimaliseert."
 draft: false
 ---

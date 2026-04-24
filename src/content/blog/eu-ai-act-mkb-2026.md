@@ -18,7 +18,7 @@ relatedPosts:
   - "hybrid-ai-klantenservice"
   - "rag-chatbot-klantenservice"
 seo:
-  metaTitle: "EU AI Act voor mkb: compliance in 2026 | Agensea"
+  metaTitle: "EU AI Act voor mkb: compliance in 2026 · Agensea"
   metaDescription: "Praktische gids voor mkb over de EU AI Act. Welke risicocategorie geldt voor jouw AI-gebruik en wat moet je regelen?"
 draft: false
 ---

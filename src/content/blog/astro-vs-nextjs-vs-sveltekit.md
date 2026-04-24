@@ -18,7 +18,7 @@ relatedPosts:
   - "wat-maakt-website-ai-first"
   - "wordpress-naar-astro-migreren"
 seo:
-  metaTitle: "Astro vs Next.js vs SvelteKit: stack-keuze 2026 | Agensea"
+  metaTitle: "Astro vs Next.js vs SvelteKit: stack-keuze 2026 · Agensea"
   metaDescription: "Welke moderne frontend-stack past bij jouw project? Concrete vergelijking van Astro, Next.js en SvelteKit voor mkb-sites."
 draft: false
 ---

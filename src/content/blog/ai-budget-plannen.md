@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-team-opbouwen"
   - "eerste-ai-project-kiezen"
 seo:
-  metaTitle: "AI-budget voor mkb: concrete getallen | Agensea"
+  metaTitle: "AI-budget voor mkb: concrete getallen · Agensea"
   metaDescription: "Realistische AI-budgetten voor mkb van 10 tot 100 FTE. Tools, implementatie, training en compliance uitgesplitst."
 draft: false
 ---

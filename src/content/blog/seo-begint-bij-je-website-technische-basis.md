@@ -18,7 +18,7 @@ relatedPosts:
   - "waarom-niet-zelf-website-bouwen"
   - "wanneer-website-vernieuwen"
 seo:
-  metaTitle: "Waarom technische SEO de basis is voor je website | Agensea"
+  metaTitle: "Waarom technische SEO de basis is voor je website · Agensea"
   metaDescription: "Wil je meer bezoekers en organisch groeien? Dan begint SEO bij de technische website fundering. Lees meer over Core Web Vitals."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "aeo-uitgelegd"
   - "waarom-ai-websites-slecht-zijn-voor-seo"
 seo:
-  metaTitle: "llms.txt implementeren: gids voor AI-crawlers | Agensea"
+  metaTitle: "llms.txt implementeren: gids voor AI-crawlers · Agensea"
   metaDescription: "Stap-voor-stap llms.txt opzetten voor betere zichtbaarheid in ChatGPT, Perplexity en Gemini. Met praktische voorbeelden."
 draft: false
 ---

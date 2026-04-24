@@ -17,7 +17,7 @@ relatedPosts:
   - "waarom-niet-zelf-website-bouwen"
   - "wat-kost-een-website-laten-maken-zeeland"
 seo:
-  metaTitle: "WordPress website laten maken in Zeeland? Kies voor Snelheid | Agensea"
+  metaTitle: "WordPress website laten maken in Zeeland? Kies voor Snelheid · Agensea"
   metaDescription: "Zoek je een webbouwer in Zeeland? Lees waarom wij geen WordPress gebruiken, maar kiezen voor technologie die jouw website sneller en veiliger maakt."
 draft: false
 ---
@@ -66,7 +66,7 @@ Wij bouwen websites met **Astro**. Dat zegt je misschien niks, en dat geeft niet
 
 ### WordPress vs. Astro in een notendop
 
-| Eigenschap | WordPress | Agensea Aanpak (Astro) |
+| Eigenschap | WordPress · Agensea Aanpak (Astro) |
 | :--- | :--- | :--- |
 | **Snelheid** | Vaak traag door 'bloat' | Bliksemsnel (Static) |
 | **Veiligheid** | Vaak doelwit van hackers | "Vesting" (Geen database) |

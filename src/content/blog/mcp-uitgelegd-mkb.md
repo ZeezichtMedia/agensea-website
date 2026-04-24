@@ -18,7 +18,7 @@ relatedPosts:
   - "wat-is-ai-agent"
   - "custom-gpt-vs-eigen-agent"
 seo:
-  metaTitle: "MCP uitgelegd voor mkb: Model Context Protocol | Agensea"
+  metaTitle: "MCP uitgelegd voor mkb: Model Context Protocol · Agensea"
   metaDescription: "Wat is MCP (Model Context Protocol), waarom ontstaat de hype, en wanneer is het relevant voor jouw mkb? Praktische uitleg."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-in-google-ads"
   - "customer-journey-ai"
 seo:
-  metaTitle: "Marketing rapportage met AI: complete gids | Agensea"
+  metaTitle: "Marketing rapportage met AI: complete gids · Agensea"
   metaDescription: "Automate je maandelijkse marketing-rapporten met AI. Concrete workflows voor mkb-bureaus en interne teams."
 draft: false
 ---

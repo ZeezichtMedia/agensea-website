@@ -17,7 +17,7 @@ relatedPosts:
   - "eerste-ai-project-kiezen"
   - "ai-change-management"
 seo:
-  metaTitle: "AI-theater vermijden: substantie over show | Agensea"
+  metaTitle: "AI-theater vermijden: substantie over show · Agensea"
   metaDescription: "Herken de 5 symptomen van AI-theater en leer hoe je echte waarde uit AI-implementaties haalt."
 draft: false
 ---

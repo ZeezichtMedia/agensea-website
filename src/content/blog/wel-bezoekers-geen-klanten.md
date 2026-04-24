@@ -17,7 +17,7 @@ relatedPosts:
   - "wanneer-website-vernieuwen"
   - "wordpress-website-laten-maken-zeeland"
 seo:
-  metaTitle: "Wel bezoekers, geen klanten? 5 Conversie-Killers | Agensea"
+  metaTitle: "Wel bezoekers, geen klanten? 5 Conversie-Killers · Agensea"
   metaDescription: "Waarom converteert je website niet? Wij analyseren snelheid, design en vertrouwen. Lees de 5 tips voor meer offertes en omzet."
 draft: false
 ---

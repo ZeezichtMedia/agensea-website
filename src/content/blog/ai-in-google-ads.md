@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-content-workflows"
   - "marketing-analytics-ai"
 seo:
-  metaTitle: "AI in Google Ads: wat werkt echt? | Agensea"
+  metaTitle: "AI in Google Ads: wat werkt echt? · Agensea"
   metaDescription: "Praktische gids voor AI-features in Google Ads. Wat activeren, wat handmatig houden, en hoe meet je het."
 draft: false
 ---

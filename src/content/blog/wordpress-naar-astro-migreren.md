@@ -18,7 +18,7 @@ relatedPosts:
   - "astro-vs-nextjs-vs-sveltekit"
   - "headless-cms-vs-wordpress"
 seo:
-  metaTitle: "WordPress naar Astro migreren: 7-stappen plan | Agensea"
+  metaTitle: "WordPress naar Astro migreren: 7-stappen plan · Agensea"
   metaDescription: "Praktisch 7-stappen plan voor WordPress naar Astro migratie met behoud van SEO en rankings."
 draft: false
 ---

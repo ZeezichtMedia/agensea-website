@@ -18,7 +18,7 @@ relatedPosts:
   - "llms-txt-implementeren"
   - "aeo-uitgelegd"
 seo:
-  metaTitle: "GPTBot, ClaudeBot en PerplexityBot: toelaten of blokkeren? | Agensea"
+  metaTitle: "GPTBot, ClaudeBot en PerplexityBot: toelaten of blokkeren? · Agensea"
   metaDescription: "Praktische beslismatrix voor AI-crawlers in je robots.txt: welke toelaten, welke blokkeren, en wat het voor jouw bedrijf betekent."
 draft: false
 ---

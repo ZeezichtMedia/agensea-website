@@ -18,7 +18,7 @@ relatedPosts:
   - "aeo-uitgelegd"
   - "seo-begint-bij-je-website-technische-basis"
 seo:
-  metaTitle: "Schema.org voor AI-zoekmachines: welke markup werkt | Agensea"
+  metaTitle: "Schema.org voor AI-zoekmachines: welke markup werkt · Agensea"
   metaDescription: "Praktische gids voor structured data in het AI-tijdperk. Welke schema-types LLM's wél gebruiken en welke niet."
 draft: false
 ---

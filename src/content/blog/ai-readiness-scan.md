@@ -17,7 +17,7 @@ relatedPosts:
   - "eerste-ai-project-kiezen"
   - "ai-governance-mkb"
 seo:
-  metaTitle: "AI-readiness scan: 10 vragen voor mkb | Agensea"
+  metaTitle: "AI-readiness scan: 10 vragen voor mkb · Agensea"
   metaDescription: "Praktische 10-vragen scan om AI-readiness van je mkb-organisatie te meten. Met interpretatie en volgende stappen."
 draft: false
 ---

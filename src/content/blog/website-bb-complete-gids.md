@@ -19,7 +19,7 @@ relatedPosts:
   - "booking-com-alternatief"
   - "meer-directe-boekingen"
 seo:
-  metaTitle: "Website voor B&B: Complete Gids [2026] - Wat Moet Erin? | Agensea"
+  metaTitle: "Website voor B&B: Complete Gids [2026] - Wat Moet Erin? · Agensea"
   metaDescription: "Ontdek wat een professionele B&B website moet bevatten. Boekingssysteem, foto's, SEO en meer. Verhoog je directe boekingen aanzienlijk ✓"
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "zapier-vs-custom-ai-agent"
   - "custom-gpt-vs-eigen-agent"
 seo:
-  metaTitle: "Wat is een AI-agent? Uitleg voor mkb | Agensea"
+  metaTitle: "Wat is een AI-agent? Uitleg voor mkb · Agensea"
   metaDescription: "Duidelijke uitleg van AI-agents, hoe ze werken, wanneer je ze gebruikt en wat ze kosten. Zonder technisch jargon."
 draft: false
 ---

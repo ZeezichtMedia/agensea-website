@@ -18,7 +18,7 @@ relatedPosts:
   - "recranet-vs-mews-boekingssysteem"
   - "meer-directe-boekingen"
 seo:
-  metaTitle: "Vakantiepark Marketing 2026: Strategie voor Grote Parken | Agensea"
+  metaTitle: "Vakantiepark Marketing 2026: Strategie voor Grote Parken · Agensea"
   metaDescription: "Analyse voor parkeigenaren: Hoe u in 2026 de transitie maakt van touroperator-afhankelijk naar een zelfstandig, winstgevend brand."
 draft: false
 ---

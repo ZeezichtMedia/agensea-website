@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-content-workflows"
   - "content-voor-ai-citaten"
 seo:
-  metaTitle: "AI voor SEO-research: de beste workflows | Agensea"
+  metaTitle: "AI voor SEO-research: de beste workflows · Agensea"
   metaDescription: "Concreet overzicht van AI-tools en workflows voor SEO-research in 2026. Met benchmarks en prijsvergelijking."
 draft: false
 ---

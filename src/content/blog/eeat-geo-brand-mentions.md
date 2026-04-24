@@ -18,7 +18,7 @@ relatedPosts:
   - "content-voor-ai-citaten"
   - "aeo-uitgelegd"
 seo:
-  metaTitle: "E-E-A-T voor GEO: brand mentions vs backlinks | Agensea"
+  metaTitle: "E-E-A-T voor GEO: brand mentions vs backlinks · Agensea"
   metaDescription: "Waarom brand mentions nu belangrijker zijn dan backlinks voor je autoriteit in AI-zoekmachines, en hoe je er strategisch mee werkt."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "wordpress-website-laten-maken-zeeland"
   - "waarom-niet-zelf-website-bouwen"
 seo:
-  metaTitle: "Website Vernieuwen of Nieuwe Website? De 5 Signalen | Agensea"
+  metaTitle: "Website Vernieuwen of Nieuwe Website? De 5 Signalen · Agensea"
   metaDescription: "Wanneer is je website vernieuwen niet meer genoeg? Wij zetten de feiten op een rij. Lees alles over snelheid, mobiel gebruik en conversie."
 draft: false
 ---

@@ -18,7 +18,7 @@ relatedPosts:
   - "wat-maakt-website-ai-first"
   - "astro-vs-nextjs-vs-sveltekit"
 seo:
-  metaTitle: "Headless CMS of WordPress: de keuze | Agensea"
+  metaTitle: "Headless CMS of WordPress: de keuze · Agensea"
   metaDescription: "Praktische beslishulp tussen headless CMS en WordPress voor mkb. Focus op content-team, niet alleen techniek."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-readiness-scan"
   - "ai-pilot-naar-productie"
 seo:
-  metaTitle: "Eerste AI-project kiezen: beslishulp | Agensea"
+  metaTitle: "Eerste AI-project kiezen: beslishulp · Agensea"
   metaDescription: "Hoe kies je het juiste eerste AI-project voor je mkb? Criteria en beslishulp om succes te maximaliseren."
 draft: false
 ---

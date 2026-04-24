@@ -18,7 +18,7 @@ relatedPosts:
   - "ai-governance-mkb"
   - "eu-ai-act-mkb-2026"
 seo:
-  metaTitle: "AI-ethiek in de praktijk voor mkb | Agensea"
+  metaTitle: "AI-ethiek in de praktijk voor mkb · Agensea"
   metaDescription: "Vijf praktische ethische principes voor verantwoord AI-gebruik in mkb, zonder academische overhead."
 draft: false
 ---

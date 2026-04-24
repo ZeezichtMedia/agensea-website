@@ -19,7 +19,7 @@ tags:
 relatedPosts:
   - "waarom-booking-commissie-vermijden"
 seo:
-  metaTitle: "Booking.com Alternatief | Eigen Website = 0% Commissie | Agensea"
+  metaTitle: "Booking.com Alternatief | Eigen Website = 0% Commissie · Agensea"
   metaDescription: "Stop met 15-20% commissie betalen! Ontdek hoe B&B's en campings met een eigen website duizenden euro's besparen. Gratis advies ✓"
 draft: false
 ---

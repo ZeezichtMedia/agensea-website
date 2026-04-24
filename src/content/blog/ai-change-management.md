@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-team-opbouwen"
   - "ai-pilot-naar-productie"
 seo:
-  metaTitle: "AI change management: team mee krijgen | Agensea"
+  metaTitle: "AI change management: team mee krijgen · Agensea"
   metaDescription: "Hoe krijg je je team enthousiast en capabel in AI-gebruik? Praktische change management voor mkb."
 draft: false
 ---

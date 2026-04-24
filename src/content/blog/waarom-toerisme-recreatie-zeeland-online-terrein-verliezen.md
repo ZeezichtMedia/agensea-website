@@ -17,7 +17,7 @@ relatedPosts:
   - "boekingssysteem-website"
   - "meer-directe-boekingen"
 seo:
-  metaTitle: "Waarom Toerisme in Zeeland Online Verliest (En Oplossingen) | Agensea"
+  metaTitle: "Waarom Toerisme in Zeeland Online Verliest (En Oplossingen) · Agensea"
   metaDescription: "Ontdek waarom veel toerismebedrijven in Zeeland online terrein verliezen en wat een goede website toerisme Zeeland kan doen voor meer directe boekingen."
 draft: false
 ---

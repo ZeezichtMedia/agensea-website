@@ -18,7 +18,7 @@ relatedPosts:
   - "wat-is-ai-agent"
   - "proces-automatisering-checklist"
 seo:
-  metaTitle: "Zapier/Make vs custom AI-agent: de beslissing | Agensea"
+  metaTitle: "Zapier/Make vs custom AI-agent: de beslissing · Agensea"
   metaDescription: "Concrete beslishulp: wanneer volstaat Zapier of Make met AI, en wanneer loont custom? Met kostenmodel en praktijkvoorbeelden."
 draft: false
 ---

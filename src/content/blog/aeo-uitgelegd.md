@@ -18,7 +18,7 @@ relatedPosts:
   - "waarom-ai-websites-slecht-zijn-voor-seo"
   - "seo-begint-bij-je-website-technische-basis"
 seo:
-  metaTitle: "AEO (Answer Engine Optimization) uitgelegd | Agensea"
+  metaTitle: "AEO (Answer Engine Optimization) uitgelegd · Agensea"
   metaDescription: "Wat is Answer Engine Optimization? Ontdek hoe je in 2026 het directe antwoord wordt in ChatGPT, Perplexity en Google."
 draft: false
 ---

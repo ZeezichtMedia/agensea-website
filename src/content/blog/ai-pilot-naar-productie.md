@@ -17,7 +17,7 @@ relatedPosts:
   - "eerste-ai-project-kiezen"
   - "ai-change-management"
 seo:
-  metaTitle: "Van AI-pilot naar productie: de sprong maken | Agensea"
+  metaTitle: "Van AI-pilot naar productie: de sprong maken · Agensea"
   metaDescription: "Hoe breng je een AI-pilot naar productie-schaal zonder te struikelen? 6-stappen plan met valkuilen."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-content-workflows"
   - "email-personalisatie-ai"
 seo:
-  metaTitle: "Customer journey mapping met AI | Agensea"
+  metaTitle: "Customer journey mapping met AI · Agensea"
   metaDescription: "Hoe AI customer journey-analyse versnelt en scherper maakt. Met concrete workflows en data-bronnen."
 draft: false
 ---

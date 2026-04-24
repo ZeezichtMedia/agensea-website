@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-readiness-scan"
   - "eu-ai-act-mkb-2026"
 seo:
-  metaTitle: "AI-governance voor MKB: praktische gids | Agensea"
+  metaTitle: "AI-governance voor MKB: praktische gids · Agensea"
   metaDescription: "Hoe zet je AI-governance op in een mkb? Rollen, verantwoordelijkheden en templates zonder enterprise-overhead."
 draft: false
 ---

@@ -17,7 +17,7 @@ relatedPosts:
   - "ai-content-workflows"
   - "customer-journey-ai"
 seo:
-  metaTitle: "Email personalisatie met AI | Agensea"
+  metaTitle: "Email personalisatie met AI · Agensea"
   metaDescription: "Praktische gids voor AI-gedreven email personalisatie op schaal. Van segmentatie tot individuele varianten."
 draft: false
 ---

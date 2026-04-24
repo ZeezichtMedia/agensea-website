@@ -17,7 +17,7 @@ relatedPosts:
   - "wat-is-ai-agent"
   - "hybrid-ai-klantenservice"
 seo:
-  metaTitle: "RAG-chatbot voor klantenservice: complete gids | Agensea"
+  metaTitle: "RAG-chatbot voor klantenservice: complete gids · Agensea"
   metaDescription: "Leer hoe een RAG-chatbot werkt, wat hij kost voor mkb, en welke valkuilen je moet vermijden voordat je investeert."
 draft: false
 ---

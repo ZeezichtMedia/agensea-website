@@ -24,7 +24,9 @@ const {
   noindex = false,
 } = Astro.props;
 
-const finalTitle = seoTitle || `${title} | Agensea`;
+// Middle-dot (·) als separator — consistent met homepage-titel. Cleaner en
+// iets smaller dan | of —, en matcht de premium brand-toon.
+const finalTitle = seoTitle || `${title} · Agensea`;
 const finalDescription = seoDescription || description;
 
 // Canonical URL — gebaseerd op de huidige request URL t.o.v. de site origin.

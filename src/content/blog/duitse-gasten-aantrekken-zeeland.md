@@ -18,7 +18,7 @@ relatedPosts:
   - "airbnb-vs-eigen-website"
   - "meer-directe-boekingen"
 seo:
-  metaTitle: "Meer Duitse Gasten Aantrekken in 2026? Maak Je Website 'Duits-Proof' | Agensea"
+  metaTitle: "Meer Duitse Gasten Aantrekken in 2026? Maak Je Website 'Duits-Proof' · Agensea"
   metaDescription: "Wil jij meer Duitse gasten aantrekken voor je camping of B&B in Zeeland? Ontdek waarom een professionele vertaling, betaalopties en een 'Impressum' cruciaal zijn voor seizoen 2026."
 draft: false
 ---

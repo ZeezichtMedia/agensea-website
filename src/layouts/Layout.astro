@@ -47,11 +47,19 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   "@id": "https://agensea.nl/#business",
   name: "Agensea",
-  alternateName: "Agensea — Websites, Software & Marketing",
+  // alternateName als array: voormalige bedrijfsnaam + tagline. Helpt Google
+  // begrijpen dat zoekopdrachten op "Zee-Zicht Media" en "Agensea" naar
+  // dezelfde entity verwijzen — cruciaal tijdens rebrand-periode.
+  alternateName: [
+    "Agensea — AI-first Web- & Marketing Agency",
+    "Zee-Zicht Media",
+    "ZeeZicht Media",
+  ],
+  legalName: "Agensea VOF",
   url: "https://agensea.nl",
   logo: "https://agensea.nl/brand/agensea-logo-512.png",
   image: "https://agensea.nl/brand/agensea-logo-512.png",
-  description: "Agensea is het digitale bureau voor ambitieuze ondernemers in Zeeland. Maatwerk websites, online marketing en software op maat.",
+  description: "Agensea is een AI-first digital agency uit Zeeland. Wij bouwen maatwerk websites, zetten online marketing op en ontwikkelen software op maat voor ambitieuze ondernemers.",
   telephone: "+31-6-81383601",
   email: "info@agensea.nl",
   priceRange: "$$",

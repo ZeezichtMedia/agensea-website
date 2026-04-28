@@ -24,10 +24,12 @@ const features = [
   }
 ];
 
+// Prijzen tijdelijk verborgen — origineel: Starter "149"/maand, Professional "299"/maand, Enterprise "Op maat".
+// Zet `price` terug naar het originele bedrag (en pas evt. de CTA aan) zodra de definitieve prijzen vaststaan.
 const plans = [
   {
     name: "Starter",
-    price: "149",
+    price: "Op aanvraag", // origineel: "149"
     desc: "Voor kleine teams die hun content workflow willen stroomlijnen.",
     features: [
       "Tot 3 teamleden",
@@ -36,12 +38,12 @@ const plans = [
       "E-mail notificaties",
       "Jouw eigen branding"
     ],
-    cta: "Start gratis proefperiode",
+    cta: "Neem contact op",
     highlighted: false
   },
   {
     name: "Professional",
-    price: "299",
+    price: "Op aanvraag", // origineel: "299"
     desc: "Voor groeiende organisaties met meerdere afdelingen.",
     features: [
       "Tot 15 teamleden",
@@ -52,12 +54,12 @@ const plans = [
       "Voice-to-text invoer",
       "Exporteer naar CSV"
     ],
-    cta: "Start gratis proefperiode",
+    cta: "Neem contact op",
     highlighted: true
   },
   {
     name: "Enterprise",
-    price: "Op maat",
+    price: "Op aanvraag", // origineel: "Op maat"
     desc: "Voor grote organisaties met specifieke wensen en integraties.",
     features: [
       "Onbeperkt teamleden",
@@ -500,14 +502,14 @@ const steps = [
             <p class={`text-sm mb-6 ${plan.highlighted ? 'text-white/60' : 'text-text-secondary'}`}>{plan.desc}</p>
 
             <div class="flex items-baseline gap-1 mb-8">
-              {plan.price !== "Op maat" ? (
+              {/^\d+$/.test(plan.price) ? (
                 <>
                   <span class="text-sm font-medium text-indigo">&euro;</span>
                   <span class={`font-display text-5xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>{plan.price}</span>
                   <span class={`text-sm ${plan.highlighted ? 'text-white/50' : 'text-text-secondary'}`}>/maand</span>
                 </>
               ) : (
-                <span class={`font-display text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>Op maat</span>
+                <span class={`font-display text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>{plan.price}</span>
               )}
             </div>
 
